@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="white">
       <div class="d-flex align-center">
-        <div class="display-1 font-weight-black font-italic">Saineating</div>
+        <a href="https://www.saineating.ngx.fi/"><div class="display-1 font-weight-black font-italic">Saineating</div></a>
       </div>
       <v-spacer></v-spacer>
 

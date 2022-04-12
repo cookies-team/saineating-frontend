@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "release": "vue-cli-service build --dest /var/www/saineating/"
+    "release": "vue-cli-service build --dest /var/www/saineating-landing/public/iter1/recipes"
   },
   "dependencies": {
     "@vue/cli": "^5.0.4",

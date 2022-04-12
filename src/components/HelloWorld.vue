@@ -100,7 +100,7 @@ export default {
   }),
   mounted() {
     console.log(this.flexsearch);
-    this.axios.get("https://saineating.ngx.fi/api/recipes").then((response) => {
+    this.axios.get("https://www.saineating.ngx.fi/api/recipes").then((response) => {
       console.log(response);
       this.items = response.data;
 
