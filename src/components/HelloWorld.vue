@@ -1,58 +1,124 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <v-container>
+    <v-row>
+      <br />
+      <!-- <v-select
+        :items="items"
+        v-model="select"
+        item-text="garbageName"
+        filled
+        return-object
+        label="Please Select Your Garbage Name"
+        dense
+      ></v-select> -->
+      <v-col xs="12" sm="6" md="6" lg="4" xl="3" v-for="item in items" :key="item.RecipeID">
+        <v-card elevation="2" shaped class="mx-auto my-6" 
+          >
+          <v-img
+            height="250"
+            :src="imgs[item.name]"
+          ></v-img>
+
+          <v-card-title>{{ item.name }}</v-card-title>
+
+          <v-card-text>
+            <v-row>
+              <v-rating
+                :value="4.5"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="14"
+              ></v-rating>
+              <v-spacer></v-spacer>
+              <div class="grey--text ms-4">{{ item.type }}</div>
+            </v-row>
+
+            <!-- <div class="my-4 grey--text">{{ item.type }}</div> -->
+          </v-card-text>
+
+          <v-divider class="mx-4"></v-divider>
+
+          <v-card-title>Ingredients</v-card-title>
+
+          <v-card-text>
+            <v-chip-group
+              column
+            >
+              <v-chip v-for="ingredients in item.ingredients" :key="ingredients">{{ ingredients }}</v-chip>
+            </v-chip-group>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-btn color="deep-purple lighten-2 right" text @click="show = !show">
+              READ MORE
+            </v-btn>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              icon
+              @click="show = !show"
+            >
+              <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+
+          <v-expand-transition>
+            <div v-show="show">
+              <v-divider></v-divider>
+
+              <v-card-text>
+                {{ item.details }}
+              </v-card-text>
+            </div>
+          </v-expand-transition>
+        </v-card>
+      </v-col>
+
+    </v-row>
+
+    <v-snackbar :timeout="7000" color="primary" v-model="snackbar" shaped right bottom>
+      <div class="text-center text-h7">Welcome to Saineating</div>
+    </v-snackbar>
+  </v-container>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
+  name: "HelloWorld",
+  data: () => ({
+    snackbar: true,
+    dialog: false,
+    select: null,
+    items: null,
+    type: "",
+    method: "",
+    imgsrc: "",
+    show: false,
+    imgs: {}
+  }),
+  mounted() {
+    console.log(this.flexsearch);
+    this.axios.get("https://saineating.ngx.fi/api/recipes").then((response) => {
+      console.log(response);
+      this.items = response.data;
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+    }).then(()=>{
+      let imgs = {}
+      console.log(this.items)
+      Object.values(this.items).forEach((item)=> {
+        imgs[item.name] = require("../assets/Iteration1/R"+item.id+".png")
+      })
+      this.imgs = imgs
+    });
+  },
+  methods: {},
+};
+</script>
+<style>
+#app {
+  background: #88b04b no-repeat center center fixed !important;
+  background-size: cover;
 }
 </style>
