@@ -51,21 +51,21 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="deep-purple lighten-2 right" text @click="show = !show">
+            <v-btn color="deep-purple lighten-2 right" text @click="update_show(item)">
               READ MORE
             </v-btn>
             <v-spacer></v-spacer>
 
             <v-btn
               icon
-              @click="show = !show"
+              @click="update_show(item)"
             >
-              <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              <v-icon>{{ show[item.name] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
 
           <v-expand-transition>
-            <div v-show="show">
+            <div v-show="show[item.name]">
               <v-divider></v-divider>
 
               <v-card-text>
@@ -95,7 +95,7 @@ export default {
     type: "",
     method: "",
     imgsrc: "",
-    show: false,
+    show: {},
     imgs: {}
   }),
   mounted() {
@@ -113,7 +113,11 @@ export default {
       this.imgs = imgs
     });
   },
-  methods: {},
+  methods: {
+    update_show(item) {
+      this.$set(this.show, item.name, !this.show[item.name])
+    }
+  },
 };
 </script>
 <style>
