@@ -17,7 +17,7 @@
         md="6"
         lg="4"
         xl="3"
-        v-for="item in items"
+        v-for="(item, index) in items"
         :key="item.RecipeID"
       >
         <v-card elevation="2" shaped class="mx-auto my-6">
@@ -59,21 +59,21 @@
             <v-btn
               color="deep-purple lighten-2 right"
               text
-              @click="update_show(item)"
+              @click="update_show(index)"
             >
               READ MORE
             </v-btn>
             <v-spacer></v-spacer>
 
-            <v-btn icon @click="update_show(item)">
+            <v-btn icon @click="update_show(index)">
               <v-icon>{{
-                show[item["Food Name"]] ? "mdi-chevron-up" : "mdi-chevron-down"
+                show[index] ? "mdi-chevron-up" : "mdi-chevron-down"
               }}</v-icon>
             </v-btn>
           </v-card-actions>
 
           <v-expand-transition>
-            <div v-show="show[item['Food Name']]">
+            <div v-show="show[index]">
               <v-divider></v-divider>
 
               <v-card-text>
@@ -141,7 +141,6 @@ export default {
       })
       .then(() => {
         let imgs = {};
-        console.log(this.items);
         Object.values(this.items).forEach((item) => {
           imgs[item["Food Name"]] = require("../assets/Iteration1/R" +
             ((Math.floor(Math.random() * 3) % 3) + 1).toString() +
@@ -151,11 +150,10 @@ export default {
       });
   },
   methods: {
-    update_show(item) {
-      this.$set(this.show, item["Food Name"], !this.show[item["Food Name"]]);
+    update_show(index) {
+      this.$set(this.show, index, !this.show[index]);
     },
     next_page(page) {
-      console.log(page)
       this.$router.push({ path: '/' , query: { page: page }})
     }
   },
