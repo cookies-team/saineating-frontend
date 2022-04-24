@@ -11,15 +11,19 @@
         label="Please Select Your Garbage Name"
         dense
       ></v-select> -->
-      <v-col xs="12" sm="6" md="6" lg="4" xl="3" v-for="item in items" :key="item.RecipeID">
-        <v-card elevation="2" shaped class="mx-auto my-6" 
-          >
-          <v-img
-            height="250"
-            :src="imgs[item['Food Name']]"
-          ></v-img>
+      <v-col
+        xs="12"
+        sm="6"
+        md="6"
+        lg="4"
+        xl="3"
+        v-for="item in items"
+        :key="item.RecipeID"
+      >
+        <v-card elevation="2" shaped class="mx-auto my-6">
+          <v-img height="250" :src="imgs[item['Food Name']]"></v-img>
 
-          <v-card-title>{{ item['Food Name'] }}</v-card-title>
+          <v-card-title>{{ item["Food Name"] }}</v-card-title>
 
           <v-card-text>
             <v-row>
@@ -48,20 +52,23 @@
             >
               <v-chip v-for="ingredients in item['IN'].split(',')" :key="ingredients">{{ ingredients.trim() }}</v-chip>
             </v-chip-group> -->
-             <v-chip>{{ item['IN'] }}</v-chip>
+            <v-chip>{{ item["IN"] }}</v-chip>
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="deep-purple lighten-2 right" text @click="update_show(item)">
+            <v-btn
+              color="deep-purple lighten-2 right"
+              text
+              @click="update_show(item)"
+            >
               READ MORE
             </v-btn>
             <v-spacer></v-spacer>
 
-            <v-btn
-              icon
-              @click="update_show(item)"
-            >
-              <v-icon>{{ show[item['Food Name']] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            <v-btn icon @click="update_show(item)">
+              <v-icon>{{
+                show[item["Food Name"]] ? "mdi-chevron-up" : "mdi-chevron-down"
+              }}</v-icon>
             </v-btn>
           </v-card-actions>
 
@@ -76,10 +83,26 @@
           </v-expand-transition>
         </v-card>
       </v-col>
-
     </v-row>
 
-    <v-snackbar :timeout="7000" color="primary" v-model="snackbar" shaped right bottom>
+    <div class="text-center">
+      <v-pagination
+        v-model="page"
+        :length="pages"
+        :total-visible="7"
+        circle
+        @input="next_page"
+      ></v-pagination>
+    </div>
+
+    <v-snackbar
+      :timeout="7000"
+      color="primary"
+      v-model="snackbar"
+      shaped
+      right
+      bottom
+    >
       <div class="text-center text-h7">Welcome to Saineating</div>
     </v-snackbar>
   </v-container>
@@ -87,8 +110,11 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "FrontPage",
   data: () => ({
+    page: 1,
+    pages: 1,
+    count: 12,
     snackbar: true,
     dialog: false,
     select: null,
@@ -97,25 +123,40 @@ export default {
     method: "",
     imgsrc: "",
     show: {},
-    imgs: {}
+    imgs: {},
   }),
   mounted() {
-    this.axios.get("https://www.saineating.ngx.fi/api/recipes").then((response) => {
-      console.log(response);
-      this.items = response.data;
-
-    }).then(()=>{
-      let imgs = {}
-      console.log(this.items)
-      Object.values(this.items).forEach((item)=> {
-        imgs[item['Food Name']] = require("../assets/Iteration1/R"+(Math.floor(Math.random() * 3) % 3+1).toString()+".png")
+    this.page = parseInt(this.$route.query.page) || 1
+    this.axios
+      .get("https://www.saineating.ngx.fi/api/recipes/count")
+      .then((response) => {
+        console.log(response);
+        this.pages = 1+(response.data.count / this.count) >> 0 ;
       })
-      this.imgs = imgs
-    });
+    this.axios
+      .get(`https://www.saineating.ngx.fi/api/recipes?offset=${(this.page-1)*12}&count=${this.count}`)
+      .then((response) => {
+        console.log(response);
+        this.items = response.data;
+      })
+      .then(() => {
+        let imgs = {};
+        console.log(this.items);
+        Object.values(this.items).forEach((item) => {
+          imgs[item["Food Name"]] = require("../assets/Iteration1/R" +
+            ((Math.floor(Math.random() * 3) % 3) + 1).toString() +
+            ".png");
+        });
+        this.imgs = imgs;
+      });
   },
   methods: {
     update_show(item) {
-      this.$set(this.show, item['Food Name'], !this.show[item['Food Name']])
+      this.$set(this.show, item["Food Name"], !this.show[item["Food Name"]]);
+    },
+    next_page(page) {
+      console.log(page)
+      this.$router.push({ path: '/' , query: { page: page }})
     }
   },
 };
