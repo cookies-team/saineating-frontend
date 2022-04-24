@@ -16,10 +16,10 @@
           >
           <v-img
             height="250"
-            :src="imgs[item['Food Name']]"
+            :src="imgs[item.name]"
           ></v-img>
 
-          <v-card-title>{{ item['Food Name'] }}</v-card-title>
+          <v-card-title>{{ item.name }}</v-card-title>
 
           <v-card-text>
             <v-row>
@@ -32,7 +32,7 @@
                 size="14"
               ></v-rating>
               <v-spacer></v-spacer>
-              <!-- <div class="grey--text ms-4">{{ item['Food Name'].spilt(',')[0].trim() }}</div> -->
+              <div class="grey--text ms-4">{{ item.type }}</div>
             </v-row>
 
             <!-- <div class="my-4 grey--text">{{ item.type }}</div> -->
@@ -43,12 +43,11 @@
           <v-card-title>Ingredients</v-card-title>
 
           <v-card-text>
-            <!-- <v-chip-group
+            <v-chip-group
               column
             >
-              <v-chip v-for="ingredients in item['IN'].split(',')" :key="ingredients">{{ ingredients.trim() }}</v-chip>
-            </v-chip-group> -->
-             <v-chip>{{ item['IN'] }}</v-chip>
+              <v-chip v-for="ingredients in item.ingredients" :key="ingredients">{{ ingredients }}</v-chip>
+            </v-chip-group>
           </v-card-text>
 
           <v-card-actions>
@@ -61,12 +60,12 @@
               icon
               @click="update_show(item)"
             >
-              <v-icon>{{ show[item['Food Name']] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              <v-icon>{{ show[item.name] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
 
           <v-expand-transition>
-            <div v-show="show[item['Food Name']]">
+            <div v-show="show[item.name]">
               <v-divider></v-divider>
 
               <v-card-text>
@@ -100,7 +99,8 @@ export default {
     imgs: {}
   }),
   mounted() {
-    this.axios.get("https://www.saineating.ngx.fi/api/recipes").then((response) => {
+    console.log(this.flexsearch);
+    this.axios.get("/api/recipes").then((response) => {
       console.log(response);
       this.items = response.data;
 
@@ -108,14 +108,14 @@ export default {
       let imgs = {}
       console.log(this.items)
       Object.values(this.items).forEach((item)=> {
-        imgs[item['Food Name']] = require("../assets/Iteration1/R"+(Math.floor(Math.random() * 3) % 3+1).toString()+".png")
+        imgs[item.name] = require("../assets/Iteration1/R"+item.id+".png")
       })
       this.imgs = imgs
     });
   },
   methods: {
     update_show(item) {
-      this.$set(this.show, item['Food Name'], !this.show[item['Food Name']])
+      this.$set(this.show, item.name, !this.show[item.name])
     }
   },
 };

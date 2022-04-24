@@ -9,7 +9,7 @@
     </div>
     <v-spacer></v-spacer>
 
-    <SearchBar />
+    <QuickSearchBar />
 
     <v-btn href="https://github.com/cookies-team" target="_blank" text>
       <v-icon class="mr-2">mdi-github</v-icon>
@@ -17,12 +17,12 @@
     </v-app-bar>
 </template>
 <script>
-import SearchBar from './SearchBar'
+import QuickSearchBar from './QuickSearchBar'
 
 export default {
   name: "AppHeader",
   components: {
-    SearchBar,
+    QuickSearchBar,
   },
   data: () => ({}),
 };
