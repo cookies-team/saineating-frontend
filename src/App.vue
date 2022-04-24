@@ -1,27 +1,9 @@
 <template>
   <v-app>
-    <v-app-bar app color="white">
-      <div class="d-flex align-center">
-        <a href="https://www.saineating.ngx.fi/"><div class="display-1 font-weight-black font-italic">Saineating</div></a>
-      </div>
-      <v-spacer></v-spacer>
-
-      <v-text-field
-        prepend-icon=""
-        solo
-        append-icon="mdi-magnify"
-        hide-details
-        single-line
-        placeholder="Search recipe or ingredient"
-      ></v-text-field>
-
-      <v-btn href="https://github.com/cookies-team" target="_blank" text>
-        <v-icon class="mr-2">mdi-github</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <AppHeader />
 
     <v-main>
-      <HelloWorld />
+      <router-view></router-view>
     </v-main>
 
     <v-footer padless>
@@ -33,12 +15,19 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./pages/FrontPage.vue";
+import AppHeader from "./components/AppHeader.vue";
 
 export default {
-  name: "App",
+  name: "FrontPage",
   components: {
-    HelloWorld,
+    AppHeader,
   },
 };
 </script>
+<style>
+#app {
+  background: #88b04b no-repeat center center fixed !important;
+  background-size: cover;
+}
+</style>

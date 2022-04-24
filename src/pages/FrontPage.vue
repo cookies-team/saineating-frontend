@@ -120,9 +120,3 @@ export default {
   },
 };
 </script>
-<style>
-#app {
-  background: #88b04b no-repeat center center fixed !important;
-  background-size: cover;
-}
-</style>
