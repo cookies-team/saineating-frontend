@@ -13,10 +13,10 @@
       ></v-select> -->
       <v-col
         xs="12"
-        sm="6"
+        sm="12"
         md="6"
-        lg="4"
-        xl="3"
+        lg="6"
+        xl="6"
         v-for="(item, index) in items"
         :key="item.RecipeID"
       >
@@ -38,7 +38,7 @@
             <v-chip-group
               column
             >
-              <v-chip v-for="category in item.categories" :key="category">{{ category.trim() }}</v-chip>
+              <v-chip small v-for="category in item.categories" :key="category">{{ category.trim() }}</v-chip>
             </v-chip-group>
           </v-card-text>
 
@@ -64,7 +64,7 @@
             <div v-show="show[index]">
               <v-divider></v-divider>
 
-              <v-card-text v-html="item['content:encoded']">
+              <v-card-text class="rawcontent" v-html="item['content:encoded']">
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -125,3 +125,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.rawcontent >>> img {
+  max-width: 100%;
+  height: auto;
+}
+</style>
