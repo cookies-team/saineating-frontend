@@ -18,12 +18,12 @@
       <v-list-item v-for="(value, key, index) in food" :key="index">
         <v-list-item-content>
           <v-list-item-title>{{ key }}</v-list-item-title>
-          <v-list-item-subtitle v-if="key != 'variants'">{{
+          <v-list-item-subtitle v-if="key != 'dishes'">{{
             value
           }}</v-list-item-subtitle>
-          <v-list-item v-if="key == 'variants'">
-            <v-list-item-content v-for="(variant, index) in value" :key="index">
-              <div v-for="(value, key) in variant" :key="key">
+          <v-list-item v-if="key == 'dishes'">
+            <v-list-item-content v-for="(dish, index) in value" :key="index">
+              <div v-for="(value, key) in dish" :key="key">
                 <v-list-item-title>{{ key }}</v-list-item-title>
                 <v-list-item-subtitle>{{ value }}</v-list-item-subtitle>
               </div>

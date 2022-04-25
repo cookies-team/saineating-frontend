@@ -77,7 +77,7 @@ export default {
       if (this.items.length > 0) return;
 
       this.isLoading = true;
-      let url = `https://www.saineating.ngx.fi/api/search/suggestions`
+      let url = `https://www.saineating.ngx.fi/api/search/suggestions`;
       // Lazily load input items
       fetch(url) //TODO
         .then((res) => res.clone().json())

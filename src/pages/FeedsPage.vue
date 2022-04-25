@@ -27,7 +27,6 @@
 
           <v-card-text>
             <div class="my-4 grey--text" v-html="item.contentSnippet"></div>
-
           </v-card-text>
 
           <v-divider class="mx-4"></v-divider>
@@ -35,10 +34,13 @@
           <v-card-title>Categories</v-card-title>
 
           <v-card-text>
-            <v-chip-group
-              column
-            >
-              <v-chip small v-for="category in item.categories" :key="category">{{ category.trim() }}</v-chip>
+            <v-chip-group column>
+              <v-chip
+                small
+                v-for="category in item.categories"
+                :key="category"
+                >{{ category.trim() }}</v-chip
+              >
             </v-chip-group>
           </v-card-text>
 
@@ -81,7 +83,6 @@
         @input="next_page"
       ></v-pagination>
     </div>
-
   </v-container>
 </template>
 
@@ -102,7 +103,7 @@ export default {
     imgs: {},
   }),
   mounted() {
-    this.page = parseInt(this.$route.query.page) || 1
+    this.page = parseInt(this.$route.query.page) || 1;
     this.axios
       .get(`https://www.saineating.ngx.fi/api/feeds`)
       .then((response) => {
@@ -113,15 +114,15 @@ export default {
           imgs[index] = response.data.image.link;
         });
         this.imgs = imgs;
-      })
+      });
   },
   methods: {
     update_show(index) {
       this.$set(this.show, index, !this.show[index]);
     },
     next_page(page) {
-      this.$router.push({ path: '/' , query: { page: page }})
-    }
+      this.$router.push({ path: "/", query: { page: page } });
+    },
   },
 };
 </script>

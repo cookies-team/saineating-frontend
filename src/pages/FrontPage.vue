@@ -21,7 +21,7 @@
         :key="item.RecipeID"
       >
         <v-card elevation="2" shaped class="mx-auto my-6">
-          <v-img height="250" :src="imgs[item['Food Name']]"></v-img>
+          <v-img height="250" :src="imgs[index]"></v-img>
 
           <v-card-title>{{ item["Food Name"] }}</v-card-title>
 
@@ -59,7 +59,7 @@
             <v-btn
               color="deep-purple lighten-2 right"
               text
-              @click="update_show(index)"
+              @click="go_recipe(item['blic Food Key'])"
             >
               READ MORE
             </v-btn>
@@ -131,11 +131,13 @@ export default {
       .get("https://www.saineating.ngx.fi/api/recipes/count")
       .then((response) => {
         console.log(response);
-        this.pages = 1+(response.data.count / this.count) >> 0 ;
+        this.pages = (1 + response.data.count / this.count) >> 0;
       });
-    const offset =(this.page-1)*12;
+    const offset = (this.page - 1) * 12;
     this.axios
-      .get(`https://www.saineating.ngx.fi/api/recipes?offset=${offset}&count=${this.count}`)
+      .get(
+        `https://www.saineating.ngx.fi/api/recipes?offset=${offset}&count=${this.count}`
+      )
       .then((response) => {
         console.log(response);
         this.items = response.data;
@@ -155,8 +157,11 @@ export default {
       this.$set(this.show, index, !this.show[index]);
     },
     next_page(page) {
-      this.$router.push({ path: '/' , query: { page: page }})
-    }
+      this.$router.push({ path: "/", query: { page: page } });
+    },
+    go_recipe(bfk) {
+      this.$router.push({ path: "/recipe/" + bfk });
+    },
   },
 };
 </script>
