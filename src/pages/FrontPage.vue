@@ -126,23 +126,24 @@ export default {
     imgs: {},
   }),
   mounted() {
-    this.page = parseInt(this.$route.query.page) || 1
+    this.page = parseInt(this.$route.query.page) || 1;
     this.axios
       .get("https://www.saineating.ngx.fi/api/recipes/count")
       .then((response) => {
         console.log(response);
         this.pages = 1+(response.data.count / this.count) >> 0 ;
-      })
+      });
+    const offset =(this.page-1)*12;
     this.axios
-      .get(`https://www.saineating.ngx.fi/api/recipes?offset=${(this.page-1)*12}&count=${this.count}`)
+      .get(`https://www.saineating.ngx.fi/api/recipes?offset=${offset}&count=${this.count}`)
       .then((response) => {
         console.log(response);
         this.items = response.data;
       })
       .then(() => {
         let imgs = {};
-        Object.values(this.items).forEach((item) => {
-          imgs[item["Food Name"]] = require("../assets/Iteration1/R" +
+        Object.values(this.items).forEach((item, index) => {
+          imgs[index] = require("../assets/Iteration1/R" +
             ((Math.floor(Math.random() * 3) % 3) + 1).toString() +
             ".png");
         });
