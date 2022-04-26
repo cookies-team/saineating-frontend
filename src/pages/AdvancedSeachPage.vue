@@ -116,7 +116,7 @@ export default {
   mounted() {
     console.log(this.flexsearch);
     this.axios
-      .get("/api/recipes")
+      .get("/apiv2/recipes")
       .then((response) => {
         console.log(response);
         this.items = response.data;

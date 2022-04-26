@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     const bfk = this.$route.params.id;
-    const url = `https://www.saineating.ngx.fi/api/recipe/id/${bfk}`;
+    const url = `https://www.saineating.ngx.fi/apiv2/recipe/id/${bfk}`;
     this.axios.get(url).then((response) => {
       console.log(response);
       this.food = response.data;
