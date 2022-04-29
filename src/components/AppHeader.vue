@@ -15,9 +15,9 @@
       <v-icon class="mr-2">mdi-newspaper</v-icon>
     </v-btn>
 
-    <v-btn href="https://github.com/cookies-team" target="_blank" text>
+    <!-- <v-btn href="https://github.com/cookies-team" target="_blank" text>
       <v-icon class="mr-2">mdi-github</v-icon>
-    </v-btn>
+    </v-btn> -->
   </v-app-bar>
 </template>
 <script>

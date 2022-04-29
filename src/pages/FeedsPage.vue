@@ -14,7 +14,7 @@
       <v-col
         xs="12"
         sm="12"
-        md="6"
+        md="12"
         lg="6"
         xl="6"
         v-for="(item, index) in items"
@@ -24,10 +24,19 @@
           <!-- <v-img height="250" :src="imgs[index]"></v-img> -->
 
           <v-card-title>{{ item.title }}</v-card-title>
-          <v-card-subtitle>{{ item.creator }} on {{ Date(item.isoDate) }}  </v-card-subtitle>
-          <v-card-text>
+          <v-card-subtitle>{{ item.creator }} </v-card-subtitle>
+          <!-- <v-card-text>
             <div class="my-4 grey--text" v-html="item.contentSnippet"></div>
-          </v-card-text>
+          </v-card-text> -->
+  <v-carousel>
+    <v-carousel-item
+      v-for="(src,i) in item.srcs"
+      :key="i"
+      :src="src"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    ></v-carousel-item>
+  </v-carousel>
 
           <v-divider class="mx-4"></v-divider>
 
