@@ -4,6 +4,6 @@ module.exports = defineConfig({
     'vuetify'
   ],
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/iter2/recipes'
+    ? '/iter2'
     : '/'
 })
