@@ -15,6 +15,7 @@
       solo
       append-icon="mdi-magnify"
       placeholder="Quick search recipe or ingredient"
+      maxlength="50px"
     >
       <template v-slot:no-data>
         <v-list-item>
