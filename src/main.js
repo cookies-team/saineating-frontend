@@ -16,6 +16,7 @@ import DesignRecipePage from './pages/DesignRecipePage.vue'
 import DesignRecipeDetailPage from './pages/DesignRecipeDetailPage'
 import DesignWhyPage from './pages/DesignWhyPage'
 import DesignAboutPage from './pages/DesignAboutPage'
+import SubmitPage from "./pages/SubmitPage";
 
 // uitls
 import axios from 'axios'
@@ -26,7 +27,7 @@ import VueRouter from 'vue-router'
 import "../styleguide.css"
 import "../globals.css"
 import { homePageData } from "./homedata";
-import { aboutPageData, guidelinePageData, mapPageData, recipePageData, recipeDetailsPageData, whyPageData } from "./projdata";
+import { aboutPageData, guidelinePageData, mapPageData, recipePageData, recipeDetailsPageData, whyPageData, submitPageData } from "./projdata";
 
 Vue.config.productionTip = false
 
@@ -49,6 +50,7 @@ const router = new VueRouter({
     { path: '/re/:id', component: DesignRecipeDetailPage, props: { ...recipeDetailsPageData }, },
     { path: '/why', component: DesignWhyPage, props: { ...whyPageData }, },
     { path: '/about', component: DesignAboutPage, props: { ...aboutPageData }, },
+    { path: '/submit', component: SubmitPage, props: { ...submitPageData }, },
   ]
 })
 

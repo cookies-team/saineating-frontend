@@ -17,10 +17,10 @@ export default {
   display: flex;
   flex-direction: column;
   height: 76px;
-  left: 0;
+  /* left: 0; */
   position: absolute;
-  top: 0;
-  width: 370px;
+  /* top: 0; */
+  width: 270px;
 }
 
 .label-11 {

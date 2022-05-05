@@ -115,32 +115,40 @@
           <div class="overlap-group3">
             <div class="overlap-group1-1">
               <p class="best-for-active-free-1 dmsans-normal-mine-shaft-16px">{{ bestForActiveFree2 }}</p>
+                          <br><br><br>
               <light-field-default
                 :label="lightFieldDefaultProps.label"
                 :inputType="lightFieldDefaultProps.inputType"
                 :inputPlaceholder="lightFieldDefaultProps.inputPlaceholder"
               />
-              <img class="map-1" :src="map2" />
+              <!-- <img class="map-1" :src="map2" /> -->
             </div>
+
+            <router-link to="/restmap">
             <light-button-primary-text
               :button="lightButtonPrimaryText2Props.button"
               :className="lightButtonPrimaryText2Props.className"
             />
+                      </router-link>
           </div>
         </div>
       </div>
       <div class="submit-rest-group">
         <div class="overlap-group8" :style="{ 'background-image': 'url(' + overlapGroup8 + ')' }">
+
           <div class="overlap-group-1">
             <div class="rectangle-2"></div>
             <div class="submit dmsans-normal-white-14px">{{ submit }}</div>
           </div>
+
           <div class="submit-your-restaura worksans-bold-mine-shaft-56px" v-html="submitYourRestaura"></div>
           <p class="best-for-active-free-2 dmsans-normal-mine-shaft-16px">{{ bestForActiveFree3 }}</p>
+                    <router-link to="/submit">
           <light-button-primary-text
             :button="lightButtonPrimaryText3Props.button"
             :className="lightButtonPrimaryText3Props.className"
           />
+          </router-link>
         </div>
       </div>
       <div class="shopping-guidelines">

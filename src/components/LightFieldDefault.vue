@@ -26,7 +26,7 @@ export default {
   flex-direction: column;
   left: 0;
   min-height: 76px;
-  position: absolute;
+  /* position: absolute; */
   top: 57px;
   width: 270px;
 }
@@ -55,7 +55,7 @@ export default {
   line-height: 32px;
   padding: 0;
   white-space: nowrap;
-  width: 107px;
+  min-width: 107px;
 }
 
 .placeholder::placeholder {

@@ -27,7 +27,7 @@
       <router-link to="/about">
         <div class="about dmsans-normal-white-16px">{{ about }}</div>
       </router-link>
-      <img class="logo" :src="logo" />
+      <router-link to="/"><img class="logo" :src="logo" /></router-link>
     </div>
   </div>
 </template>

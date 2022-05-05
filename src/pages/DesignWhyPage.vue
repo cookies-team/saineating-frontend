@@ -3,6 +3,7 @@
     <div class="why-page screen">
       <div class="head-container">
         <heading-bckground :src="headingBckgroundProps.src" />
+<div class="page-title worksans-bold-white-72px">Why Healthy Eating</div>
       </div>
       <div class="main-pic"><img class="fatkid" :src="fatkid" /></div>
       <div class="cause">

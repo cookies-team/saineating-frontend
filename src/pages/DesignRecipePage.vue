@@ -4,11 +4,6 @@
       <div class="overlap-group11-1">
         <heading-bckground :src="headingBckgroundProps.src" />
         <div class="page-title worksans-bold-white-72px">{{ pageTitle }}</div>
-        <x-header
-          :logo="xHeaderProps.logo"
-          :className="xHeaderProps.className"
-          :xHeader2Props="xHeaderProps.xHeader2Props"
-        />
       </div>
       <div class="flex-row-4">
         <div class="overlap-group9-1">
