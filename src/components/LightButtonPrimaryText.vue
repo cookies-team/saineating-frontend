@@ -1,56 +1,65 @@
 <template>
-  <div :class="[`light-button-primary-text`, className || ``]">
-    <div class="button dmsans-bold-white-16px">{{ children }}</div>
+  <div :class="[`search-btn`, className || ``]">
+    <div class="button dmsans-bold-white-16px">{{ button }}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "LightButtonPrimaryText",
-  props: ["children", "className"],
+  props: ["button", "className"],
 };
 </script>
 
 <style>
-.light-button-primary-text {
-  align-items: flex-start;
+.search-btn {
   background-color: var(--apricot);
   border-radius: 12px;
   display: flex;
   height: 48px;
-  left: 490px;
-  min-width: 116px;
-  padding: 13px 30.9px;
-  position: absolute;
-  top: 641px;
+  /* margin-left: 197px; */
+  width: 116px;
 }
 
 .button {
+  flex: 1;
+  height: 21px;
   letter-spacing: 0;
-  min-height: 21px;
-  min-width: 54px;
+  margin-left: 26.65%;
+  margin-right: 26.8%;
+  margin-top: -1px;
   text-align: center;
+  width: 54px;
 }
 
-.light-button-primary-text.light-button-primary-text-1 {
-  left: 1136px;
-  min-width: 170px;
-  padding: 13px 27.5px;
-  top: 2576px;
+.search-btn.light-button-primary-text {
+  cursor: pointer;
+  left: 300px;
+  margin-left: unset;
+  position: absolute;
+  top: 85px;
+  width: 170px;
 }
 
-.light-button-primary-text.light-button-primary-text-1 .button {
-  min-width: 115px;
+.search-btn.light-button-primary-text .button {
+  margin-left: 16.18%;
+  margin-right: 16.18%;
+  width: 115px;
 }
 
-.light-button-primary-text.light-button-primary-text-2 {
-  left: 842px;
-  min-width: 170px;
-  padding: 13px 56.5px;
-  top: 3345px;
+.search-btn.light-button-primary-text-1 {
+  align-self: center;
+  cursor: pointer;
+  height: 44px;
+  margin-left: 416px;
+  margin-top: 5px;
+  width: 170px;
 }
 
-.light-button-primary-text.light-button-primary-text-2 .button {
-  min-width: 56px;
+.search-btn.light-button-primary-text-1 .button {
+  margin-left: 33.24%;
+  margin-right: 33.82%;
+  margin-top: -0.8px;
+  width: 56px;
 }
 </style>

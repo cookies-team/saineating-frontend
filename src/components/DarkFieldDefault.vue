@@ -1,13 +1,16 @@
 <template>
   <div class="dark-field-default">
-    <div class="label dmsans-bold-white-12px"></div>
-    <div class="overlap-group1"><div class="placeholder dmsans-normal-mine-shaft-16px">Your email</div></div>
+    <div class="label-1 dmsans-bold-white-12px">{{ label }}</div>
+    <div class="overlap-group1-2">
+      <div class="placeholder-1 dmsans-normal-mine-shaft-16px">{{ placeholder }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "DarkFieldDefault",
+  props: ["label", "placeholder"],
 };
 </script>
 
@@ -19,16 +22,16 @@ export default {
   left: 1042px;
   min-height: 76px;
   position: absolute;
-  top: 4462px;
+  top: 115px;
   width: 270px;
 }
 
-.label {
+.label-1 {
   letter-spacing: 0;
   min-height: 16px;
 }
 
-.overlap-group1 {
+.overlap-group1-2 {
   align-items: center;
   background-color: var(--white);
   border-radius: 12px;
@@ -40,7 +43,7 @@ export default {
   padding: 0 17px;
 }
 
-.placeholder {
+.placeholder-1 {
   letter-spacing: 0;
   line-height: 32px;
   min-height: 32px;

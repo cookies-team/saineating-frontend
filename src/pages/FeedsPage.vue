@@ -28,15 +28,15 @@
           <!-- <v-card-text>
             <div class="my-4 grey--text" v-html="item.contentSnippet"></div>
           </v-card-text> -->
-  <v-carousel>
-    <v-carousel-item
-      v-for="(src,i) in item.srcs"
-      :key="i"
-      :src="src"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    ></v-carousel-item>
-  </v-carousel>
+          <v-carousel>
+            <v-carousel-item
+              v-for="(src, i) in item.srcs"
+              :key="i"
+              :src="src"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
+            ></v-carousel-item>
+          </v-carousel>
 
           <v-divider class="mx-4"></v-divider>
 
@@ -113,15 +113,13 @@ export default {
   }),
   mounted() {
     this.page = parseInt(this.$route.query.page) || 1;
+    this.axios.get(this.$hostname +"/apiv2/feeds/count").then((response) => {
+      console.log(response);
+      this.pages = (1 + response.data.count / this.count) >> 0;
+    });
+    const offset = (this.page - 1) * 12;
     this.axios
-      .get("https://www.saineating.ngx.fi/apiv2/feeds/count")
-      .then((response) => {
-        console.log(response);
-        this.pages = (1 + response.data.count / this.count) >> 0;
-      });
-        const offset = (this.page - 1) * 12;
-    this.axios
-      .get(`https://www.saineating.ngx.fi/apiv2/feeds?offset=${offset}&count=${this.count}`)
+      .get(this.$hostname +`/apiv2/feeds?offset=${offset}&count=${this.count}`)
       .then((response) => {
         console.log(response);
         this.items = response.data.items;

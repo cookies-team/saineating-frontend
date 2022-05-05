@@ -2,19 +2,19 @@
   <v-row class="fill-height" no-gutters>
     <v-col class="col-3">
       <v-list height="100%">
-      <v-card-title>Restaurants</v-card-title>
-          <v-autocomplete
+        <v-card-title>Restaurants</v-card-title>
+        <v-autocomplete
           class="mx-3 my-3"
-      chips
-      clearable
-      hide-details
-      hide-selected
-      label="Search restaurants"
-      solo
-      append-icon="mdi-magnify"
-      placeholder="Search restaurants"
-    />
-      <v-divider />
+          chips
+          clearable
+          hide-details
+          hide-selected
+          label="Search restaurants"
+          solo
+          append-icon="mdi-magnify"
+          placeholder="Search restaurants"
+        />
+        <v-divider />
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
@@ -27,14 +27,14 @@
 
           <v-list-item-content>
             <v-list-item-title>{{ item.Name }}</v-list-item-title>
-        <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-        ></v-rating>
+            <v-rating
+              :value="4.5"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14"
+            ></v-rating>
             <v-list-item-subtitle>{{ item.Address }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -55,7 +55,12 @@
           :key="key"
           :coordinates="[item.longitude, item.latitude]"
         >
-          <MglPopup :coordinates="[item.longitude, item.latitude]" :closeButton=false :closeOnClick=true anchor="top">
+          <MglPopup
+            :coordinates="[item.longitude, item.latitude]"
+            :closeButton="false"
+            :closeOnClick="true"
+            anchor="top"
+          >
             <v-card max-width="374">
               <v-img
                 height="250"
@@ -106,15 +111,18 @@
               </v-card-text>
 
               <v-card-actions>
-                <v-btn color="deep-purple lighten-2" text>
-                  Reserve
-                </v-btn>
+                <v-btn color="deep-purple lighten-2" text> Reserve </v-btn>
               </v-card-actions>
             </v-card>
           </MglPopup>
         </MglMarker>
       </MglMap>
     </v-col>
+    <v-footer padless>
+      <!-- <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>COOKies</strong>
+      </v-col> -->
+    </v-footer>
   </v-row>
 </template>
 
@@ -137,12 +145,10 @@ export default {
     items: null,
   }),
   mounted() {
-    this.axios
-      .get("https://www.saineating.ngx.fi/apiv2/restaurants")
-      .then((response) => {
-        console.log(response);
-        this.items = response.data;
-      });
+    this.axios.get("/apiv2/restaurants").then((response) => {
+      console.log(response);
+      this.items = response.data;
+    });
   },
   created() {
     this.map = Mapbox;

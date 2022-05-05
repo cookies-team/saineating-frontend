@@ -34,7 +34,9 @@
           class="white--text"
           v-on="on"
         >
-          <v-icon left> mdi-{{ item.type == 'food'? 'food': 'newspaper' }} </v-icon>
+          <v-icon left>
+            mdi-{{ item.type == "food" ? "food" : "newspaper" }}
+          </v-icon>
           <span v-text="item.fullname"></span>
         </v-chip>
       </template>
@@ -50,7 +52,7 @@
           <v-list-item-subtitle v-text="item.fullname"></v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
-          <v-icon>mdi-{{ item.type == 'food'? 'food': 'newspaper' }}</v-icon>
+          <v-icon>mdi-{{ item.type == "food" ? "food" : "newspaper" }}</v-icon>
           <!--TODO-->
         </v-list-item-action>
       </template>
@@ -78,7 +80,7 @@ export default {
       if (this.items.length > 0) return;
 
       this.isLoading = true;
-      let url = `https://www.saineating.ngx.fi/apiv2/search/suggestions`;
+      let url = this.$hostname + `/apiv2/search/suggestions`;
       // Lazily load input items
       fetch(url) //TODO
         .then((res) => res.clone().json())

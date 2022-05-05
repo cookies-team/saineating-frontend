@@ -1,26 +1,21 @@
 <template>
-  <div :class="[`light-button-primary-icon`, className || ``]"></div>
+  <div class="t-btn"></div>
 </template>
 
 <script>
 export default {
   name: "LightButtonPrimaryIcon",
-  props: ["className"],
 };
 </script>
 
 <style>
-.light-button-primary-icon {
+.t-btn {
   background-color: var(--apricot);
   border-radius: 24px;
   height: 48px;
-  left: 1202px;
+  left: 0;
   position: absolute;
-  top: 1584px;
+  top: 0;
   width: 48px;
-}
-
-.light-button-primary-icon.light-button-primary-icon-1 {
-  left: 1258px;
 }
 </style>

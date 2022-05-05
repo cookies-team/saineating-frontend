@@ -1,9 +1,9 @@
 <template>
   <div class="light-field-default">
-    <div class="label-1 dmsans-bold-mine-shaft-12px">{{ label }}</div>
-    <div class="overlap-group2 border-1px-alto">
+    <div class="label dmsans-bold-mine-shaft-12px">{{ label }}</div>
+    <div class="overlap-group-4 border-1px-alto">
       <input
-        class="placeholder-1 dmsans-normal-mine-shaft-16px"
+        class="placeholder dmsans-normal-mine-shaft-16px"
         name="placeholder"
         :placeholder="inputPlaceholder"
         :type="inputType"
@@ -24,19 +24,19 @@ export default {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  left: 836px;
+  left: 0;
   min-height: 76px;
   position: absolute;
-  top: 2548px;
+  top: 57px;
   width: 270px;
 }
 
-.label-1 {
+.label {
   letter-spacing: 0;
   min-height: 16px;
 }
 
-.overlap-group2 {
+.overlap-group-4 {
   align-items: flex-start;
   background-color: var(--white);
   border-radius: 12px;
@@ -47,7 +47,7 @@ export default {
   padding: 7px 15px;
 }
 
-.placeholder-1 {
+.placeholder {
   background-color: transparent;
   border: 0;
   height: 32px;
@@ -58,7 +58,7 @@ export default {
   width: 107px;
 }
 
-.placeholder-1::placeholder {
+.placeholder::placeholder {
   color: #3333334d;
 }
 </style>

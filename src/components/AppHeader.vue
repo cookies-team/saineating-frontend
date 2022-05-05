@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="white">
     <div class="d-flex align-center">
-      <a href="https://www.saineating.ngx.fi/"
+      <a href="/"
         ><div class="display-1 font-weight-black font-italic">
           Saineating
         </div></a

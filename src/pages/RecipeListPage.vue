@@ -127,17 +127,13 @@ export default {
   }),
   mounted() {
     this.page = parseInt(this.$route.query.page) || 1;
-    this.axios
-      .get("https://www.saineating.ngx.fi/apiv2/recipes/count")
-      .then((response) => {
-        console.log(response);
-        this.pages = (1 + response.data.count / this.count) >> 0;
-      });
+    this.axios.get(this.$hostname +"/apiv2/recipes/count").then((response) => {
+      console.log(response);
+      this.pages = (1 + response.data.count / this.count) >> 0;
+    });
     const offset = (this.page - 1) * 12;
     this.axios
-      .get(
-        `https://www.saineating.ngx.fi/apiv2/recipes?offset=${offset}&count=${this.count}`
-      )
+      .get(this.$hostname +`/apiv2/recipes?offset=${offset}&count=${this.count}`)
       .then((response) => {
         console.log(response);
         this.items = response.data;
