@@ -1,12 +1,13 @@
 <template>
   <v-app class="screen">
-    <v-app-bar elevation="0" absolute top>
+    <header>
       <x-header v-bind="xHeaderProps" />
-    </v-app-bar>
-    <v-main>
+    </header>
+    <v-main >
       <router-view :key="$route.fullPath"></router-view>
     </v-main>
 
+    <footer>
     <x-footer
       :why="xFooterProps.why"
       :recipe="xFooterProps.recipe"
@@ -14,6 +15,7 @@
       :about="xFooterProps.about"
       :group17Props="xFooterProps.group17Props"
     />
+  </footer>
   </v-app>
 </template>
 
@@ -84,8 +86,10 @@ html,
   background: #5eae53 no-repeat center center fixed !important;
   background-size: cover;
 }
+
 .screen {
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
 }
 </style>

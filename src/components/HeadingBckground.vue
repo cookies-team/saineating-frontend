@@ -1,15 +1,25 @@
 <template>
+<div class="page-heading">
   <div class="heading-bckground" :style="{ 'background-image': 'url(' + src + ')' }"></div>
+  <div class="restaurants-map worksans-bold-white-72px">{{ title }}</div>
+</div>
 </template>
 
 <script>
 export default {
   name: "HeadingBckground",
-  props: ["src"],
+  props: ["src", "title"],
 };
 </script>
 
 <style>
+.page-heading {
+  height: 212px;
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+}
+
 .heading-bckground,
 .heading-bckground-1,
 .heading-bckground-2,
@@ -22,6 +32,7 @@ export default {
   left: 0;
   position: absolute;
   top: 0;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 </style>

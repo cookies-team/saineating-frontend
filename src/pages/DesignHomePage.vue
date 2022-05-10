@@ -1,208 +1,160 @@
 <template>
-  <div class="container-center-horizontal">
-    <div class="home-page screen">
-      <div class="overlap-group15">
-        <div class="overlap-group13">
-          <div class="seach-bar-content dmsans-normal-mine-shaft-16px">{{ seachbarcontent }}</div>
-          <light-button-primary-text :button="lightButtonPrimaryText1Props.button" />
-        </div>
+  <div class="d-flex flex-column">
+    <div class="home-page screen" :style="`background: url(${require('../assets/Iter2/MainBackground.png')}); background-size: cover;`">
+      <div class="home-large-pic">
         <img class="home-top-pic-1" :src="hometoppic1" />
       </div>
       <div class="recipe-block">
         <div class="flex-col">
-          <div class="overlap-group6">
-            <div class="categories dmsans-normal-white-14px">{{ categories }}</div>
-          </div>
-          <h1 class="categoried-recipes worksans-bold-mine-shaft-56px">{{ categoriedrecipes }}</h1>
+          <!-- <div class="recipes-label">
+            <div class="categories dmsans-normal-white-14px">
+              HEALTHY EATTING RECIPE
+            </div>
+          </div> -->
+          <h1 class="worksans-bold-mine-shaft-56px">Categoried Recipes</h1>
         </div>
-        <div class="overlap-group-container">
-          <div class="overlap-group1">
-            <div class="rectangle"></div>
-            <div class="breakfast dmsans-normal-mine-shaft-20px">{{ breakfast }}</div>
-            <img class="group-7-1" :src="group71" /><img
-              class="oval"
-              src="https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval@2x.png"
-            />
-            <div class="number dmsans-normal-white-16px">{{ number1 }}</div>
-          </div>
-          <div class="overlap-group">
-            <div class="rectangle"></div>
-            <img class="group-8-1" :src="group81" /><img class="oval-1" :src="oval2" />
-            <div class="number-1 dmsans-normal-white-16px">{{ number2 }}</div>
-            <div class="lunch dmsans-normal-mine-shaft-20px">{{ lunch }}</div>
-          </div>
-          <div class="overlap-group">
-            <div class="rectangle"></div>
-            <div class="dinner dmsans-normal-mine-shaft-20px">{{ dinner }}</div>
-            <img class="group" :src="group91" /><img class="oval" :src="oval3" />
-            <div class="number dmsans-normal-white-16px">{{ number3 }}</div>
-          </div>
-          <div class="overlap-group">
-            <div class="rectangle"></div>
-            <div class="vegetarian dmsans-normal-mine-shaft-20px">{{ vegetarian }}</div>
-            <img class="group" :src="group101" /><img class="oval" :src="oval4" />
-            <div class="number dmsans-normal-white-16px">{{ number4 }}</div>
-          </div>
-          <div class="overlap-group">
-            <div class="rectangle"></div>
-            <div class="asian dmsans-normal-mine-shaft-20px">{{ asian }}</div>
-            <img class="group-11-1" :src="group111" /><img class="oval" :src="oval5" />
-            <div class="number-2 dmsans-normal-white-16px">{{ number5 }}</div>
-          </div>
-          <div class="overlap-group">
-            <div class="rectangle-1"></div>
-            <div class="desserts dmsans-normal-mine-shaft-20px">{{ desserts }}</div>
-            <img class="group-12-2" :src="group122" /><img class="oval" :src="oval6" />
-            <div class="number-3 dmsans-normal-white-16px">{{ number6 }}</div>
-          </div>
-        </div>
+        <home-recipe-category />
       </div>
       <div class="rest-list">
-        <div class="flex-row">
-          <div class="flex-col-1">
-            <div class="overlap-group10">
-              <div class="restaurants dmsans-normal-white-14px">{{ restaurants1 }}</div>
-            </div>
-            <div class="restaurants-1 worksans-bold-mine-shaft-56px">{{ restaurants2 }}</div>
-            <p class="best-for-active-free dmsans-normal-mine-shaft-16px">{{ bestForActiveFree1 }}</p>
+        <div class="d-flex flex-column">
+          <!-- <div class="restaurants-label">
+            <div class="dmsans-normal-white-14px">EATTING OUT</div>
+          </div> -->
+          <div class="restaurants-1 worksans-bold-mine-shaft-56px">
+            Restaurants List
           </div>
-          <div class="view-all dmsans-normal-mine-shaft-16px-2">{{ viewAll1 }}</div>
-          <div class="overlap-group12">
-            <light-button-primary-icon />
-            <img class="arrow" :src="arrow1" />
-          </div>
-          <div class="overlap-group11">
-            <light-button-primary-icon />
-            <img class="arrow-1" :src="arrow2" />
-          </div>
-        </div>
-        <div class="rest-container">
-          <rest-card
-            :overlapGroup="restCard1Props.overlapGroup"
-            :bestBurgers="restCard1Props.bestBurgers"
-            :x2030Min="restCard1Props.x2030Min"
-            :burgers="restCard1Props.burgers"
-          />
-          <rest-card
-            :overlapGroup="restCard2Props.overlapGroup"
-            :bestBurgers="restCard2Props.bestBurgers"
-            :x2030Min="restCard2Props.x2030Min"
-            :burgers="restCard2Props.burgers"
-            :className="restCard2Props.className"
-          />
-          <rest-card
-            :overlapGroup="restCard3Props.overlapGroup"
-            :bestBurgers="restCard3Props.bestBurgers"
-            :x2030Min="restCard3Props.x2030Min"
-            :burgers="restCard3Props.burgers"
-            :className="restCard3Props.className"
-          />
-          <rest-card
-            :overlapGroup="restCard4Props.overlapGroup"
-            :bestBurgers="restCard4Props.bestBurgers"
-            :x2030Min="restCard4Props.x2030Min"
-            :burgers="restCard4Props.burgers"
-            :className="restCard4Props.className"
-          />
-        </div>
-      </div>
-      <div class="map-group">
-        <div class="overlap-group9" :style="{ 'background-image': 'url(' + overlapGroup9 + ')' }">
-          <div class="categoried-recipes-2-1">
-            <div class="map dmsans-normal-white-14px">{{ map1 }}</div>
-          </div>
-          <div class="food-map-with-more-t worksans-bold-mine-shaft-56px" v-html="foodMapWithMoreT"></div>
-          <div class="overlap-group3">
-            <div class="overlap-group1-1">
-              <p class="best-for-active-free-1 dmsans-normal-mine-shaft-16px">{{ bestForActiveFree2 }}</p>
-                          <br><br><br>
-              <light-field-default
-                :label="lightFieldDefaultProps.label"
-                :inputType="lightFieldDefaultProps.inputType"
-                :inputPlaceholder="lightFieldDefaultProps.inputPlaceholder"
-              />
-              <!-- <img class="map-1" :src="map2" /> -->
-            </div>
+          <div class="d-flex justify-space-between">
+            <p class="best-for-active-free dmsans-normal-mine-shaft-16px">
+              Take your children to there
+            </p>
+            <div></div>
+            <div class="rest-buttons pa-1" style="align-items: end">
+              <v-btn fab elevation="0">
+                <v-icon dark> mdi-chevron-left </v-icon>
+              </v-btn>
 
-            <router-link to="/restmap">
-            <light-button-primary-text
-              :button="lightButtonPrimaryText2Props.button"
-              :className="lightButtonPrimaryText2Props.className"
-            />
-                      </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="submit-rest-group">
-        <div class="overlap-group8" :style="{ 'background-image': 'url(' + overlapGroup8 + ')' }">
-
-          <div class="overlap-group-1">
-            <div class="rectangle-2"></div>
-            <div class="submit dmsans-normal-white-14px">{{ submit }}</div>
-          </div>
-
-          <div class="submit-your-restaura worksans-bold-mine-shaft-56px" v-html="submitYourRestaura"></div>
-          <p class="best-for-active-free-2 dmsans-normal-mine-shaft-16px">{{ bestForActiveFree3 }}</p>
-                    <router-link to="/submit">
-          <light-button-primary-text
-            :button="lightButtonPrimaryText3Props.button"
-            :className="lightButtonPrimaryText3Props.className"
-          />
-          </router-link>
-        </div>
-      </div>
-      <div class="shopping-guidelines">
-        <div class="flex-row-1">
-          <div class="flex-col-2">
-            <div class="overlap-group7">
-              <div class="restaurants-2 dmsans-normal-white-14px">{{ restaurants3 }}</div>
-            </div>
-            <div class="best-deals worksans-bold-mine-shaft-56px">{{ bestDeals }}</div>
-            <p class="best-for-active-free-3 dmsans-normal-mine-shaft-16px">{{ bestForActiveFree4 }}</p>
-          </div>
-          <div class="view-all-1 dmsans-normal-mine-shaft-16px-2">{{ viewAll2 }}</div>
-        </div>
-        <div class="overlap-group-container-1">
-          <div class="overlap-group5-1">
-            <div class="rectangle-3"></div>
-            <img class="stars-1" :src="stars1" />
-            <div class="luxury-restaurant worksans-bold-mine-shaft-24px" v-html="luxuryRestaurant"></div>
-            <p class="kennewick-al-41329 dmsans-normal-mine-shaft-16px">{{ kennewickAl41329 }}</p>
-          </div>
-          <div class="overlap-group6-1">
-            <img class="rectangle-4" :src="rectangle" />
-            <div class="flex-col-3">
-              <div class="italian-cuisine worksans-bold-mine-shaft-24px">{{ italianCuisine }}</div>
-              <p class="x8019-facilisis-stree dmsans-normal-mine-shaft-16px">{{ x8019FacilisisStree }}</p>
+              <v-btn fab elevation="0">
+                <v-icon dark> mdi-chevron-right </v-icon>
+              </v-btn>
             </div>
           </div>
         </div>
+        <home-rest-list class="ma-3" />
       </div>
-      <!-- <x-footer
-        :why="xFooterProps.why"
-        :recipe="xFooterProps.recipe"
-        :sg="xFooterProps.sg"
-        :about="xFooterProps.about"
-        :group17Props="xFooterProps.group17Props"
-      /> -->
+      <v-row class="map-section mt-16 mb-16">
+        <v-col cols="12" sm="6">
+          <div
+            :style="`background-image: url( ${require('../assets/Iter2/ManEatOut.png')}); background-size: contain; width: 100%; height: 100%;`"
+          ></div>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+          class="d-flex flex-column justify-content-center"
+        >
+          <!-- <div class="map-label-background">
+            <div class="map-label dmsans-normal-white-14px">MAP</div>
+          </div> -->
+          <h1 class="worksans-bold-mine-shaft-56px">
+            Healthy Eating out Map with Recommend Restaurants
+          </h1>
+          <p class="dmsans-normal-mine-shaft-16px">
+            Please go to the Eating out page to get start.
+          </p>
+          <div class="d-flex justify-center">
+            <router-link to="/restmap" target="_blank">
+              <v-btn
+                class="mr-8"
+                color="green px-6 py-5"
+                dark
+                style="font-style: italic"
+                elevation="0"
+              >
+                Search on Map</v-btn
+              >
+            </router-link>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="guideline-section mt-16">
+        <v-col cols="12" sm="6">
+          <div
+            :style="`background-image: url( ${require('../assets/Iter2/WomanRecipe.png')}); background-size: contain; width: 100%; height: 100%;`"
+          ></div>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <div class="worksans-bold-mine-shaft-56px">
+            Healthy Eating Shopping Guidelines
+          </div>
+          <p class="best-for-active-free-2 dmsans-normal-mine-shaft-16px">
+            Helping you avoid childhood obesity caused by unhealthy eating
+            through daily shopping habits.
+          </p>
+          <div class="d-flex justify-center">
+            <router-link to="/guideline" target="_blank">
+              <v-btn
+                class="mr-8"
+                color="green px-6 py-5"
+                dark
+                style="font-style: italic"
+                elevation="0"
+              >
+                View More</v-btn
+              >
+            </router-link>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="mt-4 mb-16">
+        <v-col cols="12" sm="6">
+          <div class="guideline-item my-2 mx-6">
+            <v-row class="ma-2">
+              <v-col cols="12" md="6">
+                <img class="rectangle-4" :src="stars1" />
+              </v-col>
+              <v-col cols="12" md="6">
+                <div class="worksans-bold-mine-shaft-24px">
+                  Australian Healthy Eating Stars
+                </div>
+                <p class="dmsans-normal-mine-shaft-16px">
+                  The Health Star Rating helps you make healthier food choices
+                  when shopping for packaged food products.
+                </p>
+              </v-col>
+            </v-row>
+          </div>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <div class="guideline-item my-2 mx-6">
+            <v-row class="ma-2">
+              <v-col cols="12" md="6">
+                <img class="rectangle-4" :src="rectangle" />
+              </v-col>
+              <v-col cols="12" md="6">
+                <div class="worksans-bold-mine-shaft-24px">
+                  Food you should avoid
+                </div>
+                <p class="dmsans-normal-mine-shaft-16px">
+                  Including high calorie foods etc.
+                </p>
+              </v-col>
+            </v-row>
+          </div>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
 
 <script>
-import LightButtonPrimaryText from "../components/LightButtonPrimaryText";
-import LightButtonPrimaryIcon from "../components/LightButtonPrimaryIcon";
-import RestCard from "../components/RestCard";
-import LightFieldDefault from "../components/LightFieldDefault";
+import HomeRecipeCategory from "../components/HomeRecipeCategory";
+import HomeRestList from "../components/HomeRestList";
 // import xFooter from "./xFooter";
 export default {
   name: "HomePage",
   components: {
-    LightButtonPrimaryText,
-    LightButtonPrimaryIcon,
-    RestCard,
-    LightFieldDefault,
-    // xFooter,
+    HomeRecipeCategory,
+    HomeRestList,
   },
   props: [
     "seachbarcontent",
@@ -273,20 +225,18 @@ export default {
 
 <style>
 .home-page {
-  align-items: center;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
-  height: 4300px;
   overflow: hidden;
   position: relative;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 
-.overlap-group15 {
-  height: 880px;
-  position: relative;
-  width: 1440px;
+.home-large-pic {
+  max-width: 1440px;
+  width: 100%;
 }
 
 .overlap-group13 {
@@ -312,12 +262,8 @@ export default {
 }
 
 .home-top-pic-1 {
-  height: 880px;
-  left: 0;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .recipe-block {
@@ -327,7 +273,7 @@ export default {
   margin-left: 2px;
   margin-top: 76px;
   min-height: 404px;
-  width: 1172px;
+  width: 100%;
 }
 
 .flex-col {
@@ -339,236 +285,23 @@ export default {
   width: 532px;
 }
 
-.overlap-group6 {
+.recipes-label {
   align-items: flex-start;
   background-color: var(--fern);
+  opacity: 50%;
   border-radius: 8px;
   display: flex;
   height: 32px;
-  margin-right: 31px;
-  /* min-width: 213px; */
-  width: 213px;
+  max-width: 220px;
   padding: 0 23px;
 }
 
-.categories {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 32px;
-  min-width: 167px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.categoried-recipes {
-  letter-spacing: 0;
-  line-height: 64px;
-  margin-top: 17px;
-  min-height: 64px;
-  min-width: 532px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.overlap-group-container {
-  align-items: flex-start;
-  display: flex;
-  margin-right: 2px;
-  margin-top: 51px;
-  min-width: 1170px;
-}
-
-.overlap-group1 {
-  border-radius: 12px;
-  height: 240px;
-  position: relative;
-  width: 170px;
-}
-
-.rectangle,
-.rectangle-1 {
-  background-color: var(--black-haze);
-  border-radius: 12px;
-  cursor: pointer;
-  height: 240px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transition: all 0.2s ease;
-  width: 170px;
-}
-
-.rectangle:hover {
-  background-color: #f49b3f;
-}
-
-.breakfast {
-  left: 42px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 161px;
-  white-space: nowrap;
-}
-
-.group-7-1 {
-  height: 112px;
-  left: 25px;
-  position: absolute;
-  top: 31px;
-  width: 112px;
-}
-
-.oval {
-  height: 40px;
-  left: 109px;
-  position: absolute;
-  top: 32px;
-  width: 40px;
-}
-
-.number {
-  left: 119px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 36px;
-  white-space: nowrap;
-}
-
-.group-8-1 {
-  height: 112px;
-  left: 33px;
-  position: absolute;
-  top: 36px;
-  width: 112px;
-}
-
-.oval-1 {
-  height: 40px;
-  left: 113px;
-  position: absolute;
-  top: 32px;
-  width: 40px;
-}
-
-.number-1 {
-  left: 122px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 36px;
-  white-space: nowrap;
-}
-
-.lunch,
-.asian {
-  left: 61px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 161px;
-  white-space: nowrap;
-}
-
-.dinner {
-  left: 56px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 161px;
-  white-space: nowrap;
-}
-
-.group {
-  height: 112px;
-  left: 29px;
-  position: absolute;
-  top: 36px;
-  width: 112px;
-}
-
-.overlap-group {
-  border-radius: 12px;
-  height: 240px;
-  margin-left: 30px;
-  position: relative;
-  width: 170px;
-}
-
-.vegetarian {
-  left: 37px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 161px;
-  white-space: nowrap;
-}
-
-.group-11-1 {
-  height: 112px;
-  left: 28px;
-  position: absolute;
-  top: 37px;
-  width: 112px;
-}
-
-.number-2 {
-  left: 121px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 36px;
-  white-space: nowrap;
-}
-
-.rectangle-1:hover {
-  transform: scale(1.1);
-}
-
-.desserts {
-  left: 45px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 161px;
-  white-space: nowrap;
-}
-
-.group-12-2 {
-  height: 112px;
-  left: 30px;
-  position: absolute;
-  top: 36px;
-  width: 112px;
-}
-
-.number-3 {
-  left: 123px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 36px;
-  white-space: nowrap;
-}
-
 .rest-list {
-  align-items: center;
+  align-self: center;
   display: flex;
+  margin-top: 8rem;
   flex-direction: column;
-  margin-left: 8px;
-  margin-top: 123px;
-  min-height: 517px;
-  width: 1268px;
+  width: 80%;
 }
 
 .flex-row {
@@ -584,17 +317,17 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 160px;
-  width: 458px;
+  width: 100%;
 }
 
-.overlap-group10 {
+.restaurants-label {
   align-items: flex-start;
   background-color: var(--fern);
   border-radius: 8px;
+  opacity: 50%;
   display: flex;
   height: 32px;
-  justify-content: flex-end;
-  min-width: 122px;
+  max-width: 122px;
   padding: 0 17px;
 }
 
@@ -674,7 +407,6 @@ export default {
   height: 329px;
   margin-right: 8px;
   margin-top: 28px;
-  min-width: 1260px;
   position: relative;
 }
 
@@ -687,37 +419,24 @@ export default {
   min-width: 1446px;
 }
 
-.overlap-group9 {
-  align-items: flex-end;
-  background-position: 50% 50%;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  min-height: 564px;
-  padding: 82px 22px;
-  width: 1440px;
-}
-
-.categoried-recipes-2-1 {
+.map-label-background {
   align-items: flex-start;
   align-self: center;
   background-color: var(--fern);
   border-radius: 8px;
   display: flex;
+  justify-content: center;
   height: 32px;
-  margin-left: 288px;
-  margin-top: 11px;
   min-width: 58px;
-  padding: 0 14px;
 }
 
-.map {
+.map-label {
+  align-self: center;
   letter-spacing: 0;
   line-height: 32px;
   min-height: 32px;
   min-width: 30px;
   text-align: center;
-  white-space: nowrap;
 }
 
 .food-map-with-more-t {
@@ -912,21 +631,10 @@ export default {
   min-width: 1188px;
 }
 
-.overlap-group5-1 {
-  align-self: flex-end;
-  height: 216px;
-  position: relative;
-  width: 576px;
-}
-
-.rectangle-3 {
+.guideline-item {
   background-color: var(--black-haze);
   border-radius: 12px;
-  height: 204px;
-  left: 3px;
-  position: absolute;
-  top: 0;
-  width: 572px;
+  position: relative;
 }
 
 .stars-1 {

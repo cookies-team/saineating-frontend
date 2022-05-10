@@ -13,6 +13,7 @@
       item-value="fullname"
       label="Quick search recipe or ingredient"
       solo
+      flat
       append-icon="mdi-magnify"
       placeholder="Quick search recipe or ingredient"
       maxlength="50px"
@@ -37,7 +38,7 @@
           <v-icon left>
             mdi-{{ item.type == "food" ? "food" : "newspaper" }}
           </v-icon>
-          <span v-text="item.fullname"></span>
+          <span v-text="item.fullname">selected</span>
         </v-chip>
       </template>
       <template v-slot:item="{ item }">

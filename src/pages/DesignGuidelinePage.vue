@@ -1,49 +1,90 @@
 <template>
   <div class="container-center-horizontal">
     <div class="guideline-page screen">
-      <div class="overlap-group5-5">
-        <heading-bckground :src="headingBckgroundProps.src" />
-        <div class="sg-title worksans-bold-white-72px">{{ sgtitle }}</div>
-      </div>
+      <heading-bckground
+        :src="headingBckgroundProps.src"
+        title="Shopping Guidelines"
+      />
       <div class="overlap-group6-3">
         <img class="page-background-1" :src="pagebackground" />
         <div class="sg-section">
           <div class="sg-8">
-            <div class="overlap-group-16">
-              <div class="tag2-1 dmsans-normal-white-14px">{{ tag2 }}</div>
+            <div class="big-title2 worksans-bold-mine-shaft-56px">
+              Shopping Guidelines
             </div>
-            <div class="big-title2 worksans-bold-mine-shaft-56px">{{ bigtitle2 }}</div>
-            <p class="feature-details2 dmsans-normal-mine-shaft-16px">{{ featuredetails2 }}</p>
+            <p class="feature-details2 dmsans-normal-mine-shaft-16px">
+              Consumption guidelines can help you avoid high-calorie and
+              unhealthy foods
+            </p>
           </div>
           <div class="sg-deatils">
             <div class="flex-row-6">
-              <div class="pra1-1 worksans-normal-mine-shaft-24px" v-html="pra11"></div>
+              <div class="pra1-1 worksans-normal-mine-shaft-24px">
+                It’s recommended that we should limit intake of foods containing
+                saturated fat, added salt, added sugars and alcohol.<br /><br />Some
+                foods and drinks are not necessary for a healthy diet and are
+                too high in saturated fat and/or added sugars, added salt or
+                alcohol and low in fiber. These foods and drinks can also be too
+                high in energy. Many of them tend to have low levels of
+                essential nutrients so are often referred to as ‘energy-dense’
+                but ‘nutrient-poor’ foods.
+              </div>
               <img class="sg-pic1" :src="sgpic1" />
             </div>
-            <div class="pra2 worksans-normal-mine-shaft-24px" v-html="pra21"></div>
+            <div class="pra2 worksans-normal-mine-shaft-24px">
+              Details-<br /><a
+                href="https://www.eatforhealth.gov.au/food-essentials/fat-salt-sugars-and-alcohol"
+                >https://www.eatforhealth.gov.au/food-essentials/fat-salt-sugars-and-alcohol</a
+              ><br /><br /><a
+                href="https://www.eatforhealth.gov.au/food-essentials/discretionary-food-and-drink-choices"
+                >https://www.eatforhealth.gov.au/food-essentials/discretionary-food-and-drink-choices</a
+              >
+            </div>
           </div>
         </div>
         <div class="eating-star-section">
           <div class="healthy-eat-star">
-            <div class="overlap-group-17">
-              <div class="features-tag dmsans-normal-white-14px">{{ featurestag }}</div>
+            <div class="big-title worksans-bold-mine-shaft-56px">
+              Healthy Eating Stars
             </div>
-            <div class="big-title worksans-bold-mine-shaft-56px">{{ bigtitle }}</div>
-            <p class="feature-details dmsans-normal-mine-shaft-16px">{{ featuredetails }}</p>
+            <p class="feature-details dmsans-normal-mine-shaft-16px">
+              Helping you avoid childhood obesity caused by unhealthy eating
+              through daily shopping habits
+            </p>
           </div>
           <div class="eating-star-deatils">
             <div class="starpic-container">
-              <img class="star-pic1" :src="starpic1" /><img class="star-pic2" :src="starpic2" />
+              <img class="star-pic1" :src="starpic1" /><img
+                class="star-pic2"
+                :src="starpic2"
+              />
             </div>
             <div class="flex-col-4 worksans-normal-mine-shaft-24px">
-              <div class="pra3">{{ pra3 }}</div>
-              <div class="pra2-1" v-html="pra22"></div>
-              <div class="pra1-2" v-html="pra12"></div>
+              <div class="pra3">
+                The Health Star Rating is a front-of-pack labelling system that
+                rates the overall nutritional profile of packaged food and
+                assigns it a rating from ½ a star to 5 stars. It provides a
+                quick, easy, standard way to compare similar packaged foods. The
+                more stars, the healthier the choice.
+              </div>
+              <div class="pra2-1">
+                <a
+                  href="http://www.healthstarrating.gov.au/internet/healthstarrating/publishing.nsf/Content/About-health-stars"
+                  target="_blank"
+                >
+                  About Health Star Ratings- details</a
+                >
+              </div>
+              <div class="pra1-2">
+                <br /><a
+                  href="http://www.healthstarrating.gov.au/internet/healthstarrating/publishing.nsf/Content/How-to-use-health-stars"
+                  >How to use Health Star Ratings</a
+                >
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <x-footer :className="xFooterProps.className" :group17Props="xFooterProps.group17Props" />
     </div>
   </div>
 </template>

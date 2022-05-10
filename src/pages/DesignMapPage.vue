@@ -1,139 +1,134 @@
 <template>
   <div class="container-center-horizontal">
     <div class="map-page screen">
-      <div class="overlap-group8-2">
-        <heading-bckground :src="headingBckgroundProps.src" />
-        <div class="restaurants-map worksans-bold-white-72px">{{ restaurantsMap }}</div>
-        <x-header :logo="xHeaderProps.logo" :xHeader2Props="xHeaderProps.xHeader2Props" />
-      </div>
-      <div class="map-function">
-        <div class="overlap-group4-3">
-          <div class="rectangle-14"></div>
-          <div class="selector">
-            <light-field-dropdown
-              :label="lightFieldDropdownProps.label"
-              :placeholder="lightFieldDropdownProps.placeholder"
-            />
-            <div class="confirm">
-              <div class="confirm-container">
-                <light-button-primary-icon />
-                <div class="confirm-shape" :style="{ 'background-image': 'url(' + confirmshape + ')' }"></div>
-              </div>
-            </div>
+      <heading-bckground :src="headingBckgroundProps.src" title="Restaurants" />
+
+      <v-row class="my-16" style="width: 100%">
+        <v-col cols="12" sm="12" md="3">
+          <div>
+            <v-select
+              label="Select"
+              :items="sortOptions"
+              v-model="sort"
+              :hint="`Sort by ${sort}`"
+              solo
+              flat
+              persistent-hint
+            ></v-select>
           </div>
-          <div class="rest-info">
-            <div  @click="goRest(0)">
-            <MapRest @click="goRest(0)"
-              :restContainer="rest11Props.restContainer"
-              :restname1="rest11Props.restname1"
-              :resttype1="rest11Props.resttype1"
-            />
-            </div>
-            <div class="rest2"  @click="goRest(1)">
-              <div class="rest-container-1" :style="{ 'background-image': 'url(' + restContainer1 + ')' }">
-                <div class="rest-name2 worksans-bold-white-24px">{{ restname2 }}</div>
-                <div class="rest-type2 dmsans-normal-white-16px">{{ resttype2 }}</div>
-              </div>
-            </div>
-            <div  @click="goRest(2)">
-            <MapRest @click="goRest(2)"
-              :restContainer="rest12Props.restContainer"
-              :restname1="rest12Props.restname1"
-              :resttype1="rest12Props.resttype1"
-              :className="rest12Props.className"
-            />
-            </div>
-            <div class="rest4-1" @click="goRest(3)">
-              <div class="rest-container-2"  :style="{ 'background-image': 'url(' + restContainer2 + ')' }">
-                <div class="rest-name4 worksans-bold-white-24px">{{ restname4 }}</div>
-                <div class="rest-type4 dmsans-normal-white-16px">{{ resttype4 }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="overlap-group6-2">
-          <div class="overlap-group5-4">
-            <div class="google-maps-hybrid-13">
-      <MglMap
-        :accessToken="accessToken"
-        :mapStyle="mapStyle"
-        :center="coordinates"
-        @load="onMapLoad"
-        ref="map"
-        height="100%"
-      >
-        <MglMarker :coordinates="userCoordinates" color="blue" />
-        <MglMarker
-          v-for="(item, key) in items"
-          :key="key"
-          :coordinates="[item.longitude, item.latitude]"
-        >
-          <MglPopup
-            :coordinates="[item.longitude, item.latitude]"
-            :closeButton="false"
-            :closeOnClick="true"
-            anchor="top"
+          <div
+            class="rest-info my-4 mx-2"
+            style="max-height: 1000px; overflow: scroll"
           >
-            <v-card max-width="374">
-              <v-img
-                height="250"
-                src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-              ></v-img>
-
-              <v-card-title>{{ item.Name }}</v-card-title>
-
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-rating
-                    :value="4.5"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"
-                  ></v-rating>
-
-                  <div class="grey--text ms-4">4.5 (413)</div>
-                </v-row>
-
-                <div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
-
-                <div>
-                  Small plates, salads & sandwiches - an intimate setting with
-                  12 indoor seats plus patio seating.
-                </div>
-              </v-card-text>
-
-              <v-divider class="mx-4"></v-divider>
-
-              <v-card-title>Tonight's availability</v-card-title>
-
-              <v-card-text>
-                <v-chip-group
-                  active-class="deep-purple accent-4 white--text"
-                  column
+            <div
+              v-for="(item, index) in items"
+              :key="index"
+              @click="goRest(index)"
+              style="width: 100%"
+            >
+              <div class="map-rest mt-4">
+                <div
+                  class="map-rest-container"
+                  :class="{ mapRestActive: selectedIndex == index }"
+                  :style="`background-image: url(${require('../assets/Iter2/Rests/RestId' +
+                    item.RestID +
+                    '.png')});`"
                 >
-                  <v-chip>5:30PM</v-chip>
-
-                  <v-chip>7:30PM</v-chip>
-
-                  <v-chip>8:00PM</v-chip>
-
-                  <v-chip>9:00PM</v-chip>
-                </v-chip-group>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-btn color="deep-purple lighten-2" text> Reserve </v-btn>
-              </v-card-actions>
-            </v-card>
-          </MglPopup>
-        </MglMarker>
-      </MglMap>
+                  <div class="map-rest-midlayer">
+                    <div class="map-rest-name worksans-bold-white-24px">
+                      {{ item.Name }}
+                    </div>
+                    <div class="map-rest-type dmsans-normal-white-16px">
+                      {{ item.TypeName }}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </v-col>
+        <v-col cols="12" sm="12" md="9" style="height: 100%">
+          <MglMap
+            :accessToken="accessToken"
+            :mapStyle="mapStyle"
+            :center="coordinates"
+            @load="onMapLoad"
+            ref="map"
+            height="100%"
+          >
+            <MglMarker :coordinates="userCoordinates" color="blue" />
+            <MglMarker
+              v-for="(item, key) in items"
+              :key="key"
+              :coordinates="[item.longitude, item.latitude]"
+            >
+              <MglPopup
+                :coordinates="[item.longitude, item.latitude]"
+                :closeButton="false"
+                :closeOnClick="true"
+                anchor="top"
+              >
+                <v-card max-width="374">
+                  <v-img
+                    height="250"
+                    src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+                  ></v-img>
+
+                  <v-card-title>{{ item.Name }}</v-card-title>
+
+                  <v-card-text>
+                    <v-row align="center" class="mx-0">
+                      <v-rating
+                        :value="4.5"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                        size="14"
+                      ></v-rating>
+
+                      <div class="grey--text ms-4">4.5 (413)</div>
+                    </v-row>
+
+                    <div class="my-4 text-subtitle-1">
+                      $ • {{ item.TypeName }}
+                    </div>
+
+                    <div>
+                      <!-- Small plates, salads & sandwiches - an intimate setting
+                      with 12 indoor seats plus patio seating. -->
+                      {{ item.Address }}
+                    </div>
+                  </v-card-text>
+
+                  <v-divider class="mx-4"></v-divider>
+
+                  <v-card-title>Tonight's availability</v-card-title>
+
+                  <v-card-text>
+                    <v-chip-group
+                      active-class="deep-purple accent-4 white--text"
+                      column
+                    >
+                      <v-chip>5:30PM</v-chip>
+
+                      <v-chip>7:30PM</v-chip>
+
+                      <v-chip>8:00PM</v-chip>
+
+                      <v-chip>9:00PM</v-chip>
+                    </v-chip-group>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-btn color="deep-purple lighten-2" text> Reserve </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </MglPopup>
+            </MglMarker>
+          </MglMap>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -143,17 +138,11 @@ import Mapbox from "mapbox-gl";
 import { MglMap, MglMarker, MglPopup } from "vue-mapbox";
 
 import HeadingBckground from "../components/HeadingBckground";
-import LightFieldDropdown  from "../components/LightFieldDropdown";
-import LightButtonPrimaryIcon  from "../components/LightButtonPrimaryIcon";
-import MapRest from "../components/MapRest";
 export default {
   name: "MapPage",
   components: {
     HeadingBckground,
-    LightFieldDropdown,
-    LightButtonPrimaryIcon,
-    MapRest,
-        MglMap,
+    MglMap,
     MglMarker,
     MglPopup,
   },
@@ -163,6 +152,9 @@ export default {
     mapStyle: "mapbox://styles/mapbox/streets-v11", // your map style
     userCoordinates: [145.133957, -37.907803],
     items: null,
+    selectedIndex: 0,
+    sortOptions: ["popularity", "distance"],
+    sort: "popularity",
   }),
   props: [
     "restaurantsMap",
@@ -213,20 +205,26 @@ export default {
       // Here we cathing 'load' map event
       const asyncActions = event.component.actions;
 
+      event.map.resize();
       const newParams = await asyncActions.flyTo({
         center: this.userCoordinates,
-        zoom: 12,
-        speed: 2,
+        zoom: 15,
+        speed: 3,
       });
       console.log(newParams);
     },
     async goRest(index) {
       const newParams = await this.$refs.map.actions.flyTo({
         center: [this.items[index].longitude, this.items[index].latitude],
-        zoom: 12,
-        speed: 2,
+        zoom: 15,
+        speed: 3,
       });
       console.log(newParams);
+
+      let top = this.$refs["map"].offsetTop;
+      window.scrollTo(0, top);
+
+      this.selectedIndex = index;
     },
   },
 };
@@ -238,9 +236,9 @@ export default {
   background-color: var(--white);
   display: flex;
   flex-direction: column;
-  height: 1959px;
   position: relative;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .overlap-group8-2 {
@@ -263,7 +261,6 @@ export default {
   display: flex;
   height: 1203px;
   margin-top: 46px;
-  min-width: 1408px;
 }
 
 .overlap-group4-3 {
@@ -322,11 +319,6 @@ export default {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  left: 24px;
-  min-height: 928px;
-  position: absolute;
-  top: 240px;
-  width: 270px;
 }
 
 .rest2 {
@@ -406,15 +398,6 @@ export default {
   width: 1070px;
 }
 
-.overlap-group5-4,
-.google-maps-hybrid-13 {
-  height: 1143px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1070px;
-}
-
 .map-place-holder {
   background-color: var(--mist-gray);
   height: 1143px;
@@ -467,5 +450,52 @@ export default {
   height: 50px;
   margin-left: 119px;
   width: 40px;
+}
+
+.map-rest {
+  align-items: flex-start;
+  display: flex;
+}
+
+.mapRestActive {
+  border-style: solid;
+  border-width: 1vh;
+  border-color: #f49b3f;
+}
+
+.map-rest-container {
+  background-position: 50% 50%;
+  background-size: cover;
+  border-radius: 8px;
+  height: 210px;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  /* width: 270px; */
+}
+
+.map-rest-midlayer {
+  background: linear-gradient(to bottom, transparent, #000);
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+}
+
+.map-rest-name {
+  left: 24px;
+  letter-spacing: 0;
+  line-height: 32px;
+  position: absolute;
+  top: 140px;
+  /* white-space: nowrap; */
+  overflow: hidden;
+}
+
+.map-rest-type {
+  left: 24px;
+  letter-spacing: 0;
+  line-height: 32px;
+  position: absolute;
+  top: 120px;
 }
 </style>

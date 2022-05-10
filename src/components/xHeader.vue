@@ -1,44 +1,142 @@
 <template>
   <div class="header">
-    <div class="overlap-group14">
-      <x-header2
-        :background="xHeader2Props.background"
-        :pattern="xHeader2Props.pattern"
-      />
-      <router-link to="/res">
-        <div class="recipe dmsans-normal-white-16px">{{ recipe }}</div>
-      </router-link>
-      <router-link to="/">
-        <div class="place dmsans-normal-white-16px">{{ place }}</div>
-      </router-link>
-      <router-link to="/why">
-        <div class="why-healthy-eating dmsans-normal-white-16px">
-          {{ whyHealthyEating }}
+    <div class="header d-flex justify-space-between">
+      <div class="header-left">
+        <router-link to="/"
+          ><div class="pa-2" :style="`background-image: url(${logo}); background-position: center center; background-size: cover; height: 80px; width: 160px;`"
+        /></router-link>
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-right d-flex">
+        <quick-search-bar class="d-none d-sm-none d-md-flex" />
+
+        <router-link to="/">
+          <div
+            class="
+              pa-2
+              d-none d-sm-flex
+              header-item
+              dmsans-normal-white-16px
+              mr-auto
+            "
+          >
+            Home
+          </div>
+        </router-link>
+
+        <router-link to="/res">
+          <div
+            class="pa-2 d-none d-sm-flex header-item dmsans-normal-white-16px"
+          >
+            Recipes
+          </div>
+        </router-link>
+
+        <router-link to="/why">
+          <div
+            class="
+              pa-2
+              d-none d-sm-flex
+              header-item
+              dmsans-normal-white-16px
+              mr-auto
+            "
+          >
+            Why Healthy Eating
+          </div>
+        </router-link>
+        <router-link to="/restmap">
+          <div
+            class="
+              pa-2
+              d-none d-sm-flex
+              header-item
+              dmsans-normal-white-16px
+              mr-auto
+            "
+          >
+            Eating Out
+          </div>
+        </router-link>
+        <router-link to="/guideline">
+          <div
+            class="
+              pa-2
+              d-none d-sm-flex
+              header-item
+              dmsans-normal-white-16px
+              mr-auto
+            "
+          >
+            Shopping Guideline
+          </div>
+        </router-link>
+        <div
+          class="
+            pa-2
+            d-flex d-sm-none d-lg-none d-md-none d-xl-none
+            header-item
+            dmsans-normal-white-16px
+          "
+        >
+          <v-menu>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon dark v-bind="attrs" v-on="on"> mdi-menu </v-icon>
+            </template>
+            <v-list>
+              <router-link to="/">
+                <v-list-item>
+                  <v-list-item-title> Home </v-list-item-title>
+                </v-list-item>
+              </router-link>
+
+              <router-link to="/res">
+                <v-list-item>
+                  <v-list-item-title> Recipes </v-list-item-title>
+                </v-list-item>
+              </router-link>
+
+              <router-link to="/why">
+                <v-list-item>
+                  <v-list-item-title> Why Healthy Eating </v-list-item-title>
+                </v-list-item>
+              </router-link>
+              <router-link to="/restmap">
+                <v-list-item>
+                  <v-list-item-title> Eating Out </v-list-item-title>
+                </v-list-item>
+              </router-link>
+              <router-link to="/guideline">
+                <v-list-item>
+                  <v-list-item-title> Shopping Guideline </v-list-item-title>
+                </v-list-item>
+              </router-link>
+            </v-list>
+          </v-menu>
         </div>
-      </router-link>
-      <router-link to="/restmap">
-        <div class="eating-out dmsans-normal-white-16px">{{ eatingOut }}</div>
-      </router-link>
-      <router-link to="/guideline">
-        <div class="shopping-guideline dmsans-normal-white-16px">
-          {{ shoppingGuideline }}
-        </div>
-      </router-link>
-      <router-link to="/about">
-        <div class="about dmsans-normal-white-16px">{{ about }}</div>
-      </router-link>
-      <router-link to="/"><img class="logo" :src="logo" /></router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import XHeader2 from "./xHeader2";
+import QuickSearchBar from "../components/QuickSearchBar.vue";
+
+const background =
+  "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/627226fb8c803af62acc63d1/img/background-4@1x.png";
+const pattern =
+  "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/62724d3340bba0f337c73873/img/pattern-2@1x.png";
+
 export default {
   name: "XHeader",
   components: {
-    XHeader2,
+    QuickSearchBar,
   },
+  data: () => ({
+    background: background,
+    pattern: pattern,
+    logo: require("../assets/Iter2/LOGO.png")
+  }),
   props: [
     "recipe",
     "place",
@@ -46,9 +144,11 @@ export default {
     "eatingOut",
     "shoppingGuideline",
     "about",
-    "logo",
     "xHeader2Props",
   ],
+  methods: {
+    showNaviPopup: () => {},
+  },
 };
 </script>
 
@@ -56,94 +156,31 @@ export default {
 .header {
   align-items: flex-start;
   display: flex;
+  max-height: 5rem;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.header-item {
+  display: flex;
+  height: 5rem;
+  margin-right: auto;
+  font-size: 10rem;
+  display: flex;
+  align-items: center;
+}
+
+.pattern {
   height: 79px;
-  /* left: 2px; */
-  left: 0px;
-  min-width: 1440px;
+  left: 1px;
   position: absolute;
   top: 0;
+  width: 100%;
 }
 
-.overlap-group14 {
-  height: 79px;
-  position: relative;
-  width: 1440px;
-}
-
-.recipe {
-  cursor: pointer;
-  left: 900px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 24px;
-  white-space: nowrap;
-  width: 51px;
-}
-
-.place {
-  cursor: pointer;
-  left: 599px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 24px;
-  white-space: nowrap;
-  width: 44px;
-}
-
-.why-healthy-eating {
-  cursor: pointer;
-  left: 690px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 24px;
-  white-space: nowrap;
-  width: 154px;
-}
-
-.eating-out {
-  cursor: pointer;
-  left: 1005px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 24px;
-  white-space: nowrap;
-  width: 79px;
-}
-
-.shopping-guideline {
-  cursor: pointer;
-  left: 1134px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 24px;
-  white-space: nowrap;
-  width: 166px;
-}
-
-.about {
-  cursor: pointer;
-  left: 1348px;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 24px;
-  white-space: nowrap;
-  width: 46px;
-}
-
-.logo {
-  height: 79px;
+.header-logo {
+  height: 80px;
   left: 32px;
   object-fit: cover;
   position: absolute;
