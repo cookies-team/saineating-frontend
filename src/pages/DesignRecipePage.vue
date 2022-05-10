@@ -71,7 +71,9 @@
             </div>
 
             <div class="allergy my-4">
-                          <div class="filter-label dmsans-bold-mine-shaft-12px">ALLERGY</div>
+              <div class="filter-label dmsans-bold-mine-shaft-12px">
+                ALLERGY
+              </div>
               <v-select
                 label="Select"
                 :items="allergyOptions"
@@ -146,9 +148,11 @@
           <div class="text-center">
             <v-pagination
               v-model="page"
-              :length="4"
+              :length="pages"
+              :total-visible="7"
               circle
               color="green"
+              @input="next_page"
             ></v-pagination>
           </div>
         </v-col>
@@ -216,16 +220,29 @@ export default {
     sort: "popularity",
     allergyOptions: ["all", "milk"],
     allergy: "all",
-    page: 1,
+    page: null,
+    pages: null,
+    count: 9, //12,
     selected: [],
     items: [],
   }),
   mounted() {
     console.log(this.$route.query);
-    this.page = this.$route.query.page || 1;
+    this.page = parseInt(this.$route.query.page) || 1;
 
     this.axios
-      .get(this.$hostname + `/apiv2/recipes_v2?page=${this.page}`)
+      .get(this.$hostname + "/apiv2/recipes_v2/count")
+      .then((response) => {
+        console.log(response);
+        this.pages = (1 + response.data.count / this.count) >> 0;
+      });
+
+    const offset = (this.page - 1) * this.count;
+    this.axios
+      .get(
+        this.$hostname +
+          `/apiv2/recipes_v3?offset=${offset}&count=${this.count}`
+      )
       .then((response) => {
         console.log(response);
 
@@ -238,6 +255,11 @@ export default {
           }
         });
       });
+  },
+  methods: {
+    next_page(page) {
+      this.$router.push({ path: "/res", query: { page: page } });
+    },
   },
 };
 </script>
@@ -301,7 +323,8 @@ export default {
   width: 100%;
 }
 
-.slider-filters, .allergy {
+.slider-filters,
+.allergy {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
