@@ -67,6 +67,7 @@
                 :closeButton="false"
                 :closeOnClick="true"
                 anchor="top"
+                :ref="`popup_${item.RestID}`"
               >
                 <v-card max-width="374">
                   <v-img
@@ -221,8 +222,8 @@ export default {
       });
       console.log(newParams);
 
-      let top = this.$refs["map"].offsetTop;
-      window.scrollTo(0, top);
+      console.log(this.$refs[`popup_${this.items[index].RestID}`][0]);
+      this.$refs[`popup_${this.items[index].RestID}`][0].showed = true;
 
       this.selectedIndex = index;
     },
