@@ -56,7 +56,7 @@ const router = new VueRouter({
 
 Vue.prototype.$hostname = (Vue.config.productionTip) 
                             ? '/'
-                            : 'https://saineating.c0mm4nd.com'
+                            : 'https://saineating.ml'
 
 new Vue({
   vuetify,
