@@ -16,12 +16,15 @@
               persistent-hint
             ></v-select>
           </div>
+          <div>
+            <v-text-field label="Search Restaurant" @input="Search"></v-text-field>
+          </div>
           <div
             class="rest-info my-4 mx-2"
             style="max-height: 1000px; overflow: scroll"
           >
             <div
-              v-for="(item, index) in items"
+              v-for="(item, index) in leftItems"
               :key="index"
               @click="goRest(index)"
               style="width: 100%"
@@ -51,7 +54,7 @@
           <MglMap
             :accessToken="accessToken"
             :mapStyle="mapStyle"
-            :center="coordinates"
+            :center="userCoordinates"
             @load="onMapLoad"
             ref="map"
             height="100%"
@@ -153,9 +156,12 @@ export default {
     mapStyle: "mapbox://styles/mapbox/streets-v11", // your map style
     userCoordinates: [145.133957, -37.907803],
     items: null,
+    allItems: null,
+    leftItems: null,
     selectedIndex: 0,
     sortOptions: ["popularity", "distance"],
     sort: "popularity",
+    search: "",
   }),
   props: [
     "restaurantsMap",
@@ -181,7 +187,9 @@ export default {
   mounted() {
     this.axios.get(this.$hostname + "/apiv2/restaurants").then((response) => {
       console.log(response);
-      this.items = response.data;
+      this.allItems = response.data;
+      this.items = [...this.allItems]
+      this.leftItems = [...this.allItems]
     });
   },
   created() {
@@ -227,6 +235,13 @@ export default {
 
       this.selectedIndex = index;
     },
+    async Search(input) {
+      // console.log(event)
+      this.leftItems = this.allItems.filter((item)=>{
+
+        return item.Name.toLowerCase().includes(input.toLowerCase())
+      })
+    }
   },
 };
 </script>
