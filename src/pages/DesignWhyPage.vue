@@ -1,53 +1,61 @@
 <template>
-  <div class="container-center-horizontal">
-    <div class="why-page screen">
-      <div class="head-container">
-        <heading-bckground :src="headingBckgroundProps.src" />
-<div class="page-title worksans-bold-white-72px">Why Healthy Eating</div>
+  <div class="why-page screen">
+    <heading-bckground
+      :src="headingBckgroundProps.src"
+      title="Why Healthy Eating"
+    />
+
+    <div class="main-pic mt-8"><img class="fatkid" :src="fatkid" /></div>
+    <v-container class="px-16 my-16">
+      <h1 class="worksans-bold-mine-shaft-72px">
+        What cause Childhood obesity
+      </h1>
+      <v-card-text class="dmsans-normal-mine-shaft-16px">
+        The following short video illustrates the main causes of childhood
+        obesity. It lists causes that include mainly dietary problems, which
+        shows the important role that a healthy diet plays in this.. From
+        YouTube.
+      </v-card-text>
+      <div class="video">
+        <iframe
+          style="border: 0; pointer-events: auto"
+          id="ytplayer"
+          type="text/html"
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/CUPBU_mJUtA?rel=0&mute=1&autoplay=0"
+          frameborder="0"
+          allowfullscreen="allowfullscreen"
+          mozallowfullscreen="mozallowfullscreen"
+          msallowfullscreen="msallowfullscreen"
+          oallowfullscreen="oallowfullscreen"
+          webkitallowfullscreen="webkitallowfullscreen"
+        ></iframe>
       </div>
-      <div class="main-pic"><img class="fatkid" :src="fatkid" /></div>
-      <div class="cause">
-        <div class="cause-1 worksans-bold-mine-shaft-72px">{{ cause }}</div>
-        <p class="apparently-we-had-re dmsans-normal-mine-shaft-16px">{{ apparentlyWeHadRe1 }}</p>
-        <div class="video">
-          <iframe
-            style="border: 0; pointer-events: auto"
-            id="ytplayer"
-            type="text/html"
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/CUPBU_mJUtA?rel=0&mute=1&autoplay=1"
-            frameborder="0"
-            allowfullscreen="allowfullscreen"
-            mozallowfullscreen="mozallowfullscreen"
-            msallowfullscreen="msallowfullscreen"
-            oallowfullscreen="oallowfullscreen"
-            webkitallowfullscreen="webkitallowfullscreen"
-          ></iframe>
-        </div>
+    </v-container>
+    <v-container class="px-16 my-16">
+      <h1 class="worksans-bold-mine-shaft-72px">Healthy Eating for Children</h1>
+      <p class="dmsans-normal-mine-shaft-16px">
+        The following block is an educational video for children to learn what
+        it means to have healthy eating habits. From YouTube.
+      </p>
+      <div class="video">
+        <iframe
+          style="border: 0; pointer-events: auto"
+          id="ytplayer"
+          type="text/html"
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/a-084pqI05U?rel=0&mute=1&autoplay=0"
+          frameborder="0"
+          allowfullscreen="allowfullscreen"
+          mozallowfullscreen="mozallowfullscreen"
+          msallowfullscreen="msallowfullscreen"
+          oallowfullscreen="oallowfullscreen"
+          webkitallowfullscreen="webkitallowfullscreen"
+        ></iframe>
       </div>
-      <div class="healthy-for-child">
-        <div class="heathy-for-child worksans-bold-mine-shaft-72px">{{ heathyforchild }}</div>
-        <p class="apparently-we-had-re dmsans-normal-mine-shaft-16px">{{ apparentlyWeHadRe2 }}</p>
-        <div class="video">
-          <iframe
-            style="border: 0; pointer-events: auto"
-            id="ytplayer"
-            type="text/html"
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/a-084pqI05U?rel=0&mute=1&autoplay=1"
-            frameborder="0"
-            allowfullscreen="allowfullscreen"
-            mozallowfullscreen="mozallowfullscreen"
-            msallowfullscreen="msallowfullscreen"
-            oallowfullscreen="oallowfullscreen"
-            webkitallowfullscreen="webkitallowfullscreen"
-          ></iframe>
-        </div>
-      </div>
-      <x-footer :className="xFooterProps.className" :group17Props="xFooterProps.group17Props" />
-    </div>
+    </v-container>
   </div>
 </template>
 
@@ -77,17 +85,17 @@ export default {
   background-color: var(--white);
   display: flex;
   flex-direction: column;
-  height: 3600px;
   overflow: hidden;
   position: relative;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .head-container {
-  height: 212px;
   margin-right: 0;
   position: relative;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .main-pic {
@@ -95,15 +103,13 @@ export default {
   background-color: var(--mist-gray);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-right: 1px;
-  margin-top: 111px;
 }
 
 .fatkid {
   height: 520px;
   object-fit: cover;
-  width: 1085px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .cause {
@@ -126,12 +132,14 @@ export default {
   height: 101px;
   letter-spacing: 0;
   line-height: 32px;
-  width: 770px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .video {
   height: 652px;
-  width: 1001px;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .healthy-for-child {
