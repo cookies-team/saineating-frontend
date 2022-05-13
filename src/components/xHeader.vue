@@ -8,8 +8,6 @@
       </div>
       <div class="header-divider"></div>
       <div class="header-right d-flex">
-        <quick-search-bar class="d-none d-sm-none d-md-flex" />
-
         <router-link to="/">
           <div
             class="
@@ -71,6 +69,9 @@
             Shopping Guideline
           </div>
         </router-link>
+
+        <quick-search-bar class="d-none d-sm-none d-md-flex" />
+        
         <div
           class="
             pa-2

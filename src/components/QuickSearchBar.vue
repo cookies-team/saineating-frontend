@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="max-width: 250px;">
     <v-autocomplete
       v-model="model"
       :items="items"
@@ -16,7 +16,6 @@
       flat
       append-icon="mdi-magnify"
       placeholder="Quick search recipe or ingredient"
-      maxlength="50px"
     >
       <template v-slot:no-data>
         <v-list-item>
