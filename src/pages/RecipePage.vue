@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     const bfk = this.$route.params.id;
-    const url = this.$hostname +`/apiv2/recipe/id/${bfk}`;
+    const url = this.$hostname +`/apiv3/recipe/id/${bfk}`;
     this.axios.get(url).then((response) => {
       console.log(response);
       this.food = response.data;

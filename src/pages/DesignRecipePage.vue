@@ -28,44 +28,11 @@
               </div>
               <v-checkbox
                 class="ma-0"
-                v-model="selected"
-                label="Breakfast"
-                value="breakfast"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                class="ma-0"
-                v-model="selected"
-                label="Lunch"
-                value="lunch"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                class="ma-0"
-                v-model="selected"
-                label="Dinner"
-                value="dinner"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                class="ma-0"
-                v-model="selected"
-                label="Vegetarian"
-                value="vegetarian"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                class="ma-0"
-                v-model="selected"
-                label="Asian"
-                value="asian"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                class="ma-0"
-                v-model="selected"
-                label="Dessert"
-                value="dessert"
+                v-for="type in types"
+                :key="type.TypeId"
+                v-model="selectedTypes"
+                :label="type.TypeName"
+                :value="type.TypeId"
                 hide-details
               ></v-checkbox>
             </div>
@@ -74,15 +41,15 @@
               <div class="filter-label dmsans-bold-mine-shaft-12px">
                 ALLERGY
               </div>
-              <v-select
-                label="Select"
-                :items="allergyOptions"
-                v-model="allergy"
-                :hint="`Exclude ${allergy} recipes`"
-                solo
-                flat
-                persistent-hint
-              ></v-select>
+              <v-checkbox
+                class="ma-0"
+                v-for="allergy in allergies"
+                :key="allergy.IngredientId"
+                v-model="selectedAllergies"
+                :label="allergy.IngredientName"
+                :value="allergy.IngredientId"
+                hide-details
+              ></v-checkbox>
             </div>
 
             <div class="slider-filters">
@@ -108,6 +75,7 @@
                 step="10"
                 :value="ageRange"
                 :thumb-size="24"
+                max="15"
                 thumb-label="always"
                 style="width: 100%"
                 thumb-color="green"
@@ -137,10 +105,10 @@
               :key="item.recipeId"
             >
               <RecipeList
-                :id="item.id"
-                :name="item.name"
+                :id="item.RecipeId"
+                :name="item.RecipeName"
                 :img="item.imgsrc"
-                :types="item.types"
+                :types="item.TypeNames"
                 shortDesc="short desc"
               />
             </v-col>
@@ -216,32 +184,48 @@ export default {
   ],
   data: () => ({
     ageRange: [0, 100],
-    sortOptions: ["popularity", "calorie"],
-    sort: "popularity",
-    allergyOptions: ["all", "milk"],
-    allergy: "all",
+    sortOptions: ["default", "alphabet", "calorie"],
+    sort: "default",
+    allergies: [],
+    selectedAllergies: [],
+    predefinedAllergyIds: [84, 24, 49, 10, 56, 35, 41, 20],
     page: null,
     pages: null,
     count: 9, //12,
-    selected: [],
+    selectedTypes: [],
     items: [],
+    types: [],
+    totalCount: 0
   }),
   mounted() {
     console.log(this.$route.query);
     this.page = parseInt(this.$route.query.page) || 1;
 
     this.axios
-      .get(this.$hostname + "/apiv2/recipes_v2/count")
+      .get(this.$hostname + `/apiv3/ingredients?ids=${this.predefinedAllergyIds.join(',')}`)
       .then((response) => {
         console.log(response);
-        this.pages = (1 + response.data.count / this.count) >> 0;
+        this.allergies = response.data
       });
+    this.axios
+      .get(this.$hostname + `/apiv3/recipes/count?types=${this.selectedTypes.join(',')}`)
+      .then((response) => {
+        console.log(response);
+        this.totalCount = response.data.count
+      });
+    this.axios
+      .get(this.$hostname + "/apiv3/recipes/types")
+      .then((response) => {
+        console.log(response);
+        this.types = response.data;
+      });
+
 
     const offset = (this.page - 1) * this.count;
     this.axios
       .get(
         this.$hostname +
-          `/apiv2/recipes_v3?offset=${offset}&count=${this.count}`
+          `/apiv3/recipes?offset=${offset}&count=${this.count}`
       )
       .then((response) => {
         console.log(response);
@@ -249,7 +233,7 @@ export default {
         response.data.forEach((item) => {
           if (item) {
             item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
-              item.id +
+              item.RecipeId +
               ".png");
             this.items.push(item);
           }
@@ -259,6 +243,71 @@ export default {
   methods: {
     next_page(page) {
       this.$router.push({ path: "/res", query: { page: page } });
+    },
+  },
+  watch: {
+    totalCount: function (val) {
+      this.pages = (1 + val / this.count) >> 0;
+    },
+    selectedTypes: function (val) {
+      const offset = (this.page - 1) * this.count;
+      this.axios
+        .get(
+          this.$hostname +
+            `/apiv3/recipes?offset=${offset}&count=${this.count}&types=${val.join(',')}&allergies=${this.allergies.join(',')}`
+        )
+        .then((response) => {
+          console.log(response);
+          const items = []
+          response.data.forEach((item) => {
+            if (item) {
+              item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
+                item.RecipeId +
+                ".png");
+              items.push(item);
+            }
+          });
+
+          this.items = items
+        });
+      this.axios
+        .get(
+          this.$hostname +
+            `/apiv3/recipes/count?types=${val.join(',')}&allergies=${this.allergies.join(',')}`
+        )
+        .then((response) => {
+          this.totalCount = response.data.count
+        });
+    },
+    selectedAllergies: function (val) {
+      const offset = (this.page - 1) * this.count;
+      this.axios
+        .get(
+          this.$hostname +
+            `/apiv3/recipes?offset=${offset}&count=${this.count}&types=${this.selectedTypes.join(',')}&allergies=${val.join(',')}`
+        )
+        .then((response) => {
+          console.log(response);
+          const items = []
+          response.data.forEach((item) => {
+            if (item) {
+              item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
+                item.RecipeId +
+                ".png");
+              items.push(item);
+            }
+          });
+
+          this.items = items
+        });
+      this.axios
+        .get(
+          this.$hostname +
+            `/apiv3/recipes/count?types=${this.selectedTypes.join(',')}&allergies=${val.join(',')}`
+        )
+        .then((response) => {
+          this.totalCount = response.data.count
+        });
     },
   },
 };

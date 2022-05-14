@@ -6,7 +6,7 @@
         <v-card elevation="2" shaped class="mx-auto my-6">
           <v-img :src="imgsrc"></v-img>
 
-          <v-card-title>{{ item.name }}</v-card-title>
+          <v-card-title>{{ item.RecipeName }}</v-card-title>
 
           <v-card-text>
             <v-row>
@@ -20,7 +20,7 @@
               ></v-rating>
               <v-spacer></v-spacer>
               <v-chip
-                v-for="type in item.types"
+                v-for="type in item.TypeNames"
                 :key="type"
                 >{{ type }} </v-chip
               >
@@ -37,9 +37,9 @@
           <v-card-text>
             <v-chip-group column>
               <v-chip
-                v-for="ingredient in item.ingredients"
-                :key="ingredient.id"
-                >{{ ingredient.name }} x {{ ingredient.amount }} </v-chip
+                v-for="(IngredientId, index) in item.IngredientIds"
+                :key="IngredientId"
+                >{{ item.IngredientNames[index] }} x {{ item.Amounts[index] }} </v-chip
               >
             </v-chip-group>
           </v-card-text>
@@ -65,7 +65,7 @@
             <div v-show="show">
               <v-divider></v-divider>
 
-              <v-card-text v-html="item.details">
+              <v-card-text v-html="item.Details">
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -93,7 +93,7 @@ export default {
     snackbar: true,
     dialog: false,
     select: null,
-    item: null,
+    item: {},
     type: "",
     method: "",
     imgsrc: "",
@@ -103,12 +103,12 @@ export default {
     console.log(this.$route.params);
     const id = this.$route.params.id;
     this.axios
-      .get(this.$hostname + "/apiv2/recipe_v2/" + id)
+      .get(this.$hostname + "/apiv3/recipe/" + id)
       .then((response) => {
         console.log(response);
         this.item = response.data;
 
-        this.imgsrc = require("../assets/Iter2/Recipes/RecipeId" + this.item.id + ".png");
+        this.imgsrc = require("../assets/Iter2/Recipes/RecipeId" + this.item.RecipeId + ".png");
       });
   },
   methods: {

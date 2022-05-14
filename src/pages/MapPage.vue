@@ -145,7 +145,7 @@ export default {
     items: null,
   }),
   mounted() {
-    this.axios.get("/apiv2/restaurants").then((response) => {
+    this.axios.get("/apiv3/restaurants").then((response) => {
       console.log(response);
       this.items = response.data;
     });

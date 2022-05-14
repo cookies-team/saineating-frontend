@@ -80,7 +80,7 @@ export default {
       if (this.items.length > 0) return;
 
       this.isLoading = true;
-      let url = this.$hostname + `/apiv2/search/suggestions`;
+      let url = this.$hostname + `/apiv3/search/suggestions`;
       // Lazily load input items
       fetch(url) //TODO
         .then((res) => res.clone().json())

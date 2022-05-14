@@ -185,7 +185,7 @@ export default {
     "xFooterProps",
   ],
   mounted() {
-    this.axios.get(this.$hostname + "/apiv2/restaurants").then((response) => {
+    this.axios.get(this.$hostname + "/apiv3/restaurants").then((response) => {
       console.log(response);
       this.allItems = response.data;
       this.items = [...this.allItems]
