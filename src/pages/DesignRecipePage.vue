@@ -218,6 +218,9 @@ export default {
       .then((response) => {
         console.log(response);
         this.types = response.data;
+
+        if (this.$route.query.types)
+          this.selectedTypes = this.$route.query.types
       });
 
 
@@ -254,7 +257,7 @@ export default {
       this.axios
         .get(
           this.$hostname +
-            `/apiv3/recipes?offset=${offset}&count=${this.count}&types=${val.join(',')}&allergies=${this.allergies.join(',')}`
+            `/apiv3/recipes?offset=${offset}&count=${this.count}&types=${val.join(',')}&allergies=${this.selectedAllergies.join(',')}`
         )
         .then((response) => {
           console.log(response);
@@ -273,7 +276,7 @@ export default {
       this.axios
         .get(
           this.$hostname +
-            `/apiv3/recipes/count?types=${val.join(',')}&allergies=${this.allergies.join(',')}`
+            `/apiv3/recipes/count?types=${val.join(',')}&allergies=${this.selectedAllergies.join(',')}`
         )
         .then((response) => {
           this.totalCount = response.data.count
