@@ -1,6 +1,9 @@
 <template>
   <div class="d-flex flex-column">
-    <div class="home-page screen" :style="`background: url(${require('../assets/Iter2/MainBackground.png')}); background-size: cover;`">
+    <div
+      class="home-page screen"
+      :style="`background: url(${require('../assets/Iter2/MainBackground.png')}); background-size: cover;`"
+    >
       <div class="home-large-pic">
         <img class="home-top-pic-1" :src="hometoppic1" />
       </div>
@@ -13,7 +16,33 @@
           </div> -->
           <h1 class="worksans-bold-mine-shaft-56px">Categoried Recipes</h1>
         </div>
-        <home-recipe-category />
+        <v-row class="home-recipe-category my-8">
+          <v-col
+            cols="12"
+            sm="6"
+            md="2"
+            lg="2"
+            xl="2"
+            v-for="item in recipeCategories"
+            :key="item.name"
+          >
+            <router-link :to="item.link">
+              <div class="home-recipes-card">
+                <img class="item-icon" :src="item.icon" /><img
+                  class="green-circle"
+                  src="https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval@2x.png"
+                />
+                <div class="item-number dmsans-normal-white-16px">
+                  {{ item.number }}
+                </div>
+
+                <div class="item-name dmsans-normal-mine-shaft-20px">
+                  {{ item.name }}
+                </div>
+              </div>
+            </router-link>
+          </v-col>
+        </v-row>
       </div>
       <div class="rest-list">
         <div class="d-flex flex-column">
@@ -147,13 +176,10 @@
 </template>
 
 <script>
-import HomeRecipeCategory from "../components/HomeRecipeCategory";
 import HomeRestList from "../components/HomeRestList";
-// import xFooter from "./xFooter";
 export default {
   name: "HomePage",
   components: {
-    HomeRecipeCategory,
     HomeRestList,
   },
   props: [
@@ -220,6 +246,62 @@ export default {
     "lightButtonPrimaryText3Props",
     "xFooterProps",
   ],
+  data: () => ({
+    recipeCategories: [
+      {
+        icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-7-1@2x.png",
+        name: "Breakfast",
+        number: 42,
+        link: "",
+      },
+      {
+        icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-8-1@2x.png",
+        name: "Lunch",
+        number: 35,
+        link: "",
+      },
+      {
+        icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-9-1@2x.png",
+        name: "Dinner",
+        number: 35,
+        link: "",
+      },
+      {
+        icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-10-1@2x.png",
+        name: "Vegetarian",
+        number: 35,
+        link: "",
+      },
+      {
+        icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-11-1@2x.png",
+        name: "Asian",
+        number: 35,
+        link: "",
+      },
+      {
+        icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-12-2@2x.png",
+        name: "Desserts",
+        number: 9,
+        link: "",
+      },
+    ],
+  }),
+  mounted() {
+    this.axios
+      .get(this.$hostname + "/apiv3/recipes/types/count")
+      .then((response) => {
+        console.log(response);
+        const types = response.data;
+        types.forEach((row) => {
+          this.recipeCategories.forEach((item) => {
+            if (item.name == row.TypeName) {
+              item.number = row.count;
+              item.link = { name: 'Recipes', params: { types: row.TypeId }};
+            }
+          });
+        });
+      });
+  },
 };
 </script>
 
@@ -704,5 +786,59 @@ export default {
   min-height: 32px;
   min-width: 234px;
   white-space: nowrap;
+}
+
+.home-recipe-category {
+  width: 80%;
+}
+
+.home-recipes-card {
+  border-radius: 12px;
+  max-height: 240px;
+  position: relative;
+  max-width: 170px;
+
+  background-color: var(--black-haze);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.home-recipes-card:hover {
+  background-color: #f49b3f;
+  transform: scale(1.1);
+}
+
+.item-icon {
+  max-width: 80%;
+  flex: 80%;
+
+  margin: 1rem;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.item-name {
+  align-content: center;
+  align-items: bottom;
+  align-self: center;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.green-circle {
+  position: absolute;
+  right: 8%;
+  top: 8%;
+  height: 16%;
+  z-index: 1;
+}
+
+.item-number {
+  position: absolute;
+  right: 12%;
+  top: 10%;
+  z-index: 2;
 }
 </style>

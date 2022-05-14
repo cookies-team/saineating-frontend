@@ -195,40 +195,43 @@ export default {
     selectedTypes: [],
     items: [],
     types: [],
-    totalCount: 0
+    totalCount: 0,
   }),
+  beforeMount() {
+    if (this.$route.params.types && this.selectedTypes.length == 0)
+      this.selectedTypes.push(this.$route.params.types);
+  },
   mounted() {
     console.log(this.$route.query);
     this.page = parseInt(this.$route.query.page) || 1;
 
     this.axios
-      .get(this.$hostname + `/apiv3/ingredients?ids=${this.predefinedAllergyIds.join(',')}`)
+      .get(
+        this.$hostname +
+          `/apiv3/ingredients?ids=${this.predefinedAllergyIds.join(",")}`
+      )
       .then((response) => {
         console.log(response);
-        this.allergies = response.data
+        this.allergies = response.data;
       });
     this.axios
-      .get(this.$hostname + `/apiv3/recipes/count?types=${this.selectedTypes.join(',')}`)
+      .get(
+        this.$hostname +
+          `/apiv3/recipes/count?types=${this.selectedTypes.join(",")}`
+      )
       .then((response) => {
         console.log(response);
-        this.totalCount = response.data.count
+        this.totalCount = response.data.count;
       });
-    this.axios
-      .get(this.$hostname + "/apiv3/recipes/types")
-      .then((response) => {
-        console.log(response);
-        this.types = response.data;
-
-        if (this.$route.query.types)
-          this.selectedTypes = this.$route.query.types
-      });
-
+    this.axios.get(this.$hostname + "/apiv3/recipes/types").then((response) => {
+      console.log(response);
+      this.types = response.data;
+    });
 
     const offset = (this.page - 1) * this.count;
     this.axios
       .get(
-        this.$hostname +
-          `/apiv3/recipes?offset=${offset}&count=${this.count}`
+        this.$hostname + `/apiv3/recipes?offset=${offset}&count=${this.count}`
       )
       .then((response) => {
         console.log(response);
@@ -243,6 +246,7 @@ export default {
         });
       });
   },
+
   methods: {
     next_page(page) {
       this.$router.push({ path: "/res", query: { page: page } });
@@ -257,11 +261,15 @@ export default {
       this.axios
         .get(
           this.$hostname +
-            `/apiv3/recipes?offset=${offset}&count=${this.count}&types=${val.join(',')}&allergies=${this.selectedAllergies.join(',')}`
+            `/apiv3/recipes?offset=${offset}&count=${
+              this.count
+            }&types=${val.join(",")}&allergies=${this.selectedAllergies.join(
+              ","
+            )}`
         )
         .then((response) => {
           console.log(response);
-          const items = []
+          const items = [];
           response.data.forEach((item) => {
             if (item) {
               item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
@@ -271,15 +279,17 @@ export default {
             }
           });
 
-          this.items = items
+          this.items = items;
         });
       this.axios
         .get(
           this.$hostname +
-            `/apiv3/recipes/count?types=${val.join(',')}&allergies=${this.selectedAllergies.join(',')}`
+            `/apiv3/recipes/count?types=${val.join(
+              ","
+            )}&allergies=${this.selectedAllergies.join(",")}`
         )
         .then((response) => {
-          this.totalCount = response.data.count
+          this.totalCount = response.data.count;
         });
     },
     selectedAllergies: function (val) {
@@ -287,11 +297,13 @@ export default {
       this.axios
         .get(
           this.$hostname +
-            `/apiv3/recipes?offset=${offset}&count=${this.count}&types=${this.selectedTypes.join(',')}&allergies=${val.join(',')}`
+            `/apiv3/recipes?offset=${offset}&count=${
+              this.count
+            }&types=${this.selectedTypes.join(",")}&allergies=${val.join(",")}`
         )
         .then((response) => {
           console.log(response);
-          const items = []
+          const items = [];
           response.data.forEach((item) => {
             if (item) {
               item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
@@ -301,15 +313,17 @@ export default {
             }
           });
 
-          this.items = items
+          this.items = items;
         });
       this.axios
         .get(
           this.$hostname +
-            `/apiv3/recipes/count?types=${this.selectedTypes.join(',')}&allergies=${val.join(',')}`
+            `/apiv3/recipes/count?types=${this.selectedTypes.join(
+              ","
+            )}&allergies=${val.join(",")}`
         )
         .then((response) => {
-          this.totalCount = response.data.count
+          this.totalCount = response.data.count;
         });
     },
   },
