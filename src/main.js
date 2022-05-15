@@ -45,7 +45,7 @@ const router = new VueRouter({
     // new routers
     { path: '*', component: DesignHomePage, props: { ...homePageData }, },
     { path: '/guideline', component: DesignGuidelinePage, props: { ...guidelinePageData }, },
-    { path: '/restmap', component: DesignMapPage, props: { ...mapPageData }, },
+    { path: '/restmap', name: "RestMap", component: DesignMapPage, props: { ...mapPageData }, },
     { path: '/res', name: "Recipes", component: DesignRecipePage, props: { ...recipePageData }, },
     { path: '/re/:id', component: DesignRecipeDetailPage, props: { ...recipeDetailsPageData }, },
     { path: '/why', component: DesignWhyPage, props: { ...whyPageData }, },

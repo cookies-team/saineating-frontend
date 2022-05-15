@@ -17,7 +17,10 @@
             ></v-select>
           </div>
           <div>
-            <v-text-field label="Search Restaurant" @input="Search"></v-text-field>
+            <v-text-field
+              label="Search Restaurant"
+              @input="Search"
+            ></v-text-field>
           </div>
           <div
             class="rest-info my-4 mx-2"
@@ -75,14 +78,15 @@
                 <v-card max-width="374">
                   <v-img
                     height="250"
-                    src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+                    :src="`${require('../assets/Iter2/Rests/RestId' +
+                      item.RestID +
+                      '.png')}`"
                   ></v-img>
 
                   <v-card-title>{{ item.Name }}</v-card-title>
 
                   <v-card-text>
-                    <v-row align="center" class="mx-0">
-                    </v-row>
+                    <v-row align="center" class="mx-0"> </v-row>
 
                     <div class="my-4 text-subtitle-1">
                       {{ item.TypeName }}
@@ -178,8 +182,8 @@ export default {
     this.axios.get(this.$hostname + "/apiv3/restaurants").then((response) => {
       console.log(response);
       this.allItems = response.data;
-      this.items = [...this.allItems]
-      this.leftItems = [...this.allItems]
+      this.items = [...this.allItems];
+      this.leftItems = [...this.allItems];
     });
   },
   created() {
@@ -205,12 +209,20 @@ export default {
       const asyncActions = event.component.actions;
 
       event.map.resize();
-      const newParams = await asyncActions.flyTo({
-        center: this.userCoordinates,
-        zoom: 15,
-        speed: 3,
-      });
-      console.log(newParams);
+
+      if (this.$route.params.restId) {
+        this.items.forEach(async (rest, index) => {
+          if (rest.RestID == this.$route.params.restId) {
+            await this.goRest(index);
+          }
+        });
+      } else {
+        await asyncActions.flyTo({
+          center: this.userCoordinates,
+          zoom: 15,
+          speed: 3,
+        });
+      }
     },
     async goRest(index) {
       const newParams = await this.$refs.map.actions.flyTo({
@@ -227,11 +239,10 @@ export default {
     },
     async Search(input) {
       // console.log(event)
-      this.leftItems = this.allItems.filter((item)=>{
-
-        return item.Name.toLowerCase().includes(input.toLowerCase())
-      })
-    }
+      this.leftItems = this.allItems.filter((item) => {
+        return item.Name.toLowerCase().includes(input.toLowerCase());
+      });
+    },
   },
 };
 </script>

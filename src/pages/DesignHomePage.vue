@@ -59,16 +59,36 @@
             <div></div>
             <div class="rest-buttons pa-1" style="align-items: end">
               <v-btn fab elevation="0">
-                <v-icon dark> mdi-chevron-left </v-icon>
+                <v-icon dark @click="prevRests"> mdi-chevron-left </v-icon>
               </v-btn>
 
               <v-btn fab elevation="0">
-                <v-icon dark> mdi-chevron-right </v-icon>
+                <v-icon dark @click="nextRests"> mdi-chevron-right </v-icon>
               </v-btn>
             </div>
           </div>
         </div>
-        <home-rest-list class="ma-3" />
+        <v-row class="d-flex ma-3 justify-space-around">
+          <v-col
+            cols="12"
+            sm="12"
+            md="3"
+            lg="3"
+            xl="3"
+            v-for="item in shownRests"
+            :key="item.RestID"
+          >
+            <router-link :to="item.link">
+              <rest-card
+                class="rest-card"
+                :image="item.imgsrc"
+                :restName="item.Name"
+                :desc="item.distance"
+                :types="item.TypeName"
+              />
+            </router-link>
+          </v-col>
+        </v-row>
       </div>
       <v-row class="map-section mt-16 mb-16">
         <v-col cols="12" sm="6">
@@ -176,11 +196,12 @@
 </template>
 
 <script>
-import HomeRestList from "../components/HomeRestList";
+import RestCard from "../components/RestCard";
+
 export default {
   name: "HomePage",
   components: {
-    HomeRestList,
+    RestCard,
   },
   props: [
     "seachbarcontent",
@@ -285,6 +306,10 @@ export default {
         link: "",
       },
     ],
+    rests: [],
+    maxShow: 4,
+    curRestPos: 0,
+    shownRests: [],
   }),
   mounted() {
     this.axios
@@ -296,11 +321,48 @@ export default {
           this.recipeCategories.forEach((item) => {
             if (item.name == row.TypeName) {
               item.number = row.count;
-              item.link = { name: 'Recipes', params: { types: row.TypeId }};
+              item.link = { name: "Recipes", params: { types: row.TypeId } };
             }
           });
         });
       });
+
+    this.axios.get(this.$hostname + `/apiv3/restaurants`).then((response) => {
+      console.log(response);
+      response.data.forEach((rest) => {
+        rest.imgsrc = require("../assets/Iter2/Rests/RestId" +
+          rest.RestID +
+          ".png");
+        rest.link = { name: "RestMap", params: { restId: rest.RestID } };
+        console.log(rest);
+        this.rests.push(rest);
+      });
+
+      this.shownRests = this.rests.slice(
+        this.curRestPos,
+        this.curRestPos + this.maxShow
+      );
+    });
+  },
+  methods: {
+    nextRests() {
+      if (this.curRestPos + this.maxShow <= this.rests.length) {
+        this.curRestPos += this.maxShow;
+        this.shownRests = this.rests.slice(
+          this.curRestPos,
+          this.curRestPos + this.maxShow
+        );
+      }
+    },
+    prevRests() {
+      if (this.curRestPos - this.maxShow >= 0) {
+        this.curRestPos -= this.maxShow;
+        this.shownRests = this.rests.slice(
+          this.curRestPos,
+          this.curRestPos + this.maxShow
+        );
+      }
+    },
   },
 };
 </script>
@@ -840,5 +902,12 @@ export default {
   right: 12%;
   top: 10%;
   z-index: 2;
+}
+
+.home-rest-list {
+  width: 80%;
+}
+.rest-card:hover {
+  transform: scale(1.1);
 }
 </style>

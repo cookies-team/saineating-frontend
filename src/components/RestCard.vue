@@ -1,12 +1,17 @@
 <template>
-  <div :class="[`rest`, className || ``]">
-    <div class="overlap-group-3" :style="`background-image: url(${ overlapGroup});`">
-
+  <div class="rest">
+    <div
+      class="overlap-group-3"
+      :style="`background-image: url(${image});`"
+    ></div>
+    <div class="best-types worksans-bold-mine-shaft-24px">
+      {{ restName }}
     </div>
-    <div class="best-burgers worksans-bold-mine-shaft-24px">{{ bestBurgers }}</div>
     <div class="flex-row-3 ma-3">
-      <div class="x20-30-min dmsans-normal-mine-shaft-16px-2">{{ x2030Min }}</div>
-      <div class="burgers dmsans-normal-mine-shaft-16px">{{ burgers }}</div>
+      <div class="x20-30-min dmsans-normal-mine-shaft-16px-2">
+        {{ desc }}
+      </div>
+      <div class="types dmsans-normal-mine-shaft-16px">{{ types }}</div>
     </div>
   </div>
 </template>
@@ -14,7 +19,7 @@
 <script>
 export default {
   name: "RestCard",
-  props: ["overlapGroup", "bestBurgers", "x2030Min", "burgers", "className"],
+  props: ["image", "restName", "desc", "types"],
 };
 </script>
 
@@ -62,7 +67,7 @@ export default {
   top: 24px;
 }
 
-.best-burgers {
+.best-types {
   letter-spacing: 0;
   line-height: 32px;
   margin-left: 24px;
@@ -87,7 +92,7 @@ export default {
   white-space: nowrap;
 }
 
-.burgers {
+.types {
   letter-spacing: 0;
   line-height: 32px;
   margin-left: 7px;
