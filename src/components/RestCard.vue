@@ -1,12 +1,7 @@
 <template>
   <div :class="[`rest`, className || ``]">
     <div class="overlap-group-3" :style="`background-image: url(${ overlapGroup});`">
-      <div class="rectangle-5"></div>
-      <img
-        class="icon-star"
-        src="https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/star@2x.png"
-      />
-      <div class="text dmsans-normal-white-20px">9.8</div>
+
     </div>
     <div class="best-burgers worksans-bold-mine-shaft-24px">{{ bestBurgers }}</div>
     <div class="flex-row-3 ma-3">

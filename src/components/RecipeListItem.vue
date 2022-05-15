@@ -7,12 +7,6 @@
           background-image: url(${img}); 
         `"
       >
-        <div class="star-placeholder"></div>
-        <img
-          class="icon-star-1"
-          src="https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/star@2x.png"
-        />
-        <div class="recomeond-star dmsans-normal-white-20px">9.8</div>
       </div>
       <div class="recipe-type dmsans-normal-mine-shaft-20px">
         {{ types.join(",") }}

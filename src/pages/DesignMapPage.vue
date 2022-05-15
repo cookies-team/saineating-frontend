@@ -82,20 +82,10 @@
 
                   <v-card-text>
                     <v-row align="center" class="mx-0">
-                      <v-rating
-                        :value="4.5"
-                        color="amber"
-                        dense
-                        half-increments
-                        readonly
-                        size="14"
-                      ></v-rating>
-
-                      <div class="grey--text ms-4">4.5 (413)</div>
                     </v-row>
 
                     <div class="my-4 text-subtitle-1">
-                      $ • {{ item.TypeName }}
+                      {{ item.TypeName }}
                     </div>
 
                     <div>
@@ -107,7 +97,7 @@
 
                   <v-divider class="mx-4"></v-divider>
 
-                  <v-card-title>Tonight's availability</v-card-title>
+                  <!-- <v-card-title>Tonight's availability</v-card-title>
 
                   <v-card-text>
                     <v-chip-group
@@ -122,7 +112,7 @@
 
                       <v-chip>9:00PM</v-chip>
                     </v-chip-group>
-                  </v-card-text>
+                  </v-card-text> -->
 
                   <v-card-actions>
                     <v-btn color="deep-purple lighten-2" text> Reserve </v-btn>
