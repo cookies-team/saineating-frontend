@@ -1,4 +1,4 @@
-:root { 
+:root {
   --alto: #dadada;
   --apricot: #eb8e78;
   --black: #000000;
@@ -12,20 +12,26 @@
   --orange-soda: #ec663d;
   --white: #ffffff;
   --white-2: #ffffff80;
- 
-  --font-size-l: 2vmin;  /* 20px; */
-  --font-size-m: 1.8vmin;  /* 16px; */
-  --font-size-s: 1.6vmin; /* 14px; */
-  --font-size-xl: 2.3vmin;  /* 24px; */
-  --font-size-xs: 6vmin;
+
+  --font-size-l: 2vmin;
+  /* 20px; */
+  --font-size-m: 1.8vmin;
+  /* 16px; */
+  --font-size-s: 1.6vmin;
+  /* 14px; */
+  --font-size-xl: 2.3vmin;
+  /* 24px; */
+  --font-size-xs: 1.2vmin;
   /* 12px; */
-  --font-size-xxl: 7vmin;
+  --font-size-xxl: 6.2vmin;
   /* 56px; */
-  --font-size-xxxl: 8vmin; /* 72px; */
- 
+  --font-size-xxxl: 8vmin;
+  /* 72px; */
+
   --font-family-dm_sans: "DM Sans", Helvetica;
   --font-family-work_sans: "Work Sans", Helvetica;
 }
+
 .dmsans-normal-white-16px {
   color: var(--white);
   font-family: var(--font-family-dm_sans);
