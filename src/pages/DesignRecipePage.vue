@@ -58,8 +58,7 @@
               </div>
               <v-slider
                 class="mt-8"
-                value="20"
-                step="10"
+                v-model="maxCal"
                 :thumb-size="24"
                 thumb-label="always"
                 style="width: 100%"
@@ -67,20 +66,17 @@
                 color="green"
                 track-color="fern"
               />
-              <div class="filter-label dmsans-bold-mine-shaft-12px">
-                AGE GROUP
-              </div>
-              <v-range-slider
+              <div class="filter-label dmsans-bold-mine-shaft-12px">AGE</div>
+              <v-slider
                 class="mt-8"
-                step="10"
-                :value="ageRange"
+                v-model="minAge"
                 :thumb-size="24"
-                max="15"
+                max="10"
                 thumb-label="always"
                 style="width: 100%"
                 thumb-color="green"
-                color="green"
-                track-color="fern"
+                color="fern"
+                track-color="green"
               />
             </div>
 
@@ -89,6 +85,7 @@
               dark
               style="font-style: italic"
               elevation="0"
+              @click="update"
             >
               Filter <br />
               Recipe</v-btn
@@ -196,6 +193,8 @@ export default {
     items: [],
     types: [],
     totalCount: 0,
+    minAge: 0,
+    maxCal: 100,
   }),
   beforeMount() {
     if (this.$route.params.types && this.selectedTypes.length == 0)
@@ -205,6 +204,7 @@ export default {
     console.log(this.$route.query);
     this.page = parseInt(this.$route.query.page) || 1;
 
+    // load predefined allergies
     this.axios
       .get(
         this.$hostname +
@@ -214,118 +214,97 @@ export default {
         console.log(response);
         this.allergies = response.data;
       });
-    this.axios
-      .get(
-        this.$hostname +
-          `/apiv3/recipes/count?types=${this.selectedTypes.join(",")}`
-      )
-      .then((response) => {
-        console.log(response);
-        this.totalCount = response.data.count;
-      });
+
+    // load all types
     this.axios.get(this.$hostname + "/apiv3/recipes/types").then((response) => {
       console.log(response);
       this.types = response.data;
     });
 
-    const offset = (this.page - 1) * this.count;
-    this.axios
-      .get(
-        this.$hostname + `/apiv3/recipes?offset=${offset}&count=${this.count}`
-      )
-      .then((response) => {
-        console.log(response);
+    this.getCount().then((response) => {
+      console.log(response);
+      this.totalCount = response.data.count;
+    });
 
-        response.data.forEach((item) => {
-          if (item) {
-            item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
-              item.RecipeId +
-              ".png");
-            this.items.push(item);
-          }
-        });
+    this.getRecipes().then((response) => {
+      console.log(response);
+
+      response.data.forEach((item) => {
+        if (item) {
+          item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
+            item.RecipeId +
+            ".png");
+          this.items.push(item);
+        }
       });
+    });
   },
 
   methods: {
     next_page(page) {
       this.$router.push({ path: "/res", query: { page: page } });
     },
+    getCount() {
+      return this.axios.get(this.$hostname + `/apiv3/recipes/count`, {
+        params: {
+          types: this.selectedTypes.join(","),
+          allergies: this.selectedAllergies.join(","),
+          min_age: this.minAge,
+          max_cal: this.maxCal,
+        },
+      });
+    },
+    getRecipes() {
+      const offset = (this.page - 1) * this.count;
+      return this.axios.get(this.$hostname + `/apiv3/recipes`, {
+        params: {
+          offset: offset,
+          count: this.count,
+          types: this.selectedTypes.join(","),
+          allergies: this.selectedAllergies.join(","),
+          min_age: this.minAge,
+          max_cal: this.maxCal,
+        },
+      });
+    },
+    update() {
+      this.getRecipes().then((response) => {
+        console.log(response);
+        const items = [];
+        response.data.forEach((item) => {
+          if (item) {
+            item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
+              item.RecipeId +
+              ".png");
+            items.push(item);
+          }
+        });
+
+        this.items = items;
+      });
+      this.getCount().then((response) => {
+        this.totalCount = response.data.count;
+      });
+    },
   },
   watch: {
     totalCount: function (val) {
       this.pages = (1 + val / this.count) >> 0;
     },
-    selectedTypes: function (val) {
-      const offset = (this.page - 1) * this.count;
-      this.axios
-        .get(
-          this.$hostname +
-            `/apiv3/recipes?offset=${offset}&count=${
-              this.count
-            }&types=${val.join(",")}&allergies=${this.selectedAllergies.join(
-              ","
-            )}`
-        )
-        .then((response) => {
-          console.log(response);
-          const items = [];
-          response.data.forEach((item) => {
-            if (item) {
-              item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
-                item.RecipeId +
-                ".png");
-              items.push(item);
-            }
-          });
-
-          this.items = items;
-        });
-      this.axios
-        .get(
-          this.$hostname +
-            `/apiv3/recipes/count?types=${val.join(
-              ","
-            )}&allergies=${this.selectedAllergies.join(",")}`
-        )
-        .then((response) => {
-          this.totalCount = response.data.count;
-        });
+    selectedTypes: function () {
+      this.update()
     },
-    selectedAllergies: function (val) {
-      const offset = (this.page - 1) * this.count;
-      this.axios
-        .get(
-          this.$hostname +
-            `/apiv3/recipes?offset=${offset}&count=${
-              this.count
-            }&types=${this.selectedTypes.join(",")}&allergies=${val.join(",")}`
-        )
-        .then((response) => {
-          console.log(response);
-          const items = [];
-          response.data.forEach((item) => {
-            if (item) {
-              item.imgsrc = require("../assets/Iter2/Recipes/RecipeId" +
-                item.RecipeId +
-                ".png");
-              items.push(item);
-            }
-          });
-
-          this.items = items;
-        });
-      this.axios
-        .get(
-          this.$hostname +
-            `/apiv3/recipes/count?types=${this.selectedTypes.join(
-              ","
-            )}&allergies=${val.join(",")}`
-        )
-        .then((response) => {
-          this.totalCount = response.data.count;
-        });
+    selectedAllergies: function () {
+      this.update()
     },
+    minAge: function() {
+      console.log('minAge changed', this.minAge)
+      this.update()
+    },
+    maxCal: function() {
+      console.log('maxCal changed', this.maxCal)
+      this.update()
+    }
   },
 };
 </script>
