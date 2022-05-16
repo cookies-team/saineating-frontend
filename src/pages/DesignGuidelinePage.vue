@@ -23,7 +23,7 @@
             <template v-slot:default="{ hover }">
               <v-card
                 class="rounded-xl tab-img-btn"
-                :style="{ 'background-image': 'url(' + sgbtn1 + ')' }"
+                :style="`background: url(${sgbtn1}) center center no-repeat; background-size: contain;`"
               >
                 <v-fade-transition>
                   <v-overlay v-if="hover" absolute color="#036358">
@@ -39,7 +39,7 @@
             <template v-slot:default="{ hover }">
               <v-card
                 class="rounded-xl tab-img-btn"
-                :style="{ 'background-image': 'url(' + sgbtn2 + ')' }"
+                :style="`background: url(${sgbtn2}) center center no-repeat; background-size: contain;`"
               >
                 <v-fade-transition>
                   <v-overlay v-if="hover" absolute color="#036358">
@@ -55,7 +55,7 @@
             <template v-slot:default="{ hover }">
               <v-card
                 class="rounded-xl tab-img-btn"
-                :style="{ 'background-image': 'url(' + sgbtn3 + ')' }"
+                :style="`background: url(${sgbtn3}) center center no-repeat; background-size: contain;`"
               >
                 <v-fade-transition>
                   <v-overlay v-if="hover" absolute color="#036358">
@@ -111,9 +111,14 @@
             (including saturated fat, sodium (salt), sugars and energy) by
             simply browsing.
           </p>
-          <v-btn class="ma-8" outlined elevation="0"
-            >Find more about Health Star Ratings</v-btn
+          <a
+            href="http://www.healthstarrating.gov.au/internet/healthstarrating/publishing.nsf/Content/How-to-use-health-stars"
+            target="_blank"
           >
+            <v-btn class="ma-8" outlined elevation="0"
+              >Find more about Health Star Ratings</v-btn
+            >
+          </a>
         </v-col>
       </v-row>
     </v-container>
@@ -149,9 +154,14 @@
             lollipops and chewing gum, soft drinks/sweet wine, salad
             dressings/dressings, flavoured drinks.
           </p>
-          <v-btn class="ma-8" outlined elevation="0"
-            >Click here to read <br />the "Shopping Guide to Healthy
-            Eating"</v-btn
+          <a
+            href="https://www.chsa-diabetes.org.au/consumer/Shopping%20Guide%202020%20Shopping%20Guide%20Final%20June%202020.pdf"
+            target="_blank"
+          >
+            <v-btn class="ma-8" outlined elevation="0"
+              >Click here to read <br />the "Shopping Guide to Healthy
+              Eating"</v-btn
+            ></a
           >
         </v-col>
         <v-col cols="12" sm="6">
@@ -315,10 +325,6 @@ export default {
 
 .tab-img-btn {
   background-color: var(--mist-gray);
-  background-position: 50% 50%;
-  background-size: cover;
-  border-radius: 20px;
-  cursor: pointer;
-  height: 216px;
+  height: 208px;
 }
 </style>

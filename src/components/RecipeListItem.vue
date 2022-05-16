@@ -6,8 +6,7 @@
         :style="`
           background-image: url(${img}); 
         `"
-      >
-      </div>
+      ></div>
       <div class="recipe-type dmsans-normal-mine-shaft-20px">
         {{ types.join(",") }}
       </div>
@@ -15,7 +14,9 @@
       <div class="diffcultiy-level dmsans-normal-mine-shaft-16px">
         {{ shortDesc }}
       </div>
-      <div class="cooking-time dmsans-normal-mine-shaft-16px-2">20-30 min</div>
+      <div class="cooking-time dmsans-normal-mine-shaft-16px-2">
+        {{ cookingTime }}
+      </div>
     </div></router-link
   >
 </template>
@@ -23,7 +24,7 @@
 <script>
 export default {
   name: "RecipeList",
-  props: ["id", "name", "img", "types", "shortDesc"],
+  props: ["id", "name", "img", "types", "shortDesc", "cookingTime"],
 };
 </script>
 

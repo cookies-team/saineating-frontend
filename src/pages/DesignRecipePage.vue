@@ -72,6 +72,7 @@
                 v-model="minAge"
                 :thumb-size="24"
                 max="10"
+                min="5"
                 thumb-label="always"
                 style="width: 100%"
                 thumb-color="green"
@@ -107,6 +108,7 @@
                 :img="item.imgsrc"
                 :types="item.TypeNames"
                 shortDesc="short desc"
+                :cookingTime="item.CookingTime"
               />
             </v-col>
           </v-row>
