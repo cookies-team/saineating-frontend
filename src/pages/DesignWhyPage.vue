@@ -10,10 +10,10 @@
       <h1 class="worksans-bold-mine-shaft-72px">
         What cause Childhood obesity
       </h1>
-      <v-card-text class="dmsans-normal-mine-shaft-16px">
+      <v-card-text class="dmsans-normal-mine-shaft-20px">
         The following short video illustrates the main causes of childhood
         obesity. It lists causes that include mainly dietary problems, which
-        shows the important role that a healthy diet plays in this.. From
+        shows the important role that a healthy diet plays in this. From
         YouTube.
       </v-card-text>
       <div class="video">
@@ -35,7 +35,7 @@
     </v-container>
     <v-container class="px-16 my-16">
       <h1 class="worksans-bold-mine-shaft-72px">Healthy Eating for Children</h1>
-      <p class="dmsans-normal-mine-shaft-16px">
+      <p class="dmsans-normal-mine-shaft-20px">
         The following block is an educational video for children to learn what
         it means to have healthy eating habits. From YouTube.
       </p>

@@ -6,6 +6,13 @@
       <v-row class="my-16" style="width: 100%">
         <v-col cols="12" sm="12" md="3">
           <div>
+            <v-text-field
+              label="Search Restaurant"
+              @input="searchRest"
+            ></v-text-field>
+          </div>
+
+          <div>
             <v-select
               label="Select"
               :items="sortOptions"
@@ -16,12 +23,7 @@
               persistent-hint
             ></v-select>
           </div>
-          <div>
-            <v-text-field
-              label="Search Restaurant"
-              @input="searchRest"
-            ></v-text-field>
-          </div>
+
           <div
             class="rest-info my-4 mx-2"
             style="max-height: 1000px; overflow: scroll"
@@ -275,9 +277,7 @@ export default {
           steps.forEach((step, index) => {
             this.steps.push({ id: index, instr: step.maneuver.instruction });
           });
-          this.instrTitle = `Duration: ${
-            (route.duration / 60) >> 0
-          } min 🚴`;
+          this.instrTitle = `Duration: ${(route.duration / 60) >> 0} min 🚴`;
 
           const routeCoords = route.geometry.coordinates;
           const geojson = {
