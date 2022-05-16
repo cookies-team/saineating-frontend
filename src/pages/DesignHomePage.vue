@@ -9,11 +9,6 @@
       </div>
       <div class="recipe-block">
         <div class="flex-col">
-          <!-- <div class="recipes-label">
-            <div class="categories dmsans-normal-white-14px">
-              HEALTHY EATTING RECIPE
-            </div>
-          </div> -->
           <h1 class="worksans-bold-mine-shaft-56px">Categoried Recipes</h1>
         </div>
         <v-row class="home-recipe-category my-8">
@@ -424,9 +419,7 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-right: 2px;
   min-height: 113px;
-  width: 532px;
 }
 
 .recipes-label {

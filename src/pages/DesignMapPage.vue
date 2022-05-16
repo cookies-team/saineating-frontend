@@ -338,15 +338,6 @@ export default {
   width: 1440px;
 }
 
-.restaurants-map {
-  left: 135px;
-  letter-spacing: 0;
-  line-height: 80px;
-  position: absolute;
-  top: 127px;
-  white-space: nowrap;
-}
-
 .map-function {
   align-items: flex-start;
   display: flex;

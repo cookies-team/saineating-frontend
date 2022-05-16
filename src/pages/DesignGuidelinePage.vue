@@ -18,7 +18,7 @@
         </v-card-subtitle>
       </div>
       <v-row>
-        <v-col>
+        <v-col cols="12" sm="4">
           <v-hover>
             <template v-slot:default="{ hover }">
               <v-card
@@ -34,7 +34,7 @@
             </template>
           </v-hover>
         </v-col>
-        <v-col>
+        <v-col cols="12" sm="4">
           <v-hover>
             <template v-slot:default="{ hover }">
               <v-card
@@ -50,7 +50,7 @@
             </template>
           </v-hover>
         </v-col>
-        <v-col>
+        <v-col cols="12" sm="4">
           <v-hover>
             <template v-slot:default="{ hover }">
               <v-card

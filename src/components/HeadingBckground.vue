@@ -1,7 +1,7 @@
 <template>
 <div class="page-heading">
-  <div class="heading-bckground" :style="{ 'background-image': 'url(' + src + ')' }"></div>
-  <div class="restaurants-map worksans-bold-white-72px">{{ title }}</div>
+  <div class="heading-bckground" :style="`background: url(${src}) center center; background-size: cover;`"></div>
+  <div class="head-title worksans-bold-white-72px" style="font-size: 8vmin;">{{ title }}</div>
 </div>
 </template>
 
@@ -13,6 +13,13 @@ export default {
 </script>
 
 <style>
+.head-title {
+  line-height: 80px;
+  position: absolute;
+  bottom: 0;
+white-space: initial;
+}
+
 .page-heading {
   height: 212px;
   position: relative;
