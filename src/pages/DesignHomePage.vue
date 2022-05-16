@@ -871,6 +871,11 @@ export default {
   transform: scale(1.1);
 }
 
+.home-recipes-card:hover > .green-circle {
+  transform: scale(1.1);
+  content:url("https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval-2@2x.png"); /* = src */
+}
+
 .item-icon {
   max-width: 80%;
   flex: 80%;
