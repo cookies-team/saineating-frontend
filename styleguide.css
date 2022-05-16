@@ -13,16 +13,11 @@
   --white: #ffffff;
   --white-2: #ffffff80;
 
-  --font-size-l: 2vmin;
-  /* 20px; */
-  --font-size-m: 1.8vmin;
-  /* 16px; */
-  --font-size-s: 1.6vmin;
-  /* 14px; */
-  --font-size-xl: 2.3vmin;
-  /* 24px; */
-  --font-size-xs: 1.2vmin;
-  /* 12px; */
+  --font-size-l: 20px;
+  --font-size-xs: 12px;
+  --font-size-s: 14px;
+  --font-size-m: 16px;
+  --font-size-xl: 24px;
   --font-size-xxl: 6.2vmin;
   /* 56px; */
   --font-size-xxxl: 8vmin;

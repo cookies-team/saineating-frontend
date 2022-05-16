@@ -27,7 +27,7 @@
               >
                 <v-fade-transition>
                   <v-overlay v-if="hover" absolute color="#036358">
-                    <v-btn @click="show = 'hsr'">See more info</v-btn>
+                    <v-btn @click="show = 'hsr'">View Me</v-btn>
                   </v-overlay>
                 </v-fade-transition>
               </v-card>
@@ -43,7 +43,7 @@
               >
                 <v-fade-transition>
                   <v-overlay v-if="hover" absolute color="#036358">
-                    <v-btn @click="show = 'hesg'">See more info</v-btn>
+                    <v-btn @click="show = 'hesg'">View Me</v-btn>
                   </v-overlay>
                 </v-fade-transition>
               </v-card>
@@ -59,7 +59,7 @@
               >
                 <v-fade-transition>
                   <v-overlay v-if="hover" absolute color="#036358">
-                    <v-btn @click="show = 'eosh'">See more info</v-btn>
+                    <v-btn @click="show = 'eosh'">View Me</v-btn>
                   </v-overlay>
                 </v-fade-transition>
               </v-card>
@@ -188,33 +188,38 @@
           through this guide and make healthier choices.
         </p>
       </v-row>
-      <v-row class="my-8">
-        <v-col
-          cols="12"
-          sm="6"
-          md="2"
-          lg="2"
-          xl="2"
-          v-for="item in eosh.recipeCategories"
-          :key="item.name"
+      <v-tabs
+      class="my-8"
+        background-color="#e1eaf6"
+        vertical
+      >
+        <v-tabs-slider color="green"></v-tabs-slider>
+        <v-tab
+          class="dmsans-normal-white-20px"
+          v-for="restType in eosh.restCategories"
+          :key="restType.name"
+          style="text-transform: unset !important"
         >
-          <router-link :to="item.link">
-            <div class="home-recipes-card">
-              <img class="item-icon" :src="item.icon" /><img
-                class="green-circle"
-                src="https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval@2x.png"
-              />
-              <div class="item-number dmsans-normal-white-16px">
-                {{ item.number }}
-              </div>
+          {{ restType.name }}
+        </v-tab>
 
-              <div class="item-name dmsans-normal-mine-shaft-20px">
-                {{ item.name }}
-              </div>
-            </div>
-          </router-link>
-        </v-col>
-      </v-row>
+        <v-tab-item v-for="restType in eosh.restCategories" :key="restType.name">
+          <v-card class="ma-4" flat>
+            <p class="dmsans-normal-mine-shaft-20px" v-html="restType.text"></p>
+            
+            <v-row style="">
+              <v-col fill-height :cols="`${ (12 / restType.picCount) >> 0}`" v-for="n in restType.picCount" :key="restType.name+n" style="height: 100%; min-height:100%;">
+                <div fill-height
+                  :style="`background: url('${require('../assets/Iter3/RestaurantGuide/' +
+                    restType.name.split(' ').join('') +
+                    n +
+                    '.jpg')}') center center no-repeat; background-size: cover; min-height: 10rem`"
+                />
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-tab-item>
+      </v-tabs>
     </v-container>
   </div>
 </template>
@@ -269,42 +274,60 @@ export default {
     },
     eosh: {
       bgcolor: "#8EEB81",
-      recipeCategories: [
+      restCategories: [
         {
-          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-7-1@2x.png",
-          name: "Breakfast",
-          number: 42,
-          link: "",
+          name: "Chinese",
+          text: `<br/>• Steamed or boiled dumplings or bao <br/>• Broth-based soups with noodles or lean meat <br/>• Steamed, braised, stir-fried – fish, seafood, lean meat, skinless chicken, tofu with vegetables <br/>• Steamed rice`,
+          picCount: 4,
         },
         {
-          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-8-1@2x.png",
-          name: "Lunch",
-          number: 35,
-          link: "",
+          name: "Indian",
+          text: `• Tikka or tandoori dishes • Tomato based curry (e.g. vindaloo) • Lentils, chickpeas based curries • Basmati rice `
+            .split("•")
+            .join("<br/>•"),
+          picCount: 4,
         },
         {
-          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-9-1@2x.png",
-          name: "Dinner",
-          number: 35,
-          link: "",
+          name: "Mexican",
+          text: `• Burrito, fajita, soft taco, quesadilla • Salsa, guacamole and lime • Grilled corn cob`
+            .split("•")
+            .join("<br/>•"),
+          picCount: 3,
         },
         {
-          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-10-1@2x.png",
-          name: "Vegetarian",
-          number: 35,
-          link: "",
+          name: "Japanese",
+          text: `• Sushi fillings with vegetable, avocado, egg, tofu, fish, chicken, prawn, seafood, salmon, tuna • Steamed gyoza • Soba noodles`
+            .split("•")
+            .join("<br/>•"),
+          picCount: 3,
         },
         {
-          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-11-1@2x.png",
-          name: "Asian",
-          number: 35,
-          link: "",
+          name: "Italian",
+          text: "• Tomato-based pasta • Thin crust pizza with vegetable toppings • Bruschetta with tomato and basil"
+            .split("•")
+            .join("<br/>•"),
+          picCount: 3,
         },
         {
-          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-12-2@2x.png",
-          name: "Desserts",
-          number: 9,
-          link: "",
+          name: "Vietnamese",
+          text: "• Rice paper rolls • Pho noodle soup • Stir fry lean meat, skinless chicken, tofu, seafood and vegetables "
+            .split("•")
+            .join("<br/>•"),
+          picCount: 3,
+        },
+        {
+          name: "Middle East",
+          text: "• Grilled chicken, lamb or beef skewer • Mezza platter with olives, dolmades and dips such as baba ganoush or hummus • Kofte with tabouleh"
+            .split("•")
+            .join("<br/>•"),
+          picCount: 3,
+        },
+        {
+          name: "Greek",
+          text: "• Baked stuffed vegetables filled with rice, minced meat, lentil and vegetable • Dolma stuffed with rice, minced meat and spices • Grilled lean meat, chicken, lamb or fish or seafood • Greek salad"
+            .split("•")
+            .join("<br/>•"),
+          picCount: 3,
         },
       ],
     },
@@ -326,5 +349,16 @@ export default {
 .tab-img-btn {
   background-color: var(--mist-gray);
   height: 208px;
+}
+
+.eo-rest-type-card {
+  border-radius: 12px;
+  height: 10vmin;
+  position: relative;
+
+  background-color: var(--black-haze);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 </style>
