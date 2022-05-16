@@ -13,8 +13,8 @@
         </div>
         <v-row class="home-recipe-category my-8">
           <v-col
-            cols="12"
-            sm="6"
+            cols="6"
+            sm="4"
             md="2"
             lg="2"
             xl="2"
@@ -851,7 +851,7 @@ export default {
   border-radius: 12px;
   max-height: 240px;
   position: relative;
-  max-width: 170px;
+  /* max-width: 170px; */
 
   background-color: var(--black-haze);
   border-radius: 12px;
