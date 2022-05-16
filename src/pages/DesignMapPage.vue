@@ -65,8 +65,8 @@
             <MglNavigationControl position="top-right" />
             <MglMarker :coordinates="userCoordinates" color="blue" />
             <MglMarker
-              v-for="(item, key) in items"
-              :key="key"
+              v-for="(item, index) in items"
+              :key="index"
               :coordinates="[item.longitude, item.latitude]"
             >
               <MglPopup
@@ -101,24 +101,6 @@
                   </v-card-text>
 
                   <v-divider class="mx-4"></v-divider>
-
-                  <!-- <v-card-title>Tonight's availability</v-card-title>
-
-                  <v-card-text>
-                    <v-chip-group
-                      active-class="deep-purple accent-4 white--text"
-                      column
-                    >
-                      <v-chip>5:30PM</v-chip>
-
-                      <v-chip>7:30PM</v-chip>
-
-                      <v-chip>8:00PM</v-chip>
-
-                      <v-chip>9:00PM</v-chip>
-                    </v-chip-group>
-                  </v-card-text> -->
-
                   <v-card-actions>
                     <v-btn
                       color="deep-purple lighten-2"
@@ -131,6 +113,15 @@
                 </v-card>
               </MglPopup>
             </MglMarker>
+            <v-card class="instrs" v-show="showInstrs" ref="instrs">
+              <v-card-title center>{{ instrTitle }}</v-card-title>
+              <v-divider></v-divider>
+              <v-timeline>
+                <v-timeline-item v-for="step in steps" :key="step.id">
+                  {{ step.id + 1 }}. {{ step.instr }}
+                </v-timeline-item>
+              </v-timeline>
+            </v-card>
           </MglMap>
         </v-col>
       </v-row>
@@ -148,7 +139,7 @@ import {
   // MglGeojsonLayer,
 } from "vue-mapbox";
 
-let map = null
+let map = null;
 
 import HeadingBckground from "../components/HeadingBckground";
 export default {
@@ -175,6 +166,9 @@ export default {
     search: "",
     // map: null, // issue: https://github.com/soal/vue-mapbox/issues/217
     mapbox: null,
+    showInstrs: false,
+    steps: [],
+    instrTitle: null,
   }),
   props: [
     "restaurantsMap",
@@ -243,7 +237,7 @@ export default {
         });
       }
 
-      map = event.map 
+      map = event.map;
     },
     async goRest(index) {
       const newParams = await this.$refs.map.actions.flyTo({
@@ -273,8 +267,18 @@ export default {
           `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${this.accessToken}`
         )
         .then((response) => {
+          this.showInstrs = true;
+
           console.log(response.data);
           const route = response.data.routes[0];
+          const steps = route.legs[0].steps;
+          steps.forEach((step, index) => {
+            this.steps.push({ id: index, instr: step.maneuver.instruction });
+          });
+          this.instrTitle = `Duration: ${
+            (route.duration / 60) >> 0
+          } min 🚴`;
+
           const routeCoords = route.geometry.coordinates;
           const geojson = {
             type: "Feature",
@@ -584,5 +588,17 @@ export default {
   line-height: 32px;
   position: absolute;
   top: 120px;
+}
+
+.instrs {
+  position: absolute;
+  margin: 20px;
+  width: 50%;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: scroll;
 }
 </style>
