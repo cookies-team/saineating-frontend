@@ -5,26 +5,91 @@
       title="Shopping Guidelines"
     />
 
-    <v-container class="px-16 my-16">
+    <v-container
+      class="px-16 my-16 pb-16"
+      style="background: #81c178; border-radius: 20px"
+    >
       <div class="my-8">
-        <h1 class="worksans-bold-mine-shaft-56px">Healthy Eating Stars</h1>
         <v-card-subtitle class="dmsans-normal-mine-shaft-20px">
-          > Helping you avoid childhood obesity caused by unhealthy eating through
-          daily shopping habits
+          If your child's waistline is growing, then you need to manage this
+          problem in every way and, in particular, don't shop without a plan.
+          This chapter helps you to get a quick guide to shopping in different
+          situations.
         </v-card-subtitle>
+      </div>
+      <v-row>
+        <v-col>
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card
+                class="rounded-xl tab-img-btn"
+                :style="{ 'background-image': 'url(' + sgbtn1 + ')' }"
+              >
+                <v-fade-transition>
+                  <v-overlay v-if="hover" absolute color="#036358">
+                    <v-btn @click="show = 'hsr'">See more info</v-btn>
+                  </v-overlay>
+                </v-fade-transition>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-col>
+        <v-col>
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card
+                class="rounded-xl tab-img-btn"
+                :style="{ 'background-image': 'url(' + sgbtn2 + ')' }"
+              >
+                <v-fade-transition>
+                  <v-overlay v-if="hover" absolute color="#036358">
+                    <v-btn @click="show = 'hesg'">See more info</v-btn>
+                  </v-overlay>
+                </v-fade-transition>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-col>
+        <v-col>
+          <v-hover>
+            <template v-slot:default="{ hover }">
+              <v-card
+                class="rounded-xl tab-img-btn"
+                :style="{ 'background-image': 'url(' + sgbtn3 + ')' }"
+              >
+                <v-fade-transition>
+                  <v-overlay v-if="hover" absolute color="#036358">
+                    <v-btn @click="show = 'eosh'">See more info</v-btn>
+                  </v-overlay>
+                </v-fade-transition>
+              </v-card>
+            </template>
+          </v-hover>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-container
+      v-if="show == 'hsr'"
+      class="hsr px-16 my-16"
+      :style="`background: ${hsr.bgcolor}; border-radius: 50px;`"
+    >
+      <div class="my-8">
+        <h1 class="worksans-bold-mine-shaft-56px">Healthy Star Rating</h1>
       </div>
       <v-row>
         <v-col cols="12" sm="6">
           <div
             class="ma-1"
-            :style="`width: 100%; height: 20rem; background: url(${starpic1}); background-size: cover;`"
-          />
+            :style="`width: 100%; height: 20rem; background: url(${hsr.starpic1}) center center no-repeat; background-size: contain;`"
+          ></div>
         </v-col>
         <v-col cols="12" sm="6">
-          <p class="ma-2 worksans-normal-mine-shaft-24px">
-            The Health Star Rating is a front-of-pack labelling system that
-            rates the overall nutritional profile of packaged food and assigns
-            it a rating from ½ a star to 5 stars. It provides a quick, easy,
+          <p class="dmsans-normal-mine-shaft-20px my-16">
+            In order to buy healthy food for your children, first you need to
+            understand a front-of-pack labelling system in Australia, the Health
+            Star, which rates packaged foods on a scale of ½ to 5 stars for
+            their overall nutritional content. It provides a quick, easy and
             standard way to compare similar packaged foods. The more stars, the
             healthier the choice.
           </p>
@@ -33,68 +98,111 @@
       <v-row>
         <v-col cols="12" sm="6">
           <div
-            class="ma-2"
-            :style="`width: 100%; height: 16rem; background-image: url(${starpic2}); background-size: cover;`"
-          />
+            class="ma-1"
+            :style="`width: 100%; height: 20rem; background: url(${hsr.starpic2}) center center no-repeat; background-size: contain;`"
+          ></div>
         </v-col>
         <v-col cols="12" sm="6">
-          <div class="worksans-normal-mine-shaft-24px">
-            <h3>Details:</h3>
-            <div>
-              <a
-                href="http://www.healthstarrating.gov.au/internet/healthstarrating/publishing.nsf/Content/About-health-stars"
-                target="_blank"
-              >
-                About Health Star Ratings</a
-              >
-            </div>
-            <div>
-              <a
-                href="http://www.healthstarrating.gov.au/internet/healthstarrating/publishing.nsf/Content/How-to-use-health-stars"
-                target="_blank"
-                >How to use Health Star Ratings</a
-              >
-            </div>
-          </div>
+          <p class="dmsans-normal-mine-shaft-20px my-16">
+            As shown in the picture on the left. Most of the products carry
+            these health stars and the labels come with a concise panel of
+            nutritional information. You can choose foods for your child that
+            are lower in nutrients associated with the risk of obesity
+            (including saturated fat, sodium (salt), sugars and energy) by
+            simply browsing.
+          </p>
+          <v-btn class="ma-8" outlined elevation="0"
+            >Find more about Health Star Ratings</v-btn
+          >
         </v-col>
       </v-row>
     </v-container>
 
-    <v-container class="px-16 my-16">
+    <v-container
+      v-if="show == 'hesg'"
+      class="hesg px-16 my-16"
+      :style="`background: ${hesg.bgcolor}; border-radius: 50px;`"
+    >
       <div class="my-8">
-        <h1 class="worksans-bold-mine-shaft-56px">Shopping Guidelines</h1>
-        <v-card-subtitle class="dmsans-normal-mine-shaft-20px">
-          > Consumption guidelines can help you avoid high-calorie and unhealthy
-          foods
-        </v-card-subtitle>
+        <h1 class="worksans-bold-mine-shaft-56px">
+          Healthy Eating Shopping Guide
+        </h1>
       </div>
       <v-row>
         <v-col cols="12" sm="6">
-          <p class="worksans-normal-mine-shaft-24px">
-            It’s recommended that we should limit intake of foods containing
-            saturated fat, added salt, added sugars and alcohol.<br /><br />Some
-            foods and drinks are not necessary for a healthy diet and are too
-            high in saturated fat and/or added sugars, added salt or alcohol and
-            low in fiber. These foods and drinks can also be too high in energy.
-            Many of them tend to have low levels of essential nutrients so are
-            often referred to as ‘energy-dense’ but ‘nutrient-poor’ foods.
+          <p class="dmsans-normal-mine-shaft-20px my-16">
+            As a parent and consumer, you may not have a lot of time to delve
+            into the ingredients of your food. Don't worry, here's a healthy
+            eating shopping guide based on the Australian Dietary Guidelines and
+            the 2020 Food Labelling Literature Review.
           </p>
+          <p class="dmsans-normal-mine-shaft-20px my-16">
+            The foods listed in this guide can be purchased from major
+            Australian supermarket such as Coles, Woolworths, ALDI and/or
+            Foodland/Drake/IGA.
+          </p>
+          <p class="dmsans-normal-mine-shaft-20px my-16">
+            This dietary guide includes: bread, biscuits, rice/pasta/pasta,
+            breakfast cereals, vegetables/pulses, fruit, yoghurt, milk, cheese,
+            meat/poultry, fish/seafood, nuts and seeds, fats and oils,
+            frozen/quick meals, jams/fruit sauces/pastilles, ice cream/desserts,
+            lollipops and chewing gum, soft drinks/sweet wine, salad
+            dressings/dressings, flavoured drinks.
+          </p>
+          <v-btn class="ma-8" outlined elevation="0"
+            >Click here to read <br />the "Shopping Guide to Healthy
+            Eating"</v-btn
+          >
         </v-col>
         <v-col cols="12" sm="6">
           <div
             class="ma-1"
-            :style="`width: 100%; height: 20rem; background: url(${sgpic1}); background-size: cover;`"
-          />
-          <div class="worksans-normal-mine-shaft-24px">
-            <h3>Details:</h3>
-            <a
-              href="https://www.eatforhealth.gov.au/food-essentials/fat-salt-sugars-and-alcohol"
-              >https://www.eatforhealth.gov.au/food-essentials/fat-salt-sugars-and-alcohol</a
-            ><a
-              href="https://www.eatforhealth.gov.au/food-essentials/discretionary-food-and-drink-choices"
-              >https://www.eatforhealth.gov.au/food-essentials/discretionary-food-and-drink-choices</a
-            >
-          </div>
+            :style="`width: 100%; height: 100%; min-height: 600px; background: url(${hesg.magz}) center center no-repeat; background-size: contain;`"
+          ></div>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <v-container
+      v-if="show == 'eosh'"
+      class="eosh px-16 my-16"
+      :style="`background: ${eosh.bgcolor}; border-radius: 50px;`"
+    >
+      <div class="my-8">
+        <h1 class="worksans-bold-mine-shaft-56px">Eating Out Stay Healthy</h1>
+      </div>
+      <v-row>
+        <p class="dmsans-normal-mine-shaft-20px">
+          This section will help parents make healthy meal choices for their
+          children, no matter which kind of restaurant you take them to, skim
+          through this guide and make healthier choices.
+        </p>
+      </v-row>
+      <v-row class="my-8">
+        <v-col
+          cols="12"
+          sm="6"
+          md="2"
+          lg="2"
+          xl="2"
+          v-for="item in eosh.recipeCategories"
+          :key="item.name"
+        >
+          <router-link :to="item.link">
+            <div class="home-recipes-card">
+              <img class="item-icon" :src="item.icon" /><img
+                class="green-circle"
+                src="https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval@2x.png"
+              />
+              <div class="item-number dmsans-normal-white-16px">
+                {{ item.number }}
+              </div>
+
+              <div class="item-name dmsans-normal-mine-shaft-20px">
+                {{ item.name }}
+              </div>
+            </div>
+          </router-link>
         </v-col>
       </v-row>
     </v-container>
@@ -130,6 +238,67 @@ export default {
     "xHeaderProps",
     "xFooterProps",
   ],
+  data: () => ({
+    sgbtn1:
+      "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6280e4a3857b1ba3d2a988ba/img/heathyeatingstarbtn-1@2x.png",
+    sgbtn2:
+      "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6280e4a3857b1ba3d2a988ba/img/sgbtn2-opaque-1@2x.png",
+    sgbtn3:
+      "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6280e4a3857b1ba3d2a988ba/img/sgbtn3@2x.png",
+    show: null,
+    hsr: {
+      bgcolor: "#D0EBCC",
+      starpic1:
+        "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6280e4a3857b1ba3d2a988ba/img/starpic1@1x.png",
+      starpic2:
+        "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6280e4a3857b1ba3d2a988ba/img/starpic2@2x.png",
+    },
+    hesg: {
+      bgcolor: "#B1E4AA",
+      magz: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6280e4a3857b1ba3d2a988ba/img/n55-agthe-large-1@1x.png",
+    },
+    eosh: {
+      bgcolor: "#8EEB81",
+      recipeCategories: [
+        {
+          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-7-1@2x.png",
+          name: "Breakfast",
+          number: 42,
+          link: "",
+        },
+        {
+          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-8-1@2x.png",
+          name: "Lunch",
+          number: 35,
+          link: "",
+        },
+        {
+          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-9-1@2x.png",
+          name: "Dinner",
+          number: 35,
+          link: "",
+        },
+        {
+          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-10-1@2x.png",
+          name: "Vegetarian",
+          number: 35,
+          link: "",
+        },
+        {
+          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-11-1@2x.png",
+          name: "Asian",
+          number: 35,
+          link: "",
+        },
+        {
+          icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-12-2@2x.png",
+          name: "Desserts",
+          number: 9,
+          link: "",
+        },
+      ],
+    },
+  }),
 };
 </script>
 
@@ -144,246 +313,12 @@ export default {
   width: 100%;
 }
 
-.overlap-group5-5 {
-  height: 212px;
-  position: relative;
-  width: 1440px;
-}
-
-.sg-title {
-  left: 135px;
-  letter-spacing: 0;
-  line-height: 80px;
-  position: absolute;
-  top: 127px;
-  white-space: nowrap;
-}
-
-.overlap-group6-3 {
-  height: 2300px;
-  margin-top: 103px;
-  position: relative;
-  width: 1440px;
-}
-
-.page-background-1 {
-  height: 1297px;
-  left: 0;
-  object-fit: cover;
-  position: absolute;
-  top: 196px;
-  width: 1440px;
-}
-
-.sg-section {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  left: 76px;
-  min-height: 1075px;
-  position: absolute;
-  top: 1225px;
-  width: 1287px;
-}
-
-.sg-8 {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  margin-left: 17px;
-  min-height: 228px;
-  width: 716px;
-}
-
-.overlap-group-16 {
-  align-items: flex-start;
-  background-color: var(--fern);
-  border-radius: 8px;
-  display: flex;
-  height: 32px;
-  min-width: 90px;
-  padding: 0 29px;
-}
-
-.tag2-1,
-.features-tag {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 32px;
-  min-width: 32px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.big-title2 {
-  letter-spacing: 0;
-  line-height: 64px;
-  margin-top: 18px;
-  min-height: 64px;
-  white-space: nowrap;
-}
-
-.feature-details2 {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-top: 78px;
-  min-height: 36px;
-  white-space: nowrap;
-}
-
-.sg-deatils {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  margin-top: 73px;
-  min-height: 774px;
-  width: 1291px;
-}
-
-.flex-row-6 {
-  align-items: flex-start;
-  align-self: flex-end;
-  display: flex;
-  height: 641px;
-  margin-right: 4px;
-  min-width: 1278px;
-}
-
-.pra1-1 {
-  align-self: flex-end;
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 597px;
-  width: 457px;
-}
-
-.sg-pic1 {
-  height: 557px;
-  margin-left: 21px;
-  object-fit: cover;
-  width: 800px;
-}
-
-.pra2 {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 133px;
-  width: 1208px;
-}
-
-.eating-star-section {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  left: 225px;
-  min-height: 865px;
-  position: absolute;
-  top: 0;
-  width: 1176px;
-}
-
-.healthy-eat-star {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-right: 180px;
-  min-height: 160px;
-  width: 706px;
-}
-
-.overlap-group-17 {
-  align-items: flex-start;
-  background-color: var(--fern);
-  border-radius: 8px;
-  display: flex;
-  height: 32px;
-  margin-right: 6px;
-  min-width: 90px;
-  padding: 0 29px;
-}
-
-.big-title {
-  letter-spacing: 0;
-  line-height: 64px;
-  margin-right: 6px;
-  margin-top: 18px;
-  min-height: 64px;
-  min-width: 566px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.feature-details {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-right: 6px;
-  margin-top: 14px;
-  min-height: 32px;
-  min-width: 700px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.eating-star-deatils {
-  align-items: flex-start;
-  display: flex;
-  height: 646px;
-  margin-left: 6px;
-  margin-top: 59px;
-  min-width: 1182px;
-}
-
-.starpic-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  min-height: 646px;
-  width: 596px;
-}
-
-.star-pic1 {
-  height: 405px;
-  object-fit: cover;
-  width: 596px;
-}
-
-.star-pic2 {
-  height: 165px;
-  margin-right: 112px;
-  margin-top: 76px;
-  object-fit: cover;
-  width: 306px;
-}
-
-.flex-col-4 {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  margin-left: 68px;
-  min-height: 645px;
-  width: 512px;
-}
-
-.pra3 {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 236px;
-  width: 512px;
-}
-
-.pra2-1 {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-top: 72px;
-  min-height: 130px;
-  width: 512px;
-}
-
-.pra1-2 {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-top: 43px;
-  min-height: 164px;
-  width: 466px;
+.tab-img-btn {
+  background-color: var(--mist-gray);
+  background-position: 50% 50%;
+  background-size: cover;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 216px;
 }
 </style>
