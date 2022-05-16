@@ -19,7 +19,7 @@
           <div>
             <v-text-field
               label="Search Restaurant"
-              @input="Search"
+              @input="searchRest"
             ></v-text-field>
           </div>
           <div
@@ -62,6 +62,7 @@
             ref="map"
             height="100%"
           >
+            <MglNavigationControl position="top-right" />
             <MglMarker :coordinates="userCoordinates" color="blue" />
             <MglMarker
               v-for="(item, key) in items"
@@ -119,7 +120,13 @@
                   </v-card-text> -->
 
                   <v-card-actions>
-                    <v-btn color="deep-purple lighten-2" text> Reserve </v-btn>
+                    <v-btn
+                      color="deep-purple lighten-2"
+                      text
+                      @click="navi(item)"
+                    >
+                      GO
+                    </v-btn>
                   </v-card-actions>
                 </v-card>
               </MglPopup>
@@ -133,7 +140,15 @@
 
 <script>
 import Mapbox from "mapbox-gl";
-import { MglMap, MglMarker, MglPopup } from "vue-mapbox";
+import {
+  MglMap,
+  MglMarker,
+  MglPopup,
+  MglNavigationControl,
+  // MglGeojsonLayer,
+} from "vue-mapbox";
+
+let map = null
 
 import HeadingBckground from "../components/HeadingBckground";
 export default {
@@ -143,6 +158,8 @@ export default {
     MglMap,
     MglMarker,
     MglPopup,
+    MglNavigationControl,
+    // MglGeojsonLayer,
   },
   data: () => ({
     accessToken:
@@ -156,6 +173,8 @@ export default {
     sortOptions: ["popularity", "distance"],
     sort: "popularity",
     search: "",
+    // map: null, // issue: https://github.com/soal/vue-mapbox/issues/217
+    mapbox: null,
   }),
   props: [
     "restaurantsMap",
@@ -187,7 +206,8 @@ export default {
     });
   },
   created() {
-    this.map = Mapbox;
+    this.mapbox = Mapbox;
+    this.map = null;
     if (window.navigator.geolocation) {
       // Geolocation available
       window.navigator.geolocation.getCurrentPosition(
@@ -206,10 +226,9 @@ export default {
   methods: {
     async onMapLoad(event) {
       // Here we cathing 'load' map event
-      const asyncActions = event.component.actions;
-
       event.map.resize();
 
+      const asyncActions = event.component.actions;
       if (this.$route.params.restId) {
         this.items.forEach(async (rest, index) => {
           if (rest.RestID == this.$route.params.restId) {
@@ -223,6 +242,8 @@ export default {
           speed: 3,
         });
       }
+
+      map = event.map 
     },
     async goRest(index) {
       const newParams = await this.$refs.map.actions.flyTo({
@@ -237,11 +258,60 @@ export default {
 
       this.selectedIndex = index;
     },
-    async Search(input) {
+    async searchRest(input) {
       // console.log(event)
       this.leftItems = this.allItems.filter((item) => {
         return item.Name.toLowerCase().includes(input.toLowerCase());
       });
+    },
+    navi(rest) {
+      const start = this.userCoordinates;
+      const end = [rest.longitude, rest.latitude];
+      // console.log(event)
+      this.axios
+        .get(
+          `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${this.accessToken}`
+        )
+        .then((response) => {
+          console.log(response.data);
+          const route = response.data.routes[0];
+          const routeCoords = route.geometry.coordinates;
+          const geojson = {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "LineString",
+              coordinates: routeCoords,
+            },
+          };
+          console.log(geojson);
+
+          // if the route already exists on the map, we'll reset it using setData
+          if (map.getSource("route")) {
+            map.getSource("route").setData(geojson);
+          }
+          // otherwise, we'll make a new request
+          else {
+            const rtn = map.addLayer({
+              id: "route",
+              type: "line",
+              source: {
+                type: "geojson",
+                data: geojson,
+              },
+              layout: {
+                "line-join": "round",
+                "line-cap": "round",
+              },
+              paint: {
+                "line-color": "#0000FF",
+                "line-width": 5,
+                "line-opacity": 0.75,
+              },
+            });
+            console.log("add layer", rtn);
+          }
+        });
     },
   },
 };
