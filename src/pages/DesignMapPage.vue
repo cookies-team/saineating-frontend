@@ -163,8 +163,8 @@ export default {
     allItems: null,
     leftItems: null,
     selectedIndex: 0,
-    sortOptions: ["popularity", "distance"],
-    sort: "popularity",
+    sortOptions: ["default", "alphabet", "distance"],
+    sort: "default",
     search: "",
     // map: null, // issue: https://github.com/soal/vue-mapbox/issues/217
     mapbox: null,
@@ -194,12 +194,7 @@ export default {
     "xFooterProps",
   ],
   mounted() {
-    this.axios.get(this.$hostname + "/apiv3/restaurants").then((response) => {
-      console.log(response);
-      this.allItems = response.data;
-      this.items = [...this.allItems];
-      this.leftItems = [...this.allItems];
-    });
+    this.update();
   },
   created() {
     this.mapbox = Mapbox;
@@ -220,6 +215,18 @@ export default {
     }
   },
   methods: {
+    update() {
+      this.axios
+        .get(this.$hostname + "/apiv3/restaurants", {
+          params: { sort: this.sort },
+        })
+        .then((response) => {
+          console.log(response);
+          this.allItems = response.data;
+          this.items = [...this.allItems];
+          this.leftItems = [...this.allItems];
+        });
+    },
     async onMapLoad(event) {
       // Here we cathing 'load' map event
       event.map.resize();
@@ -316,6 +323,11 @@ export default {
             console.log("add layer", rtn);
           }
         });
+    },
+  },
+  watch: {
+    sort: function () {
+      this.update();
     },
   },
 };
