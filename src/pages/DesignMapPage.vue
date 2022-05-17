@@ -116,7 +116,10 @@
               </MglPopup>
             </MglMarker>
             <v-card class="instrs" v-show="showInstrs" ref="instrs">
-              <v-card-title center>{{ instrTitle }}</v-card-title>
+              <v-card-title >{{ instrTitle }}
+                <v-spacer/>
+                <v-icon @click="showInstrs = false" style="cursor: pointer;">mdi-close</v-icon>
+              </v-card-title>
               <v-divider></v-divider>
               <v-timeline>
                 <v-timeline-item v-for="step in steps" :key="step.id">
@@ -228,9 +231,6 @@ export default {
         });
     },
     async onMapLoad(event) {
-      // Here we cathing 'load' map event
-      event.map.resize();
-
       const asyncActions = event.component.actions;
       if (this.$route.params.restId) {
         this.items.forEach(async (rest, index) => {
@@ -247,6 +247,8 @@ export default {
       }
 
       map = event.map;
+
+      event.map.resize();
     },
     async goRest(index) {
       const newParams = await this.$refs.map.actions.flyTo({
@@ -342,12 +344,6 @@ export default {
   position: relative;
   max-width: 1440px;
   width: 100%;
-}
-
-.overlap-group8-2 {
-  height: 212px;
-  position: relative;
-  width: 1440px;
 }
 
 .map-function {
