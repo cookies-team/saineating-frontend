@@ -1,12 +1,7 @@
 <template>
   <div class="container-center-horizontal">
     <div class="recipe-page screen">
-      <div class="overlap-group11-1">
-        <heading-bckground
-          :src="headingBckgroundProps.src"
-          :title="pageTitle"
-        />
-      </div>
+      <heading-bckground :src="headingBckgroundProps.src" :title="pageTitle" />
       <v-row class="my-8" style="width: 100%">
         <v-col cols="0" sm="3" class="d-flex-none d-sm-flex flex-column my-8">
           <div class="filter-panel ma-1">
@@ -294,19 +289,19 @@ export default {
       this.pages = (1 + val / this.count) >> 0;
     },
     selectedTypes: function () {
-      this.update()
+      this.update();
     },
     selectedAllergies: function () {
-      this.update()
+      this.update();
     },
-    minAge: function() {
-      console.log('minAge changed', this.minAge)
-      this.update()
+    minAge: function () {
+      console.log("minAge changed", this.minAge);
+      this.update();
     },
-    maxCal: function() {
-      console.log('maxCal changed', this.maxCal)
-      this.update()
-    }
+    maxCal: function () {
+      console.log("maxCal changed", this.maxCal);
+      this.update();
+    },
   },
 };
 </script>

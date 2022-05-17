@@ -137,9 +137,20 @@ export default {
 }
 
 .video {
-  height: 652px;
-  max-width: 1440px;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+.video iframe,
+.video object,
+.video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
 }
 
 .healthy-for-child {

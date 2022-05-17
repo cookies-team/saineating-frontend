@@ -1,10 +1,8 @@
 <template>
   <div class="container-center-horizontal">
     <div class="about-page screen">
-      <div class="overlap-group7-2">
-        <heading-bckground :src="headingBckgroundProps.src" />
-        <div class="about-page-title worksans-bold-white-72px">{{ aboutpagetitle }}</div>
-      </div>
+      <heading-bckground :src="headingBckgroundProps.src" />
+
       <div class="overlap-group8-1">
         <img class="page-background" :src="pagebackground" />
         <div class="who-we-are">
@@ -34,7 +32,6 @@ export default {
   name: "AboutPage",
   components: {
     HeadingBckground,
-
   },
   props: [
     "aboutpagetitle",
