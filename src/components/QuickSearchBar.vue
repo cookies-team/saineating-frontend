@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 250px;">
+  <v-container style="max-width: 250px">
     <v-autocomplete
       v-model="model"
       :items="items"
@@ -10,12 +10,13 @@
       hide-details
       hide-selected
       item-text="name"
-      item-value="fullname"
+      item-value="id"
       label="Quick search recipe or ingredient"
       solo
       flat
       append-icon="mdi-magnify"
       placeholder="Quick search recipe or ingredient"
+      @keyup.enter="search"
     >
       <template v-slot:no-data>
         <v-list-item>
@@ -82,15 +83,26 @@ export default {
       this.isLoading = true;
       let url = this.$hostname + `/apiv3/search/suggestions`;
       // Lazily load input items
-      fetch(url) //TODO
-        .then((res) => res.clone().json())
-        .then((res) => {
-          this.items = res;
+      this.axios
+        .get(url) //TODO
+        .then((response) => {
+          this.items = response.data;
         })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => (this.isLoading = false));
+    },
+  },
+  methods: {
+    search() {
+      if (this.model == null) {
+        return; // TODO: add a popup for notif
+      }
+
+      const item = this.model;
+      console.log(item)
+      this.$router.push({ path: "/re/" + item });
     },
   },
 };
