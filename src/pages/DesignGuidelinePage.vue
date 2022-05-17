@@ -191,7 +191,8 @@
       <v-tabs
       class="my-8"
         background-color="#e1eaf6"
-        vertical
+        :vertical="!$vuetify.breakpoint.mobile"
+        :show-arrows="$vuetify.breakpoint.mobile"
       >
         <v-tabs-slider color="green"></v-tabs-slider>
         <v-tab
@@ -208,7 +209,7 @@
             <p class="dmsans-normal-mine-shaft-20px" v-html="restType.text"></p>
             
             <v-row style="">
-              <v-col fill-height :cols="`${ (12 / restType.picCount) >> 0}`" v-for="n in restType.picCount" :key="restType.name+n" style="height: 100%; min-height:100%;">
+              <v-col fill-height :cols="`${ ((12 / restType.picCount) >> 0) * ($vuetify.breakpoint.mobile? 2: 1)}`" v-for="n in restType.picCount" :key="restType.name+n" style="height: 100%; min-height:100%;">
                 <div fill-height
                   :style="`background: url('${require('../assets/Iter3/RestaurantGuide/' +
                     restType.name.split(' ').join('') +

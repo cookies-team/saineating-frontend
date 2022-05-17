@@ -116,9 +116,12 @@
               </MglPopup>
             </MglMarker>
             <v-card class="instrs" v-show="showInstrs" ref="instrs">
-              <v-card-title >{{ instrTitle }}
-                <v-spacer/>
-                <v-icon @click="showInstrs = false" style="cursor: pointer;">mdi-close</v-icon>
+              <v-card-title
+                >{{ instrTitle }}
+                <v-spacer />
+                <v-icon @click="showInstrs = false" style="cursor: pointer"
+                  >mdi-close</v-icon
+                >
               </v-card-title>
               <v-divider></v-divider>
               <v-timeline>
@@ -166,8 +169,8 @@ export default {
     allItems: null,
     leftItems: null,
     selectedIndex: 0,
-    sortOptions: ["default", "alphabet", "distance"],
-    sort: "default",
+    sortOptions: ["id", "alphabet", "distance"],
+    sort: "id",
     search: "",
     // map: null, // issue: https://github.com/soal/vue-mapbox/issues/217
     mapbox: null,
@@ -199,20 +202,33 @@ export default {
   mounted() {
     this.update();
   },
-  created() {
+  async created() {
     this.mapbox = Mapbox;
-    this.map = null;
     if (window.navigator.geolocation) {
       // Geolocation available
       window.navigator.geolocation.getCurrentPosition(
-        (loc) => {
+        async (loc) => {
           console.log(loc.coords.latitude, loc.coords.longitude);
           if (loc.coords)
             this.userCoordinates = [loc.coords.longitude, loc.coords.latitude];
+          if (map) {
+            await map.flyTo({
+              center: this.userCoordinates,
+              zoom: 15,
+              speed: 3,
+            });
+          }
         },
-        (e) => {
+        async (e) => {
           console.log(e);
           this.userCoordinates = [145.133957, -37.907803]; // Monash Clyton LonLat
+          if (map) {
+            await map.flyTo({
+              center: this.userCoordinates,
+              zoom: 15,
+              speed: 3,
+            });
+          }
         }
       );
     }

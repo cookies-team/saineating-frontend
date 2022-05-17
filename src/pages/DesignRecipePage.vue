@@ -102,7 +102,7 @@
                 :name="item.RecipeName"
                 :img="item.imgsrc"
                 :types="item.TypeNames"
-                shortDesc="short desc"
+                shortDesc=""
                 :cookingTime="item.CookingTime"
               />
             </v-col>
@@ -178,8 +178,8 @@ export default {
   ],
   data: () => ({
     ageRange: [0, 100],
-    sortOptions: ["default", "alphabet", "calorie"],
-    sort: "default",
+    sortOptions: ["id", "alphabet", "calorie"],
+    sort: "id",
     allergies: [],
     selectedAllergies: [],
     predefinedAllergyIds: [84, 24, 49, 10, 56, 35, 41, 20],
