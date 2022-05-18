@@ -5,7 +5,7 @@
       title="Why Healthy Eating"
     />
 
-    <v-container class="mt-16" style="background: #f0f0f0">
+    <v-container class="my-16" style="background: #f0f0f0">
       <div class="d-flex justify-space-around ma-2">
         <div
           class="lgBtnInactive ma-2 py-2 px-16"
@@ -36,12 +36,12 @@
               An issue Australian parents have to consider
             </h1>
             <v-row class="my-4">
-              <v-col>
+              <v-col cols="12" sm="6">
                 <div
-                  :style="`background: url(${fatkid}) center center no-repeat; background-size: cover; height: 100%; border-radius: 20px;`"
+                  :style="`background: url(${fatkid}) center center no-repeat; background-size: contain; height: 100%; border-radius: 20px;min-height:10rem;`"
                 ></div>
               </v-col>
-              <v-col>
+              <v-col cols="12" sm="6">
                 <v-card-text class="dmsans-normal-mine-shaft-20px py-4">
                   Childhood obesity is always a sensitive topic. However,
                   according to the data given by
@@ -61,7 +61,7 @@
               What causes waistline growth in children?
             </h1>
             <v-row class="my-4">
-              <v-col>
+              <v-col cols="12" sm="6">
                 <v-card-text class="dmsans-normal-mine-shaft-20px py-16">
                   As the chart shows, there are a number of factors that
                   contribute to the problem of waistline growth in children,
@@ -74,9 +74,9 @@
                   parents, are mainly related to the eating habits of children.
                 </v-card-text>
               </v-col>
-              <v-col>
+              <v-col cols="12" sm="6">
                 <div
-                  :style="`background: url(${require('../assets/Iter3/Why/Factors.jpg')}) center center no-repeat; background-size: cover; height: 100%; border-radius: 20px;`"
+                  :style="`background: url(${require('../assets/Iter3/Why/Factors.jpg')}) center center no-repeat; background-size: contain; height: 100%; width: 100%; border-radius: 20px; min-height:10rem;`"
                 ></div
               ></v-col>
             </v-row>
@@ -114,13 +114,17 @@
               Benefits of maintaining a healthy weight for our children
             </h1>
             <v-row>
-              <v-col>
+              <v-col cols="12" sm="6">
                 <img
                   style="width: 100%"
                   :src="`${require('../assets/Iter3/Why/risks.png')}`"
                 />
               </v-col>
-              <v-col class="dmsans-normal-mine-shaft-20px py-16">
+              <v-col
+                cols="12"
+                sm="6"
+                class="dmsans-normal-mine-shaft-20px py-16"
+              >
                 According to Australian parenting website, maintaining a healthy
                 weight is important to your child’s health now and in the
                 future. A healthy weight now reduces your child’s chances of:
@@ -139,7 +143,11 @@
               How we can help our children maintain a healthy body shape
             </h1>
             <v-row>
-              <v-col class="dmsans-normal-mine-shaft-20px py-16">
+              <v-col
+                cols="12"
+                sm="6"
+                class="dmsans-normal-mine-shaft-20px py-16"
+              >
                 Among the main causes of weight gain in children, most of them
                 are related to their eating habits. Based on healthy eating
                 diet, the following ideas will help your children maintain a
@@ -160,12 +168,13 @@
                 regularly, rather than drinking sugary drinks or eating
                 high-calorie snacks. (Picture Source: Healthy eating, Shopping)
               </v-col>
-              <v-col>
+              <v-col cols="12" sm="6">
                 <div
-                  :style="`background: url(${require('../assets/Iter3/Why/HealthyEating.png')}) center center no-repeat; background-size: contain; height: 50%; border-radius: 20px;`"
+                  :style="`background: url(${require('../assets/Iter3/Why/HealthyEating.png')}) center center no-repeat; background-size: contain; height: 50%; border-radius: 20px;  min-height:10rem;`"
                 ></div>
                 <div
-                  :style="`background: url(${require('../assets/Iter3/Why/HealthySP.jpg')}) center center no-repeat; background-size: contain; height: 50%; border-radius: 20px;`"
+                class="mt-8"
+                  :style="`background: url(${require('../assets/Iter3/Why/HealthySP.jpg')}) center center no-repeat; background-size: contain; height: 50%; border-radius: 20px; min-height:10rem;`"
                 ></div>
               </v-col>
             </v-row>
