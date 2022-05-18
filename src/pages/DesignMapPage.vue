@@ -58,7 +58,7 @@
         <v-col cols="12" sm="12" md="9" style="height: 100%">
           <MglMap
             :accessToken="accessToken"
-            :mapStyle="mapStyle"
+            :mapStyle="mapStyle.value"
             :center="userCoordinates"
             @load="onMapLoad"
             ref="map"
@@ -68,7 +68,7 @@
             <MglMarker :coordinates="userCoordinates" color="blue" />
             <MglMarker
               v-for="(item, index) in items"
-              :key="index"
+              :key="item.Name + index"
               :coordinates="[item.longitude, item.latitude]"
             >
               <MglPopup
@@ -107,9 +107,23 @@
                     <v-btn
                       color="deep-purple lighten-2"
                       text
-                      @click="navi(item)"
+                      @click="navi(item, index, 'walking')"
                     >
-                      GO
+                      🚶
+                    </v-btn>
+                    <v-btn
+                      color="deep-purple lighten-2"
+                      text
+                      @click="navi(item, index, 'cycling')"
+                    >
+                      🚴
+                    </v-btn>
+                    <v-btn
+                      color="deep-purple lighten-2"
+                      text
+                      @click="navi(item, index, 'driving')"
+                    >
+                      🚗
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -130,6 +144,24 @@
                 </v-timeline-item>
               </v-timeline>
             </v-card>
+            <v-menu class="style-selector" offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn v-bind="attrs" v-on="on" class="rounded-0" elevation="0"  rounded="0">
+                  {{ mapStyle.name }}
+                </v-btn>
+              </template>
+              <v-list elevation="0">
+                <v-list-item
+                  v-for="(style, index) in styles"
+                  :key="index"
+                  open-on-hover
+                >
+                  <v-list-item-content @click="mapStyle = style" style="cursor: pointer;">{{
+                    style.name
+                  }}</v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </MglMap>
         </v-col>
       </v-row>
@@ -163,7 +195,32 @@ export default {
   data: () => ({
     accessToken:
       "pk.eyJ1IjoibWFveHMyIiwiYSI6ImNsMm9oZHZlaDBkNjYzaXBrank0dnM1cjkifQ.a4AEQ9KqKEPzVU_wBnZL2A", // your access token. Needed if you using Mapbox maps
-    mapStyle: "mapbox://styles/mapbox/streets-v11", // your map style
+    styles: [
+      {
+        name: "street",
+        value: "mapbox://styles/mapbox/streets-v11",
+      },
+      {
+        name: "outdoors",
+        value: "mapbox://styles/mapbox/outdoors-v11",
+      },
+      {
+        name: "satellite",
+        value: "mapbox://styles/mapbox/satellite-v9",
+      },
+      {
+        name: "satellite streets",
+        value: "mapbox://styles/mapbox/satellite-streets-v11",
+      },
+      {
+        name: "navigation",
+        value: "mapbox://styles/mapbox/navigation-day-v1",
+      },
+    ],
+    mapStyle: {
+      name: "street",
+      value: "mapbox://styles/mapbox/streets-v11",
+    }, // your map style
     userCoordinates: [145.133957, -37.907803],
     items: null,
     allItems: null,
@@ -215,7 +272,7 @@ export default {
             await map.flyTo({
               center: this.userCoordinates,
               zoom: 15,
-              speed: 3,
+              speed: 10,
             });
           }
         },
@@ -226,7 +283,7 @@ export default {
             await map.flyTo({
               center: this.userCoordinates,
               zoom: 15,
-              speed: 3,
+              speed: 10,
             });
           }
         }
@@ -285,13 +342,15 @@ export default {
         return item.Name.toLowerCase().includes(input.toLowerCase());
       });
     },
-    navi(rest) {
+    navi(rest, index, type) {
+      this.$refs[`popup_${this.items[index].RestID}`][0].remove();
+
       const start = this.userCoordinates;
       const end = [rest.longitude, rest.latitude];
       // console.log(event)
       this.axios
         .get(
-          `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${this.accessToken}`
+          `https://api.mapbox.com/directions/v5/mapbox/${type}/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${this.accessToken}`
         )
         .then((response) => {
           this.showInstrs = true;
@@ -302,7 +361,7 @@ export default {
           steps.forEach((step, index) => {
             this.steps.push({ id: index, instr: step.maneuver.instruction });
           });
-          this.instrTitle = `Duration: ${(route.duration / 60) >> 0} min 🚴`;
+          this.instrTitle = `Duration: ${(route.duration / 60) >> 0} min`;
 
           const routeCoords = route.geometry.coordinates;
           const geojson = {
@@ -615,5 +674,11 @@ export default {
   padding: 20px;
   background-color: #fff;
   overflow-y: scroll;
+}
+
+.style-selector {
+  position: absolute;
+  top: 1vmin;
+  left: 1vmin;
 }
 </style>
