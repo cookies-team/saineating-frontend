@@ -5,56 +5,173 @@
       title="Why Healthy Eating"
     />
 
-    <div class="main-pic mt-8"><img class="fatkid" :src="fatkid" /></div>
-    <v-container class="px-16 my-16">
-      <h1 class="worksans-bold-mine-shaft-72px">
-        What cause Childhood obesity
-      </h1>
-      <v-card-text class="dmsans-normal-mine-shaft-20px">
-        The following short video illustrates the main causes of childhood
-        obesity. It lists causes that include mainly dietary problems, which
-        shows the important role that a healthy diet plays in this. From
-        YouTube.
-      </v-card-text>
-      <div class="video">
-        <iframe
-          style="border: 0; pointer-events: auto"
-          id="ytplayer"
-          type="text/html"
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/CUPBU_mJUtA?rel=0&mute=1&autoplay=0"
-          frameborder="0"
-          allowfullscreen="allowfullscreen"
-          mozallowfullscreen="mozallowfullscreen"
-          msallowfullscreen="msallowfullscreen"
-          oallowfullscreen="oallowfullscreen"
-          webkitallowfullscreen="webkitallowfullscreen"
-        ></iframe>
+    <v-container class="mt-16" style="background: #f0f0f0">
+      <div class="d-flex justify-space-around ma-2">
+        <div
+          class="lgBtnInactive ma-2 py-2 px-16"
+          :class="{ lgBtnActive: page == 0 }"
+          style="border-radius: 10px; text-align: center; cursor: pointer"
+          @mouseover="page = 0"
+        >
+          <h3 class="worksans-mine-shaft-40px">
+            The waistline growth in Australian children
+          </h3>
+        </div>
+        <div
+          class="lgBtnInactive ma-2 py-2 px-16"
+          :class="{ lgBtnActive: page == 1 }"
+          style="border-radius: 10px; text-align: center; cursor: pointer"
+          @mouseover="page = 1"
+        >
+          <h3 class="worksans-mine-shaft-40px">
+            What maintaining healthy weight for children
+          </h3>
+        </div>
       </div>
-    </v-container>
-    <v-container class="px-16 my-16">
-      <h1 class="worksans-bold-mine-shaft-72px">Healthy Eating for Children</h1>
-      <p class="dmsans-normal-mine-shaft-20px">
-        The following block is an educational video for children to learn what
-        it means to have healthy eating habits. From YouTube.
-      </p>
-      <div class="video">
-        <iframe
-          style="border: 0; pointer-events: auto"
-          id="ytplayer"
-          type="text/html"
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/a-084pqI05U?rel=0&mute=1&autoplay=0"
-          frameborder="0"
-          allowfullscreen="allowfullscreen"
-          mozallowfullscreen="mozallowfullscreen"
-          msallowfullscreen="msallowfullscreen"
-          oallowfullscreen="oallowfullscreen"
-          webkitallowfullscreen="webkitallowfullscreen"
-        ></iframe>
-      </div>
+
+      <v-window show-arrows draggable v-model="page">
+        <v-window-item>
+          <v-container class="px-16 my-16">
+            <h1 class="worksans-mine-shaft-40px">
+              An issue Australian parents have to consider
+            </h1>
+            <v-row class="my-4">
+              <v-col>
+                <div
+                  :style="`background: url(${fatkid}) center center no-repeat; background-size: cover; height: 100%; border-radius: 20px;`"
+                ></div>
+              </v-col>
+              <v-col>
+                <v-card-text class="dmsans-normal-mine-shaft-20px py-4">
+                  Childhood obesity is always a sensitive topic. However,
+                  according to the data given by
+                  <a
+                    href="https://www.aihw.gov.au/reports/overweight-obesity/overweight-obesity-australian-children-adolescents/summary"
+                    target="_blank"
+                    >AIHW</a
+                  >, in 2017–18, about 25% Australian children and young
+                  adolescents were overweight or obese. Children and young
+                  people aged 5-14 are more likely to be overweight or obese in
+                  2017-18 than their counterparts in 1995, and this proportion
+                  is still increasing.
+                </v-card-text>
+              </v-col>
+            </v-row>
+            <h1 class="worksans-mine-shaft-40px">
+              What causes waistline growth in children?
+            </h1>
+            <v-row class="my-4">
+              <v-col>
+                <v-card-text class="dmsans-normal-mine-shaft-20px py-16">
+                  As the chart shows, there are a number of factors that
+                  contribute to the problem of waistline growth in children,
+                  details of which can be found
+                  <a
+                    href="https://medium.com/@ashfaqareej4/childhood-obesity-is-an-emerging-global-public-health-challenge-10415e258a82"
+                    target="_blank"
+                    >here</a
+                  >. Most of these factors, which can be controlled by us
+                  parents, are mainly related to the eating habits of children.
+                </v-card-text>
+              </v-col>
+              <v-col>
+                <div
+                  :style="`background: url(${require('../assets/Iter3/Why/Factors.jpg')}) center center no-repeat; background-size: cover; height: 100%; border-radius: 20px;`"
+                ></div
+              ></v-col>
+            </v-row>
+
+            <v-row class="my-4">
+              <v-card-text class="dmsans-normal-mine-shaft-20px py-16">
+                In order to provide parents with a more complete understanding
+                of the problem of increasing waist sizes in children, the
+                following video from YouTube provides details of the causes and
+                factors that influence this phenomenon.
+              </v-card-text>
+            </v-row>
+            <div class="video">
+              <iframe
+                style="border: 0; pointer-events: auto"
+                id="ytplayer"
+                type="text/html"
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/CUPBU_mJUtA?rel=0&mute=1&autoplay=0"
+                frameborder="0"
+                allowfullscreen="allowfullscreen"
+                mozallowfullscreen="mozallowfullscreen"
+                msallowfullscreen="msallowfullscreen"
+                oallowfullscreen="oallowfullscreen"
+                webkitallowfullscreen="webkitallowfullscreen"
+              ></iframe>
+            </div>
+          </v-container>
+        </v-window-item>
+
+        <v-window-item>
+          <v-container class="px-16 my-16">
+            <h1 class="worksans-mine-shaft-40px">
+              Benefits of maintaining a healthy weight for our children
+            </h1>
+            <v-row>
+              <v-col>
+                <img
+                  style="width: 100%"
+                  :src="`${require('../assets/Iter3/Why/risks.png')}`"
+                />
+              </v-col>
+              <v-col class="dmsans-normal-mine-shaft-20px py-16">
+                According to Australian parenting website, maintaining a healthy
+                weight is important to your child’s health now and in the
+                future. A healthy weight now reduces your child’s chances of:
+                <br />being overweight or obese as an adult <br />developing
+                serious health disorders during childhood, including type-2
+                diabetes, obstructive sleep apnoea and hip and joint problems
+                <br />suffering from emotional and social problems like teasing
+                and bullying, low self-esteem, depression, poor body image and
+                eating disorders <br />suffering physical health problems in
+                adulthood, including heart disease, type-2 diabetes, some types
+                of cancer, infertility and skin disorders. <br />(Picture
+                Source: Healthy Risks)
+              </v-col>
+            </v-row>
+            <h1 class="worksans-mine-shaft-40px">
+              How we can help our children maintain a healthy body shape
+            </h1>
+            <v-row>
+              <v-col class="dmsans-normal-mine-shaft-20px py-16">
+                Among the main causes of weight gain in children, most of them
+                are related to their eating habits. Based on healthy eating
+                diet, the following ideas will help your children maintain a
+                healthy weight: Try to cook for your child instead of eating at
+                a restaurant as this will help you control your child's daily
+                intake. Parents can follow healthy recipes to cook for your
+                child. See the healthy recipes feature on our website to make a
+                main meal or dessert for your child. If you must have a meal in
+                a restaurant, try to choose a restaurant that offers healthier
+                recipes. Our Dining Out feature shows these restaurants with
+                healthy recipes on a map. If you are still unsure of what to
+                order at a restaurant, please refer to our shopping guide which
+                will give you healthier options based on the type of restaurant.
+                Try to specify a shopping plan before you shop. If you don't
+                know which foods are healthier, you can refer to our shopping
+                guide function for knowledge and information. Encourage your
+                child to drink plenty of water and eat fruit and vegetables
+                regularly, rather than drinking sugary drinks or eating
+                high-calorie snacks. (Picture Source: Healthy eating, Shopping)
+              </v-col>
+              <v-col>
+                <div
+                  :style="`background: url(${require('../assets/Iter3/Why/HealthyEating.png')}) center center no-repeat; background-size: contain; height: 50%; border-radius: 20px;`"
+                ></div>
+                <div
+                  :style="`background: url(${require('../assets/Iter3/Why/HealthySP.jpg')}) center center no-repeat; background-size: contain; height: 50%; border-radius: 20px;`"
+                ></div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-window-item>
+      </v-window>
     </v-container>
   </div>
 </template>
@@ -76,6 +193,10 @@ export default {
     "xHeaderProps",
     "xFooterProps",
   ],
+  data: () => ({
+    lastPage: 0,
+    page: 0,
+  }),
 };
 </script>
 
@@ -160,5 +281,14 @@ export default {
   gap: 47px;
   margin-right: 85px;
   margin-top: 92px;
+}
+
+.lgBtnInactive {
+  background: #d0ebcc;
+  transition: #d0ebcc 6s ease;
+}
+
+.lgBtnActive {
+  background: #81c178;
 }
 </style>

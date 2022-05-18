@@ -18,7 +18,8 @@
   --font-size-s: 14px;
   --font-size-m: 16px;
   --font-size-xl: 24px;
-  --font-size-xxl: 6.2vmin;
+  --font-size-xll: 4vmin;
+  --font-size-xxl: 6vmin;
   /* 56px; */
   --font-size-xxxl: 8vmin;
   /* 72px; */
@@ -89,6 +90,14 @@
   font-size: var(--font-size-s);
   font-style: normal;
   font-weight: 400;
+}
+
+.worksans-mine-shaft-40px {
+  color: var(--mine-shaft);
+  font-family: var(--font-family-work_sans);
+  font-size: var(--font-size-xll);
+  font-style: normal;
+  font-weight: 700;
 }
 
 .worksans-bold-mine-shaft-56px {
