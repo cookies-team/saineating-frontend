@@ -5,7 +5,7 @@
       :style="`background: url(${require('../assets/Iter2/MainBackground.png')}); background-size: cover;`"
     >
       <div class="home-large-pic">
-        <img class="home-top-pic-1" :src="hometoppic1" />
+        <img class="home-top-pic-1" :src="`${require('../assets/Iter3/Home/HomepageTopBG.png')}`" />
       </div>
       <div class="recipe-block">
         <div class="flex-col">
