@@ -5,12 +5,27 @@
       :style="`background: url(${require('../assets/Iter2/MainBackground.png')}); background-size: cover;`"
     >
       <div class="home-large-pic">
-        <img class="home-top-pic-1" :src="`${require('../assets/Iter3/Home/HomepageTopBG.png')}`" />
+        <img
+          class="home-top-pic-1"
+          :src="`${require('../assets/Iter3/Home/HomepageTopBG.png')}`"
+        />
       </div>
       <div class="recipe-block">
         <div class="flex-col">
-          <h1 class="worksans-bold-mine-shaft-56px">Categoried Recipes</h1>
+          <h1 class="worksans-bold-mine-shaft-56px">
+            Healthy Recipes for Your Kids
+          </h1>
+          <p
+            class="dmsans-normal-mine-shaft-20px my-4 mx-2"
+            :style="{ width: $vuetify.breakpoint.mobile ? '90%' : '60%' }"
+          >
+            Our website have filtered and integrated healthy eating menus based
+            on the nutrient content and child intake standards published on the
+            Australian Food Standards website. <br />Please select the menu you
+            want from these categories:
+          </p>
         </div>
+
         <v-row class="home-recipe-category my-8">
           <v-col
             cols="6"
@@ -45,24 +60,55 @@
             <div class="dmsans-normal-white-14px">EATTING OUT</div>
           </div> -->
           <div class="restaurants-1 worksans-bold-mine-shaft-56px">
-            Restaurants List
-          </div>
-          <div class="d-flex justify-space-between">
-            <p class="best-for-active-free dmsans-normal-mine-shaft-16px">
-              Take your children to there
-            </p>
-            <div></div>
-            <div class="rest-buttons pa-1" style="align-items: end">
-              <v-btn fab elevation="0">
-                <v-icon dark @click="prevRests"> mdi-chevron-left </v-icon>
-              </v-btn>
-
-              <v-btn fab elevation="0">
-                <v-icon dark @click="nextRests"> mdi-chevron-right </v-icon>
-              </v-btn>
-            </div>
+            Restaurants with Healthy Recipes
           </div>
         </div>
+        <v-row class="my-4">
+          <v-col cols="12" sm="9">
+            <p class="best-for-active-free dmsans-normal-mine-shaft-20px">
+              We have researched the recipes posted online by these restaurants
+              and determined that the recipes offered by these restaurants are
+              healthier. If you are taking your children out to eat, please try
+              to choose these restaurants.
+            </p>
+          </v-col>
+          <v-col cols="12" sm="3" class="d-flex justify-end">
+            <div class="rest-buttons">
+              <v-btn
+                class="mx-2"
+                outlined
+                small
+                elevation="0"
+                color="#EB8E78"
+                @click="router.push({ path: '/restmap' })"
+              >
+                View All
+              </v-btn>
+
+              <v-btn
+                fab
+                dark
+                small
+                elevation="0"
+                color="#EB8E78"
+                @click="prevRests"
+              >
+                <v-icon dark> mdi-chevron-left </v-icon>
+              </v-btn>
+
+              <v-btn
+                fab
+                dark
+                small
+                elevation="0"
+                color="#EB8E78"
+                @click="nextRests"
+              >
+                <v-icon dark> mdi-chevron-right </v-icon>
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
         <v-row class="d-flex ma-3 justify-space-around">
           <v-col
             cols="12"
@@ -88,7 +134,7 @@
       <v-row class="map-section mt-16 mb-16">
         <v-col cols="12" sm="6">
           <div
-            :style="`background-image: url( ${require('../assets/Iter2/ManEatOut.png')}); background-size: contain; width: 100%; height: 100%;`"
+            :style="`background: url( ${require('../assets/Iter2/ManEatOut.png')}) center center no-repeat; background-size: contain; width: 100%; height: 100%; min-height: 10rem;`"
           ></div>
         </v-col>
         <v-col
@@ -102,7 +148,7 @@
           <h1 class="worksans-bold-mine-shaft-56px">
             Healthy Eating out Map with Recommend Restaurants
           </h1>
-          <p class="dmsans-normal-mine-shaft-16px">
+          <p class="dmsans-normal-mine-shaft-20px mx-2">
             Please go to the Eating out page to get start.
           </p>
           <div class="d-flex justify-center">
@@ -123,14 +169,14 @@
       <v-row class="guideline-section mt-16">
         <v-col cols="12" sm="6">
           <div
-            :style="`background-image: url( ${require('../assets/Iter2/WomanRecipe.png')}); background-size: contain; width: 100%; height: 100%;`"
+            :style="`background: url( ${require('../assets/Iter2/WomanRecipe.png')}) center center no-repeat; background-size: contain; width: 100%; height: 100%; min-height: 10rem;`"
           ></div>
         </v-col>
         <v-col cols="12" sm="6">
           <div class="worksans-bold-mine-shaft-56px">
             Healthy Eating Shopping Guidelines
           </div>
-          <p class="best-for-active-free-2 dmsans-normal-mine-shaft-16px">
+          <p class="dmsans-normal-mine-shaft-20px mx-2">
             Helping you avoid childhood obesity caused by unhealthy eating
             through daily shopping habits.
           </p>
@@ -160,7 +206,7 @@
                 <div class="worksans-bold-mine-shaft-24px">
                   Australian Healthy Eating Stars
                 </div>
-                <p class="dmsans-normal-mine-shaft-16px">
+                <p class="dmsans-normal-mine-shaft-20px">
                   The Health Star Rating helps you make healthier food choices
                   when shopping for packaged food products.
                 </p>
@@ -176,10 +222,11 @@
               </v-col>
               <v-col cols="12" md="6">
                 <div class="worksans-bold-mine-shaft-24px">
-                  Food you should avoid
+                  Advice on Ordering Food in Restaurants
                 </div>
-                <p class="dmsans-normal-mine-shaft-16px">
-                  Including high calorie foods etc.
+                <p class="dmsans-normal-mine-shaft-20px">
+                  Help you make healthier food choices, depending on the type of
+                  restaurant.
                 </p>
               </v-col>
             </v-row>
@@ -392,14 +439,6 @@ export default {
   top: 637px;
 }
 
-.seach-bar-content {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 32px;
-  min-width: 141px;
-  white-space: nowrap;
-}
-
 .home-top-pic-1 {
   max-width: 1440px;
   width: 100%;
@@ -466,42 +505,6 @@ export default {
   height: 32px;
   max-width: 122px;
   padding: 0 17px;
-}
-
-.restaurants {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 32px;
-  min-width: 87px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.restaurants-1 {
-  letter-spacing: 0;
-  line-height: 64px;
-  margin-top: 18px;
-  min-height: 64px;
-  white-space: nowrap;
-}
-
-.best-for-active-free {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-top: 14px;
-  min-height: 32px;
-  white-space: nowrap;
-}
-
-.view-all {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-bottom: 16px;
-  margin-left: 522px;
-  min-height: 32px;
-  min-width: 58px;
-  text-align: right;
-  white-space: nowrap;
 }
 
 .overlap-group12 {
@@ -657,17 +660,6 @@ export default {
   width: 99px;
 }
 
-.submit {
-  left: 0;
-  letter-spacing: 0;
-  line-height: 32px;
-  position: absolute;
-  text-align: center;
-  top: 2px;
-  white-space: nowrap;
-  width: 102px;
-}
-
 .submit-your-restaura {
   letter-spacing: 0;
   line-height: 64px;
@@ -719,44 +711,6 @@ export default {
   height: 32px;
   min-width: 123px;
   padding: 0 15px;
-}
-
-.restaurants-2 {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 32px;
-  text-align: center;
-  white-space: nowrap;
-  width: 93px;
-}
-
-.best-deals {
-  letter-spacing: 0;
-  line-height: 64px;
-  margin-bottom: -1px;
-  margin-top: 17px;
-  min-height: 63px;
-  white-space: nowrap;
-}
-
-.best-for-active-free-3 {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-bottom: -3px;
-  margin-top: 14px;
-  min-height: 29px;
-  white-space: nowrap;
-}
-
-.view-all-1 {
-  align-self: flex-end;
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-left: 380px;
-  min-height: 32px;
-  min-width: 58px;
-  text-align: right;
-  white-space: nowrap;
 }
 
 .overlap-group-container-1 {
@@ -826,23 +780,6 @@ export default {
   width: 264px;
 }
 
-.italian-cuisine {
-  letter-spacing: 0;
-  line-height: 32px;
-  min-height: 32px;
-  min-width: 264px;
-  white-space: nowrap;
-}
-
-.x8019-facilisis-stree {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-top: 44px;
-  min-height: 32px;
-  min-width: 234px;
-  white-space: nowrap;
-}
-
 .home-recipe-category {
   width: 80%;
 }
@@ -866,7 +803,7 @@ export default {
 
 .home-recipes-card:hover > .green-circle {
   transform: scale(1.1);
-  content:url("https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval-2@2x.png"); /* = src */
+  content: url("https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/oval-2@2x.png"); /* = src */
 }
 
 .item-icon {
@@ -905,6 +842,11 @@ export default {
 .home-rest-list {
   width: 80%;
 }
+
+.rest-card {
+  transition: all 0.2s ease;
+}
+
 .rest-card:hover {
   transform: scale(1.1);
 }
