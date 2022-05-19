@@ -2,9 +2,18 @@
   <div class="container-center-horizontal">
     <div class="recipe-page screen">
       <heading-bckground :src="headingBckgroundProps.src" :title="pageTitle" />
-      <v-row class="my-8" style="width: 100%">
-        <v-col cols="0" sm="3" class="d-flex-none d-sm-flex flex-column my-8">
-          <div class="filter-panel ma-1">
+      <p class="dmsans-normal-mine-shaft-20px mt-8 mx-2">
+        Using filters to choose recipes for your kids. (Recipe sources from:
+        <a href="https://www.taste.com.au/" target="_blank">Taste</a>,
+        <a
+          href="https://www.jamieoliver.com/recipes/category/healthy-recipes/"
+          target="_blank"
+          >Jamie Oliver</a
+        >)
+      </p>
+      <v-row class="mb-8" style="width: 100%">
+        <v-col cols="0" sm="3" class="d-flex-none d-sm-flex flex-column">
+          <div class="filter-panel">
             <div>
               <v-select
                 label="Select"
@@ -19,7 +28,7 @@
 
             <div class="type-checkbox">
               <div class="filter-label dmsans-bold-mine-shaft-12px">
-                CATEGORIES
+                Categories
               </div>
               <v-checkbox
                 class="ma-0"
@@ -34,7 +43,7 @@
 
             <div class="allergy my-4">
               <div class="filter-label dmsans-bold-mine-shaft-12px">
-                ALLERGY
+                Allergies
               </div>
               <v-checkbox
                 class="ma-0"
@@ -49,7 +58,7 @@
 
             <div class="slider-filters">
               <div class="filter-label dmsans-bold-mine-shaft-12px">
-                CALORIE LEVEL
+                Calories per serving
               </div>
               <v-slider
                 class="mt-8"
@@ -61,7 +70,7 @@
                 color="green"
                 track-color="fern"
               />
-              <div class="filter-label dmsans-bold-mine-shaft-12px">AGE</div>
+              <div class="filter-label dmsans-bold-mine-shaft-12px">Age</div>
               <v-slider
                 class="mt-8"
                 v-model="minAge"
@@ -89,7 +98,7 @@
           </div>
         </v-col>
         <v-col class="right" cols="12" sm="9">
-          <v-row class="all-recipes my-4">
+          <v-row class="all-recipes">
             <v-col
               cols="12"
               sm="6"
@@ -346,7 +355,7 @@ export default {
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  padding: 1vw;
+  padding: 1vmin;
 }
 
 .categories-1 {
