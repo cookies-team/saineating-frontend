@@ -270,6 +270,7 @@ export default {
           allergies: this.selectedAllergies.join(","),
           min_age: this.minAge,
           max_cal: this.maxCal,
+          sort: this.sort,
         },
       });
     },
@@ -309,6 +310,10 @@ export default {
     },
     maxCal: function () {
       console.log("maxCal changed", this.maxCal);
+      this.update();
+    },
+    sort: function () {
+      console.log("sort changed", this.sort);
       this.update();
     },
   },
