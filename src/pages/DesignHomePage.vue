@@ -80,7 +80,7 @@
                 small
                 elevation="0"
                 color="#EB8E78"
-                @click="router.push({ path: '/restmap' })"
+                @click="$router.push({ path: '/restmap' })"
               >
                 View All
               </v-btn>

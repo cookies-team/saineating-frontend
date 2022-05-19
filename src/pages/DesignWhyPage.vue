@@ -24,7 +24,7 @@
           @mouseover="page = 1"
         >
           <h3 class="worksans-mine-shaft-40px">
-            What maintaining healthy weight for children
+            Why maintaining healthy weight for children
           </h3>
         </div>
       </div>
