@@ -2,8 +2,13 @@
   <div class="container-center-horizontal">
     <div class="map-page screen">
       <heading-bckground :src="headingBckgroundProps.src" title="Restaurants" />
-
-      <v-row class="my-16" style="width: 100%">
+      <p class="dmsans-normal-mine-shaft-20px mt-8 mx-2" :style="{ width: $vuetify.breakpoint.mobile ? '100%' : '80%' }">
+        We have researched the recipes posted online by these restaurants and
+        determined that the recipes offered by these restaurants are healthier.
+        If you are taking your children out to eat, please try to choose these
+        restaurants.
+      </p>
+      <v-row class="mb-16" style="width: 100%">
         <v-col cols="12" sm="12" md="3">
           <div>
             <v-text-field
@@ -146,7 +151,13 @@
             </v-card>
             <v-menu class="style-selector" offset-y>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn v-bind="attrs" v-on="on" class="rounded-0" elevation="0"  rounded="0">
+                <v-btn
+                  v-bind="attrs"
+                  v-on="on"
+                  class="rounded-0"
+                  elevation="0"
+                  rounded="0"
+                >
                   {{ mapStyle.name }}
                 </v-btn>
               </template>
@@ -156,9 +167,11 @@
                   :key="index"
                   open-on-hover
                 >
-                  <v-list-item-content @click="mapStyle = style" style="cursor: pointer;">{{
-                    style.name
-                  }}</v-list-item-content>
+                  <v-list-item-content
+                    @click="mapStyle = style"
+                    style="cursor: pointer"
+                    >{{ style.name }}</v-list-item-content
+                  >
                 </v-list-item>
               </v-list>
             </v-menu>

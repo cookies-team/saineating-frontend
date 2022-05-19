@@ -189,7 +189,7 @@
         </p>
       </v-row>
       <v-tabs
-      class="my-8"
+        class="my-8"
         background-color="#e1eaf6"
         :vertical="!$vuetify.breakpoint.mobile"
         :show-arrows="$vuetify.breakpoint.mobile"
@@ -204,13 +204,35 @@
           {{ restType.name }}
         </v-tab>
 
-        <v-tab-item v-for="restType in eosh.restCategories" :key="restType.name">
+        <v-tab-item
+          v-for="restType in eosh.restCategories"
+          :key="restType.name"
+        >
           <v-card class="ma-4" flat>
+            <p class="worksans-bold-mine-shaft-24px">
+              Choose from these types of dishes here: <br />
+              (Sources from:
+              <a
+                href="https://baker.edu.au/-/media/documents/fact-sheets/baker-institute-factsheet-eating-out.pdf)"
+                target="_blank"
+                >Baker Heart and Diabetes Institute</a
+              >)
+            </p>
             <p class="dmsans-normal-mine-shaft-20px" v-html="restType.text"></p>
-            
+
             <v-row style="">
-              <v-col fill-height :cols="`${ ((12 / restType.picCount) >> 0) * ($vuetify.breakpoint.mobile? 2: 1)}`" v-for="n in restType.picCount" :key="restType.name+n" style="height: 100%; min-height:100%;">
-                <div fill-height
+              <v-col
+                fill-height
+                :cols="`${
+                  ((12 / restType.picCount) >> 0) *
+                  ($vuetify.breakpoint.mobile ? 2 : 1)
+                }`"
+                v-for="n in restType.picCount"
+                :key="restType.name + n"
+                style="height: 100%; min-height: 100%"
+              >
+                <div
+                  fill-height
                   :style="`background: url('${require('../assets/Iter3/RestaurantGuide/' +
                     restType.name.split(' ').join('') +
                     n +
@@ -278,56 +300,77 @@ export default {
       restCategories: [
         {
           name: "Chinese",
-          text: `<br/>• Steamed or boiled dumplings or bao <br/>• Broth-based soups with noodles or lean meat <br/>• Steamed, braised, stir-fried – fish, seafood, lean meat, skinless chicken, tofu with vegetables <br/>• Steamed rice`,
+          text: `• Steamed or boiled dumplings or bao <br/>• Broth-based soups with noodles or lean meat <br/>• Steamed, braised, stir-fried – fish, seafood, lean meat, skinless chicken, tofu with vegetables <br/>• Steamed rice`,
           picCount: 4,
         },
         {
           name: "Indian",
-          text: `• Tikka or tandoori dishes • Tomato based curry (e.g. vindaloo) • Lentils, chickpeas based curries • Basmati rice `
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            `• Tikka or tandoori dishes • Tomato based curry (e.g. vindaloo) • Lentils, chickpeas based curries • Basmati rice `
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 4,
         },
         {
           name: "Mexican",
-          text: `• Burrito, fajita, soft taco, quesadilla • Salsa, guacamole and lime • Grilled corn cob`
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            `• Burrito, fajita, soft taco, quesadilla • Salsa, guacamole and lime • Grilled corn cob`
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 3,
         },
         {
           name: "Japanese",
-          text: `• Sushi fillings with vegetable, avocado, egg, tofu, fish, chicken, prawn, seafood, salmon, tuna • Steamed gyoza • Soba noodles`
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            `• Sushi fillings with vegetable, avocado, egg, tofu, fish, chicken, prawn, seafood, salmon • Steamed gyoza • Soba noodles`
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 3,
         },
         {
           name: "Italian",
-          text: "• Tomato-based pasta • Thin crust pizza with vegetable toppings • Bruschetta with tomato and basil"
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            "• Tomato-based pasta • Thin crust pizza with vegetable toppings • Bruschetta with tomato and basil"
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 3,
         },
         {
           name: "Vietnamese",
-          text: "• Rice paper rolls • Pho noodle soup • Stir fry lean meat, skinless chicken, tofu, seafood and vegetables "
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            "• Rice paper rolls • Pho noodle soup • Stir fry lean meat, skinless chicken, tofu, seafood and vegetables "
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 3,
         },
         {
           name: "Middle East",
-          text: "• Grilled chicken, lamb or beef skewer • Mezza platter with olives, dolmades and dips such as baba ganoush or hummus • Kofte with tabouleh"
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            "• Grilled chicken, lamb or beef skewer • Mezza platter with olives, dolmades and dips such as baba ganoush or hummus • Kofte with tabouleh"
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 3,
         },
         {
           name: "Greek",
-          text: "• Baked stuffed vegetables filled with rice, minced meat, lentil and vegetable • Dolma stuffed with rice, minced meat and spices • Grilled lean meat, chicken, lamb or fish or seafood • Greek salad"
-            .split("•")
-            .join("<br/>•"),
+          text:
+            "•" +
+            "• Baked stuffed vegetables filled with rice, minced meat, lentil and vegetable • Dolma stuffed with rice, minced meat and spices • Grilled lean meat, chicken, lamb or fish or seafood • Greek salad"
+              .split("•")
+              .slice(1)
+              .join("<br/>•"),
           picCount: 3,
         },
       ],

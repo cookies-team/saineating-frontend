@@ -116,6 +116,14 @@
   font-weight: 700;
 }
 
+.dmsans-bold-mine-shaft-20px {
+  color: var(--mine-shaft);
+  font-family: var(--font-family-dm_sans);
+  font-size: var(--font-size-l);
+  font-style: italic;
+  font-weight: 700;
+}
+
 .dmsans-bold-white-16px {
   color: var(--white);
   font-family: var(--font-family-dm_sans);
@@ -166,6 +174,14 @@
 
 .worksans-bold-white-24px {
   color: var(--white);
+  font-family: var(--font-family-work_sans);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.worksans-bold-mine-shaft-24px {
+  color: var(--mine-shaft);
   font-family: var(--font-family-work_sans);
   font-size: var(--font-size-xl);
   font-style: normal;
