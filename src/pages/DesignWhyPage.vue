@@ -125,7 +125,7 @@
                 sm="6"
                 class="dmsans-normal-mine-shaft-20px py-16"
               >
-                According to Australian parenting website, maintaining a healthy
+                According to <a href="https://raisingchildren.net.au/school-age/nutrition-fitness/common-concerns/child-obesity" target="_blank">Australian parenting website</a>, maintaining a healthy
                 weight is important to your child’s health now and in the
                 future. A healthy weight now reduces your child’s chances of:
                 <br />being overweight or obese as an adult <br />developing
@@ -136,7 +136,7 @@
                 eating disorders <br />suffering physical health problems in
                 adulthood, including heart disease, type-2 diabetes, some types
                 of cancer, infertility and skin disorders. <br />(Picture
-                Source: Healthy Risks)
+                Source: <a href="https://www.pinterest.com.au/pin/860187597554877936/" target="_blank">Healthy Risks</a>)
               </v-col>
             </v-row>
             <h1 class="worksans-mine-shaft-40px">
@@ -166,7 +166,8 @@
                 guide function for knowledge and information. Encourage your
                 child to drink plenty of water and eat fruit and vegetables
                 regularly, rather than drinking sugary drinks or eating
-                high-calorie snacks. (Picture Source: Healthy eating, Shopping)
+                high-calorie snacks. (Picture Source: <a href="https://www.helpguide.org/articles/healthy-eating/healthy-eating.htm" target="_blank">Healthy eating</a>, 
+                <a href="https://www.eatforhealth.gov.au/eating-well/tips-eating-well/food-shopping-tips" target="_blank">Shopping)
               </v-col>
               <v-col cols="12" sm="6">
                 <div
