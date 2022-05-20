@@ -337,7 +337,7 @@ export default {
       },
       {
         icon: "https://anima-uploads.s3.amazonaws.com/projects/6270b051e7f834ba80d02b2b/releases/6270b06334c255a34e4517a0/img/group-11-1@2x.png",
-        name: "Asian",
+        name: "Soup",
         number: 35,
         link: "",
       },
