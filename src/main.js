@@ -51,12 +51,19 @@ const router = new VueRouter({
     { path: '/why', component: DesignWhyPage, props: { ...whyPageData }, },
     { path: '/about', component: DesignAboutPage, props: { ...aboutPageData }, },
     { path: '/submit', component: SubmitPage, props: { ...submitPageData }, },
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0, behavior: 'smooth', }
+    }
+  }
 })
 
-Vue.prototype.$hostname = (Vue.config.productionTip) 
-                            ? '/'
-                            : 'https://saineating.ml'
+Vue.prototype.$hostname = (Vue.config.productionTip)
+  ? '/'
+  : 'https://saineating.ml'
 
 new Vue({
   vuetify,
