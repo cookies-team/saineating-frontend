@@ -12,20 +12,20 @@
         <div class="dmsans-bold-white-20px ma-2">{{ navi }}</div>
         <div class="footer-navi d-flex">
         <div class="d-flex flex-column footer-navigation-line ma-2">
-          <div class="dmsans-normal-white-16px">Home</div>
-          <div class="dmsans-normal-white-16px">Why Healthy Eating</div>
-          <div class="dmsans-normal-white-16px">Recipe</div>
+          <div class="dmsans-normal-white-16px" style="cursor: pointer;" @click="$router.push({path: '/'})">Home</div>
+          <div class="dmsans-normal-white-16px" style="cursor: pointer;" @click="$router.push({path: '/why'})">Why Healthy Eating</div>
+          <div class="dmsans-normal-white-16px" style="cursor: pointer;" @click="$router.push({path: '/res'})">Recipe</div>
         </div>
         <div class="d-flex flex-column footer-navigation-line ma-2">
-          <div class="dmsans-normal-white-16px">Eating-out</div>
-          <div class="dmsans-normal-white-16px">Shopping Guideline</div>
+          <div class="dmsans-normal-white-16px" style="cursor: pointer;" @click="$router.push({path: '/restmap'})">Eating-out</div>
+          <div class="dmsans-normal-white-16px" style="cursor: pointer;" @click="$router.push({path: '/guideline'})">Shopping Guideline</div>
         </div>
       </div>
       </div>
     </div>
     <div class="footer-v-divider" ></div>
     <div class="footer d-flex justify-end pa-8">
-          <div class="dmsans-normal-white-16px mx-3">Terms and conditions</div>
+          <!-- <div class="dmsans-normal-white-16px mx-3">Terms and conditions</div> -->
           <div class="dmsans-normal-white-16px mx-3">Privacy</div>
           <div class="dmsans-normal-white-16px mx-3">© 2022 Team Cookies</div>
     </div>
