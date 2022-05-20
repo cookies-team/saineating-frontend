@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "release1": "vue-cli-service build --dest /var/www/saineating-iterations/iter1/recipes",
-    "release": "vue-cli-service build --dest /var/www/saineating-iterations/iter2"
+    "release": "vue-cli-service build --dest /var/www/saineating-iterations/iter3"
   },
   "dependencies": {
     "@vue/cli": "^5.0.4",
