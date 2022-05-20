@@ -125,7 +125,7 @@
                 :image="item.imgsrc"
                 :restName="item.Name"
                 :desc="item.distance"
-                :types="item.TypeName"
+                :types="item.RestTypeName"
               />
             </router-link>
           </v-col>

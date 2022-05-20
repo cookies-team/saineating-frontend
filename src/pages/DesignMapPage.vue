@@ -52,7 +52,7 @@
                       {{ item.Name }}
                     </div>
                     <div class="map-rest-type dmsans-normal-white-16px">
-                      {{ item.TypeName }}
+                      {{ item.RestTypeName }}
                     </div>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
                     <v-row align="center" class="mx-0"> </v-row>
 
                     <div class="my-4 text-subtitle-1">
-                      {{ item.TypeName }}
+                      {{ item.RestTypeName }}
                     </div>
 
                     <div>

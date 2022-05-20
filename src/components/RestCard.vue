@@ -7,11 +7,13 @@
     <div class="best-types worksans-bold-mine-shaft-24px">
       {{ restName }}
     </div>
-    <div class="flex-row-3 ma-3">
-      <div class="x20-30-min dmsans-normal-mine-shaft-16px-2">
+    <div class="flex-row-3 ma-3 justify-end">
+      <!-- <div class="x20-30-min dmsans-normal-mine-shaft-16px-2">
         {{ desc }}
+      </div> -->
+      <div class="types">
+        <p class="dmsans-normal-mine-shaft-16px">{{ types }}</p>
       </div>
-      <div class="types dmsans-normal-mine-shaft-16px">{{ types }}</div>
     </div>
   </div>
 </template>
@@ -93,11 +95,7 @@ export default {
 }
 
 .types {
-  letter-spacing: 0;
-  line-height: 32px;
-  margin-left: 7px;
-  min-height: 32px;
-  min-width: 109px;
-  text-align: right;
+  display: flex;
+  align-self: flex-end;
 }
 </style>
