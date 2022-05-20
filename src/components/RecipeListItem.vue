@@ -11,9 +11,9 @@
         {{ types.join(",") }}
       </div>
       <div class="recipe-name worksans-bold-mine-shaft-24px">{{ name }}</div>
-      <div class="diffcultiy-level dmsans-normal-mine-shaft-16px">
+      <!-- <div class="diffcultiy-level dmsans-normal-mine-shaft-16px">
         {{ shortDesc }}
-      </div>
+      </div> -->
       <div class="cooking-time dmsans-normal-mine-shaft-16px-2">
         {{ cookingTime }}
       </div>
