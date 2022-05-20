@@ -167,7 +167,7 @@
                 child to drink plenty of water and eat fruit and vegetables
                 regularly, rather than drinking sugary drinks or eating
                 high-calorie snacks. (Picture Source: <a href="https://www.helpguide.org/articles/healthy-eating/healthy-eating.htm" target="_blank">Healthy eating</a>, 
-                <a href="https://www.eatforhealth.gov.au/eating-well/tips-eating-well/food-shopping-tips" target="_blank">Shopping)
+                <a href="https://www.eatforhealth.gov.au/eating-well/tips-eating-well/food-shopping-tips" target="_blank">Shopping</a>)
               </v-col>
               <v-col cols="12" sm="6">
                 <div
